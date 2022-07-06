@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.account</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="40"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='invoicing_settings']" position="after">
+                    <h2>Destinos</h2>
+                    <div class="row mt16 o_settings_container" id="destiny">
+                        <div class="o_setting_left_pane">
+                            <field name="automatic_destiny"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="automatic_destiny"/>
+                        </div>
+                    </div>
+
+<!--                    <div class="row mt16 o_settings_container" id="destiny_priorise">-->
+<!--                        <div class="o_setting_left_pane">-->
+<!--                            <field name="priorise_destiny"/>-->
+<!--                        </div>-->
+<!--                        <div class="o_setting_right_pane">-->
+<!--                             <label for="priorise_destiny"/>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

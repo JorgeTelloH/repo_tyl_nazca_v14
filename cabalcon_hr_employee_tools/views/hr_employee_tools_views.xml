@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="act_hr_employee_tools_hr_employee" model="ir.actions.act_window">
+        <field name="name">Employee Tools</field>
+        <field name="res_model">hr.employee.tools</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{
+            'search_default_employee_id': [active_id],
+            'default_employee_id': active_id}
+        </field>
+    </record>
+
+    <record id="hr_employee_tools_view_form" model="ir.ui.view">
+        <field name="name">hr.employee.tools.view.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <div name="button_box" position="inside">
+                    <button name="%(act_hr_employee_tools_hr_employee)d"
+                        class="oe_stat_button"
+                        icon="fa-building"
+                        type="action">
+                        <div attrs="{'invisible' : [('tools_count', '=', 0)]}" class="o_stat_info">
+                            <span class="o_stat_value">
+                               <field name="tools_count"/>
+                            </span>
+                            <span class="o_stat_text">
+                                Herramientas
+                            </span>
+                        </div>
+                        <div attrs="{'invisible' : [('tools_count', '!=', 0)]}" class="o_stat_info">
+                            <span class="o_stat_value text-danger">
+                               <field name="tools_count"/>
+                            </span>
+                            <span class="o_stat_text text-danger">
+                                Herramientas
+                            </span>
+                        </div>
+                    </button>
+                </div>
+            </data>
+        </field>
+    </record>
+
+    <record id="hr_employee_tools_view_tree" model="ir.ui.view">
+        <field name="name">hr.employee.tools.tree</field>
+        <field name="model">hr.employee.tools</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Tools" editable="bottom">
+                <field name="product_id" domain="[('can_be_tools', '=', True)]"/>
+                <field name="default_code"/>
+                <field name="serie" domain="[('product_id', '=', product_id)]" options="{'no_create': True, 'no_open': True}"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="state"/>
+                <field name="date_asign"/>
+                <field name="date_release" attrs="{'required': [('state', '=', 'release')]}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_employee_tools_view_search" model="ir.ui.view">
+        <field name="name">hr.employee.tools.search</field>
+        <field name="model">hr.employee.tools</field>
+        <field name="arch" type="xml">
+            <search string="Search Employee Tools">
+                <field name="product_id"/>
+                <field name="default_code"/>
+                <field name="employee_id"/>
+                <group expand="0" string="Group By">
+                    <filter name="employee" string="Empleados" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter name="herramientas" string="Herramientas" domain="[]" context="{'group_by':'product_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_product_tools_form" model="ir.ui.view">
+        <field name="name">product.template.tools.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <div name="options" position="inside">
+                <div>
+                    <field name="can_be_tools"/>
+                    <label for="can_be_tools"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="product_template_action_tools" model="ir.actions.act_window">
+        <field name="name">Herramientas</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('can_be_tools', '=', True)]</field>
+         <field name="context">{'default_can_be_tools': 1}</field>
+    </record>
+
+     <record id="action_hr_employee_tools" model="ir.actions.act_window">
+        <field name="name">Herramientas</field>
+        <field name="res_model">hr.employee.tools</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="employee_tools_menuitem"
+              name="Herramientas asignadas"
+              parent="hr.menu_hr_employee_payroll"
+              action="action_hr_employee_tools"
+              groups="hr.group_hr_user" />
+
+    <menuitem
+            id="menu_product_tools_tree"
+            action="product_template_action_tools"
+            parent="hr.menu_human_resources_configuration"
+            sequence="40"
+            groups="hr.group_hr_user"/>
+
+</odoo>

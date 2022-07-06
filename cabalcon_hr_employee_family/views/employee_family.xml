@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_employee_family_form_view" model="ir.ui.view">
+            <field name="name">hr.employee.family.form</field>
+            <field name="model">hr.employee.family</field>
+            <field name="arch" type="xml">
+                <form string="Familiar">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Nombre" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="member_name"/>
+                                <field name="first_name"/>
+                                <field name="last_name"/>
+                            </group>
+                            <group></group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="relation_id" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="document_type"/>
+                                <field name="member_id"/>
+                                <field name="is_child" invisible="1"/>
+                                <field name="birth_date" attrs="{'required': [('is_child', '=', True)]}"/>
+                                <field name="gender"/>
+                            </group>
+                            <group>
+                                <field name="marital"/>
+                                <field name="document_family_type_id" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="doc_attachment_id" widget="many2many_binary" class="oe_inline"/>
+                                <field name="country_id" attrs="{'invisible': [('is_passport', '=', False)]}" help="Este campo se capta solo en caso de ser extranjero"/>
+                                <field name="age" invisible="1"/>
+                                <field name="is_university" attrs="{'invisible': ['|', ('is_child', '=', False),('age','&lt;',18)]}"/>
+                                <field name="is_passport" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_employee_family_tree_view" model="ir.ui.view">
+            <field name="name">hr.employee.family.tree</field>
+            <field name="model">hr.employee.family</field>
+            <field name="arch" type="xml">
+                <tree string="Familiares">
+                    <field name="name"/>
+                    <field name="relation_id"/>
+                    <field name="birth_date"/>
+                    <field name="age"/>
+                    <field name="document_type"/>
+                    <field name="member_id"/>
+                    <field name="gender"/>
+                    <field name="marital"/>
+                </tree>
+            </field>
+        </record>
+
+<!--        <record id="hr_employee_family_search_view" model="ir.ui.view">-->
+<!--            <field name="name">hr.employee.family.search</field>-->
+<!--            <field name="model">hr.employee.family</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="Familiar">-->
+<!--                    <group expand="1" string="Group By">-->
+<!--                        <filter string="Example Field" name="example_field" domain="[]"-->
+<!--                                context="{'group_by':'example_field'}"/>-->
+<!--                    </group>-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="hr_employee_family_act_window" model="ir.actions.act_window">
+            <field name="name">Familia</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee.family</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+    </data>
+</odoo>

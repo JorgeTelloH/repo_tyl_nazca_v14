@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="hr_work_entry_type_lsr" model="hr.work.entry.type">
+            <field name="name">Licencia sin Remuneración</field>
+            <field name="color">0</field>
+            <field name="code">LSR</field>
+            <field name="is_leave" eval="True"/>
+        </record>
+
+        <record id="holiday_status_lsr" model="hr.leave.type">
+            <field name="name">Licencia sin Remuneración en el mes</field>
+            <field name="allocation_type">no</field>
+            <field name="leave_validation_type">both</field>
+            <field name="allocation_validation_type">both</field>
+            <field name="color_name">brown</field>
+            <field name="request_unit">hour</field>
+            <field name="unpaid" eval="True"/>
+            <field name="validity_start" eval="time.strftime('%Y-01-01')"/>
+            <field name="leave_notif_subtype_id" ref="hr_holidays.mt_leave_unpaid"/>
+            <field name="work_entry_type_id" ref="hr_work_entry_type_lsr"></field>
+            <field name="code_afpnet">L</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+        </record>
+
+        <record id="hr_work_entry_type_pj" model="hr.work.entry.type">
+            <field name="name">Pensionado por Jubilación</field>
+            <field name="color">0</field>
+            <field name="code">PJ</field>
+            <field name="is_leave" eval="True"/>
+        </record>
+
+         <record id="holiday_status_pj" model="hr.leave.type">
+            <field name="name">Pensionado por Jubilación en el mes.</field>
+            <field name="allocation_type">no</field>
+            <field name="leave_validation_type">both</field>
+            <field name="allocation_validation_type">both</field>
+            <field name="color_name">brown</field>
+            <field name="request_unit">hour</field>
+            <field name="unpaid" eval="True"/>
+            <field name="validity_start" eval="time.strftime('%Y-01-01')"/>
+            <field name="leave_notif_subtype_id" ref="hr_holidays.mt_leave_unpaid"/>
+            <field name="work_entry_type_id" ref="hr_work_entry_type_pj"></field>
+            <field name="code_afpnet">J</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+        </record>
+
+        <record id="hr_work_entry_type_pi" model="hr.work.entry.type">
+            <field name="name">Pensionado por Invalidez</field>
+            <field name="color">0</field>
+            <field name="code">PI</field>
+            <field name="is_leave" eval="True"/>
+        </record>
+
+        <record id="holiday_status_pi" model="hr.leave.type">
+            <field name="name">Pensionado por Invalidez en el mes.</field>
+            <field name="allocation_type">no</field>
+            <field name="leave_validation_type">both</field>
+            <field name="allocation_validation_type">both</field>
+            <field name="color_name">brown</field>
+            <field name="request_unit">hour</field>
+            <field name="unpaid" eval="True"/>
+            <field name="validity_start" eval="time.strftime('%Y-01-01')"/>
+            <field name="leave_notif_subtype_id" ref="hr_holidays.mt_leave_unpaid"/>
+            <field name="work_entry_type_id" ref="hr_work_entry_type_pi"></field>
+            <field name="code_afpnet">I</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+        </record>
+
+        <record id="hr_work_entry_type_lm" model="hr.work.entry.type">
+            <field name="name">Licencia de Maternidad</field>
+            <field name="color">0</field>
+            <field name="code">LM</field>
+            <field name="is_leave" eval="True"/>
+        </record>
+
+        <record id="holiday_status_lm" model="hr.leave.type">
+            <field name="name">Licencia de Maternidad</field>
+            <field name="allocation_type">no</field>
+            <field name="color_name">red</field>
+            <field name="validity_start" eval="time.strftime('%Y-01-01')"/>
+            <field name="leave_notif_subtype_id" ref="hr_holidays.mt_leave_sick"/>
+            <field name="work_entry_type_id" ref="hr_work_entry_type_lm"></field>
+            <field name="code_afpnet">U</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+        </record>
+
+        <record id="hr_holidays.holiday_status_sl" model="hr.leave.type">
+            <field name="code_afpnet">U</field>
+        </record>
+
+        <!-- Vacaciones -->
+
+        <record id="work_entry_type_vac" model="hr.work.entry.type">
+            <field name="name">Vacaciones</field>
+            <field name="code">VAC</field>
+            <field name="is_leave">True</field>
+            <field name="color">5</field>
+        </record>
+
+        <record id="holiday_status_vac" model="hr.leave.type">
+            <field name="name">Vacaciones</field>
+            <field name="allocation_type">fixed</field>
+            <field name="leave_validation_type">both</field>
+            <field name="allocation_validation_type">both</field>
+            <field name="color_name">black</field>
+            <field name="leave_notif_subtype_id" ref="hr_holidays.mt_leave"/>
+            <field name="allocation_notif_subtype_id" ref="hr_holidays.mt_leave_allocation"/>
+            <field name="work_entry_type_id" ref="work_entry_type_vac"></field>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="responsible_id" ref="base.user_admin"/>
+        </record>
+
+        <!-- Vacaciones truncas -->
+
+        <record id="work_entry_type_vactrunca" model="hr.work.entry.type">
+            <field name="name">Vacaciones truncas</field>
+            <field name="code">VACT</field>
+            <field name="is_leave">True</field>
+            <field name="color">5</field>
+        </record>
+
+        <record id="holiday_status_vactruncas" model="hr.leave.type">
+            <field name="name">Vacaciones truncas</field>
+            <field name="allocation_type">fixed</field>
+            <field name="leave_validation_type">both</field>
+            <field name="allocation_validation_type">both</field>
+            <field name="color_name">black</field>
+            <field name="leave_notif_subtype_id" ref="hr_holidays.mt_leave"/>
+            <field name="allocation_notif_subtype_id" ref="hr_holidays.mt_leave_allocation"/>
+            <field name="work_entry_type_id" ref="work_entry_type_vactrunca"></field>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="responsible_id" ref="base.user_admin"/>
+        </record>
+
+    </data>
+</odoo>

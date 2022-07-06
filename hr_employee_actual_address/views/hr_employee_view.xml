@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+		<record model="ir.ui.view" id="add_employee_ubigeo_fields_form_view">
+		    <field name="name">hr.employee.form.view</field>
+		    <field name="model">hr.employee</field>
+		    <field name="inherit_id" ref="hr.view_employee_form"/>
+		    <field name="arch" type="xml">
+		        <xpath expr="//page[@name='personal_information']/group//group//field[@name='identification_id']" position="after">
+		            <label for="street" string="Dirección Cédula"/>
+		            <div class="o_address_format">
+		                <field name="street" placeholder="Dirección" class="o_address_street"/>
+		                <field name="l10n_pe_district" placeholder="Distrito" options="{'no_open': True, 'no_quick_create': True}"/>
+		                <field name="city_id" class="o_address_state" placeholder="Provincia" options="{'no_open': True, 'no_quick_create': True}"/>
+		                <field name="state_id" class="o_address_state" placeholder="Dpto" options="{'no_open': True, 'no_quick_create': True}" context="{'default_country_id': country_id}"/>
+		                <field name="country_id" class="o_address_country" placeholder="Pais" options='{"no_open": True, "no_create": True}'/>
+		            </div>
+		        </xpath>
+		    </field>
+		</record>
+
+        <record id="res_partner_view_form_private_identification" model="ir.ui.view">
+            <field name="name">res.partner.view.form.private.identification</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_view_form_private"/>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <label for="l10n_latam_identification_type_id" string="Identificación"/>
+                    <div>
+                        <field name="l10n_latam_identification_type_id" placeholder="Tipo Documento" colspan="1" nolabel="1" readonly="1" 
+                        options='{"no_open": True, "no_quick_create": True, "no_create": True}'/>
+                        <field name="vat" placeholder="Nro Documento" colspan="1" nolabel="1" readonly="1"/>
+                    </div>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

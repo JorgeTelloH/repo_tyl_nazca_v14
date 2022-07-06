@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.actions.server" id="action_contract_code_config">
+        <field name="name">Código del contrato del empledo</field>
+        <field name="model_id" ref="hr_contract.model_hr_contract"/>
+        <field name="state">code</field>
+        <field name="code">
+record = env['ir.sequence'].search([('code', '=', 'hr.contract.code')])
+action = {
+    'name': 'Código del contracto',
+    'type': 'ir.actions.act_window',
+    'res_id': record.id,
+    'res_model': 'ir.sequence',
+    'target': 'current',
+    'views': [(False, "form")],
+    'view_mode': 'form',
+    'flags': {'form': {'action_buttons': True, 'options': {'mode': 'edit'}}}
+}
+        </field>
+    </record>
+
+    <menuitem
+                id="menu_contract_code_config"
+                action="action_contract_code_config"
+                parent="hr.menu_human_resources_configuration"
+                sequence="30"
+                groups="hr.group_hr_user"/>
+
+
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="hr.contract.type" id="hr_contract_type_dependent">
+            <field name="name">Dependiente</field>
+        </record>
+        <record model="hr.contract.type" id="hr_contract_type_formal_independent">
+            <field name="name">Formal Independente</field>
+        </record>
+        <record model="hr.contract.type" id="hr_contract_type_informal_independent">
+            <field name="name">Informal Independente</field>
+        </record>
+    </data>
+</odoo>

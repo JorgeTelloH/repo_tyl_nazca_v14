@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.account.expense</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="50"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='has_accounting_entries']" position="after">
+                    <h2>Gastos de personal</h2>
+                    <div class="row mt16 o_settings_container" name="setting_account_expense">
+                        <div class="col-12 col-lg-6 o_setting_box" id="main_account_expense">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <div class="text-muted">
+                                    Configuración de Gastos de personal
+                                </div>
+                                <div class="content-group">
+                                    <div class="row mt16">
+                                        <label string="Diario de Gastos" for="journal_expense_id" class="col-md-3 o_light_label"/>
+                                        <field name="journal_expense_id"/>
+                                    </div>
+                                    <div class="row">
+                                        <label string="Cuenta por cobrar" for="account_expense_reci" class="col-md-3 o_light_label"/>
+                                        <field name="account_expense_reci"/>
+                                    </div>
+                                    <div class="row">
+                                        <label string="Cuenta por pagar" for="account_expense_pay" class="col-md-3 o_light_label"/>
+                                        <field name="account_expense_pay"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_product_price_show" model="res.groups">
+        <field name="category_id" ref="base.module_category_usability"/>
+        <field name="name">Mostrar Precio de Producto</field>       
+    </record>
+	
+    <record id="group_product_cost_show" model="res.groups">
+        <field name="category_id" ref="base.module_category_usability"/>
+        <field name="name">Mostrar Costo de Producto</field>        
+    </record>
+</odoo>

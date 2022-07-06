@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="email_template_notification_vacations" model="mail.template" forcecreate="1">
+            <field name="name">Notificación de vacaciones por difrutar</field>
+            <field name="subject">Notificación de vacaciones por difrutar - ${object.name}</field>
+            <field name="email_from">
+                <![CDATA["${object.company_id.name|safe}" <${(object.company_id.email or '')|safe}>]]></field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+            Hola, ${object.name} le comunicamos que tiene días de vacaciones por difrutar.
+           ]]></field>
+        </record>
+
+        <record id="email_template_notification_vacations_officer" model="mail.template" forcecreate="1">
+            <field name="name">Notificación de vacaciones por difrutar</field>
+            <field name="subject">Notificación de vacaciones por difrutar - ${object.name}</field>
+            <field name="email_from">
+                <![CDATA["${object.company_id.name|safe}" <${(object.company_id.email or '')|safe}>]]></field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+            El empleado(a) ${object.name} tiene días de vacaciones por difrutar y el año esta por terminar.
+           ]]></field>
+        </record>
+
+    </data>
+</odoo>

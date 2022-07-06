@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="afp_form_view" model="ir.ui.view">
+            <field name="name">cabalcon_hr.afp.form</field>
+            <field name="model">res.afp</field>
+            <field name="arch" type="xml">
+                <form string="AFP">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Nombre"/>
+                            </h1>
+                            <label for="code"/>
+                            <h3>
+                                <field name="code" placeholder="Código"/>
+                            </h3>
+                        </div>
+                        <group col="4">
+                            <field name="seat"/>
+                            <field name="commission_flow"/>
+                            <field name="commission_mixed"/>
+                            <field name="commission_mixed_year"/>
+                            <field name="insurance"/>
+                            <field name="rma"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="afp_tree_view" model="ir.ui.view">
+            <field name="name">cabalcon_hr.afp.tree</field>
+            <field name="model">res.afp</field>
+            <field name="arch" type="xml">
+                <tree string="AFP">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="seat"/>
+                    <field name="commission_flow"/>
+                    <field name="commission_mixed"/>
+                    <field name="commission_mixed_year"/>
+                    <field name="insurance"/>
+                    <field name="rma"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="afp_search_view" model="ir.ui.view">
+            <field name="name">cabalcon_hr.afp.search</field>
+            <field name="model">res.afp</field>
+            <field name="arch" type="xml">
+                <search string="AFP">
+                    <field name="code"/>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="afp_act_window" model="ir.actions.act_window">
+            <field name="name">AFP</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.afp</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+       <menuitem
+                id="menu_afp_tree"
+                action="afp_act_window"
+                parent="hr.menu_human_resources_configuration"
+                sequence="20"
+                groups="hr.group_hr_user"/>
+
+    </data>
+</odoo>

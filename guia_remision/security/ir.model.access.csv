@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vehiculo,vehiculo.operation,model_picking_vehiculo,stock.group_stock_user,1,1,1,1
+access_catalogs,catalogs.operation,model_catalogs_sunat_guia,stock.group_stock_user,1,1,1,1

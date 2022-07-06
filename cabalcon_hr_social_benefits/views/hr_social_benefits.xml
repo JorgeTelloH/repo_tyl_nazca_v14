@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_social_benefits_view_tree" model="ir.ui.view">
+            <field name="name">hr_social_benefits_view_tree</field>
+            <field name="model">hr.social.benefits</field>
+            <field name="arch" type="xml">
+                <tree string="Gratificaciones">
+                    <field name="name"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="report_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_social_benefits_search_view" model="ir.ui.view">
+            <field name="name">hr.social.benefits.search</field>
+            <field name="model">hr.social.benefits</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="name"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_social_benefits_view_form" model="ir.ui.view">
+            <field name="name">hr_social_benefits_view_form</field>
+            <field name="model">hr.social.benefits</field>
+            <field name="arch" type="xml">
+                <form string="hr_social_benefits_form">
+                    <header>
+                        <button name="calculate" type="object" string="Generar" class="oe_highlight"
+                                attrs="{'invisible':[('state','in', ['close','paid'])]}"/>
+                        <button name="state_open" type="object" string="Abrir" states="close" class="oe_highlight"/>
+                        <button name="state_close" type="object" string="Cerrar" states="open" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="open,close,paid"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_gratification" class="oe_stat_button" icon="fa-book" type="object"
+                                    help="Listado de gratificaciones"  attrs="{'invisible': [('gratification_count', '=', 0)]}">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="gratification_count"/>
+                                    </span>
+                                    <span class="o_stat_text">Ver</span>
+                                </div>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="benefit_type" invisible="1"/>
+                            <field name="gratificacion_select"
+                                   attrs="{'invisible': [('benefit_type', '!=', 'gratification')]}"/>
+                            <field name="cts_select"
+                                   attrs="{'invisible': [('benefit_type', '!=', 'cts')]}"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="date_from" attrs="{'readonly':[('state','in', ['close','paid'])]}"/>
+                                <field name="report_date" attrs="{'readonly':[('state','in', ['close','paid'])]}"/>
+                            </group>
+                            <group>
+                                <field name="date_to" attrs="{'readonly':[('state','in', ['close','paid'])]}"/>
+                            </group>
+                        </group>
+                        <field name="gratification_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="employee_id"/>
+                                <field name="contract_id"/>
+                                <field name="wage"/>
+                                <field name="da"/>
+                                <field name="months_work"/>
+                                <field name="overtime"
+                                       attrs="{'column_invisible': [('parent.benefit_type', '=', 'cts')]}"/>
+                                <field name="commissions" />
+                                <field name="bonuses" attrs="{'column_invisible': [('parent.benefit_type', '=', 'cts')]}"/>
+                                <field name="amount_gratification1_6to" attrs="{'column_invisible': [('parent.benefit_type', '!=', 'cts')]}"/>
+                                <field name="computable_remuneration"/>
+                                <field name="amount_gratification"
+                                       attrs="{'column_invisible': [('parent.benefit_type', '=', 'cts')]}"/>
+                                <field name="amount_bonus"
+                                       attrs="{'column_invisible': [('parent.benefit_type', '=', 'cts')]}"/>
+                                <field name="amount_total"
+                                       attrs="{'column_invisible': [('parent.benefit_type', '=', 'cts')]}"/>
+                                <field name="amount_cts"
+                                       attrs="{'column_invisible': [('parent.benefit_type', '=', 'gratification')]}"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_social_benefits_gratification_view_tree" model="ir.ui.view">
+            <field name="name">hr.social.benefits.gratification.view.tree</field>
+            <field name="model">hr.social.benefits.gratification</field>
+            <field name="arch" type="xml">
+                <tree string="Gratificaciones">
+                    <field name="benefit_type" invisible="1"/>
+                    <field name="employee_id"/>
+                    <field name="contract_id"/>
+                    <field name="wage"/>
+                    <field name="da"/>
+                    <field name="months_work"/>
+                    <field name="overtime"
+                           attrs="{'column_invisible': [('benefit_type', '=', 'cts')]}"/>
+                    <field name="commissions"/>
+                    <field name="bonuses"/>
+                    <field name="computable_remuneration"/>
+                    <field name="amount_gratification"
+                           attrs="{'column_invisible': [('benefit_type', '=', 'cts')]}"/>
+                    <field name="amount_bonus"
+                           attrs="{'column_invisible': [('benefit_type', '=', 'cts')]}"/>
+                    <field name="amount_total"
+                           attrs="{'column_invisible': [('benefit_type', '=', 'cts')]}"/>
+                    <field name="amount_cts"
+                           attrs="{'column_invisible': [('benefit_type', '=', 'gratification')]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_social_benefits_liquidation_view_form" model="ir.ui.view">
+            <field name="name">hr_social_benefits_liquidation_view_form</field>
+            <field name="model">hr.social.benefits</field>
+            <field name="arch" type="xml">
+                <form string="hr_social_benefits_form">
+                    <header>
+                        <button name="calculate" type="object" string="Generar" class="oe_highlight"
+                                attrs="{'invisible':[('state','in', ['close','paid'])]}"/>
+                        <button name="state_open" type="object" string="Abrir" states="close" class="oe_highlight"/>
+                        <button name="state_close" type="object" string="Cerrar" states="open" class="oe_highlight"/>
+                        <button name="open_liquidation_wizard" type="object" string="Imprimir" class="oe_highlight" attrs="{'invisible': [('gratification_trunca_count', '=', 0)]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="open,close,paid"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_gratification_trunca" class="oe_stat_button" icon="fa-book" type="object"
+                                    help="Gratificaciones trunca"
+                                    attrs="{'invisible': [('gratification_trunca_count', '=', 0)]}">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="gratification_trunca_count"/>
+                                    </span>
+                                    <span class="o_stat_text">Gratificaciones</span>
+                                </div>
+                            </button>
+                             <button name="action_cts_trunca" class="oe_stat_button" icon="fa-book" type="object"
+                                    help="CTS trunca"
+                                    attrs="{'invisible': [('cts_trunca_count', '=', 0)]}">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="cts_trunca_count"/>
+                                    </span>
+                                    <span class="o_stat_text">CTS</span>
+                                </div>
+                            </button>
+                            <button name="action_vacations" class="oe_stat_button" icon="fa-book" type="object"
+                                    help="CTS trunca"
+                                    attrs="{'invisible': [('vacation_count', '=', 0)]}">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="vacation_count"/>
+                                    </span>
+                                    <span class="o_stat_text">Vacaciones</span>
+                                </div>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="benefit_type" invisible="1"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="date_from" attrs="{'readonly':[('state','in', ['close','paid'])]}"/>
+                                <field name="report_date" attrs="{'readonly':[('state','in', ['close','paid'])]}"/>
+                            </group>
+                            <group>
+                                <field name="date_to" attrs="{'readonly':[('state','in', ['close','paid'])]}"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page name="gratification" string="Gratificación">
+                                <field name="gratification_trunca_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="employee_id"/>
+                                        <field name="contract_id"/>
+                                        <field name="wage"/>
+                                        <field name="da"/>
+                                        <field name="months_work"/>
+                                        <field name="overtime"/>
+                                        <field name="commissions"/>
+                                        <field name="bonuses"/>
+                                        <field name="computable_remuneration"/>
+                                        <field name="amount_gratification"/>
+                                        <field name="amount_bonus"/>
+                                        <field name="amount_total"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="cts" string="CTS">
+                                <field name="cts_trunca_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="employee_id"/>
+                                        <field name="contract_id"/>
+                                        <field name="wage"/>
+                                        <field name="da"/>
+                                        <field name="months_work"/>
+                                        <field name="commissions"/>
+                                        <field name="bonuses"/>
+                                        <field name="computable_remuneration"/>
+                                        <field name="amount_cts"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="vacation" string="Vacaciones truncas">
+                                <field name="vacation_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="employee_id"/>
+                                        <field name="contract_id"/>
+                                        <field name="wage"/>
+                                        <field name="da"/>
+                                        <field name="months_work"/>
+                                        <field name="computable_remuneration"/>
+                                        <field name="amount_vacation"/>
+                                        <field name="amount_vacation_trunca"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_social_benefits_vacations_view_tree" model="ir.ui.view">
+            <field name="name">hr.social.benefits.vacations_view_tree</field>
+            <field name="model">hr.social.benefits.vacations</field>
+            <field name="arch" type="xml">
+                <tree string="Vacaciones">
+                    <field name="employee_id"/>
+                    <field name="contract_id"/>
+                    <field name="wage"/>
+                     <field name="da"/>
+                    <field name="months_work"/>
+                    <field name="computable_remuneration"/>
+                    <field name="amount_vacation"/>
+                    <field name="amount_vacation_trunca"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="social_benefits_action" model="ir.actions.act_window">
+            <field name="name">Gratificaciones</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.social.benefits</field>
+            <field name="domain">[('benefit_type','=','gratification')]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"default_benefit_type": 'gratification'}</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('hr_social_benefits_view_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('hr_social_benefits_view_form')})]"/>
+        </record>
+
+        <record id="social_benefits_cts_action" model="ir.actions.act_window">
+            <field name="name">CTS</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.social.benefits</field>
+            <field name="domain">[('benefit_type','=','cts')]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"default_benefit_type": 'cts'}</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('hr_social_benefits_view_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('hr_social_benefits_view_form')})]"/>
+        </record>
+
+        <record id="social_benefits_liquidation_action" model="ir.actions.act_window">
+            <field name="name">Liquidación</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.social.benefits</field>
+            <field name="domain">[('benefit_type','=','liquidation')]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"default_benefit_type": 'liquidation'}</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('hr_social_benefits_view_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('hr_social_benefits_liquidation_view_form')})]"/>
+        </record>
+
+        <menuitem name="Beneficios sociales"
+                  id="menu_hr_social_benefits"
+                  parent="hr_work_entry_contract.menu_hr_payroll_root"
+                  sequence="90"/>
+
+        <menuitem name="Gratificaciones"
+                  id="menu_hr_gratification"
+                  parent="menu_hr_social_benefits"
+                  action="social_benefits_action"
+                  sequence="1"/>
+
+        <menuitem name="CTS"
+                  id="menu_hr_cts"
+                  parent="menu_hr_social_benefits"
+                  action="social_benefits_cts_action"
+                  sequence="2"/>
+
+        <menuitem name="Liquidaciones"
+                  id="menu_hr_liquidation"
+                  parent="menu_hr_social_benefits"
+                  action="social_benefits_liquidation_action"
+                  sequence="3"/>
+
+    </data>
+</odoo>

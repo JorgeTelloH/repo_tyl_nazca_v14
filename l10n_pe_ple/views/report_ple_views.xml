@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- actions -->
+        <act_window id="action_report_ple_14" name="Registo de Ventas" res_model="report.ple.14" view_mode="tree,form"/>
+        <act_window id="action_report_ple_08" name="Registo de Compras" res_model="report.ple.08" view_mode="tree,form"/>
+        <!-- menus -->
+        <menuitem id="menu_report_ple" name="Libros y Registros Electrónicos" parent="account.menu_finance_reports" sequence="5"
+                  groups="account.group_account_invoice"/>
+        <menuitem id="menu_report_ple_08" name="Registro de Compras" parent="menu_report_ple" sequence="8" action="action_report_ple_08"/>
+        <menuitem id="menu_report_ple_14" name="Registro de Ventas" parent="menu_report_ple" sequence="14" action="action_report_ple_14"/>
+    </data>
+</odoo>

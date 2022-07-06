@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_company_form">
+        <field name="name">res.company.form.inherit</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="model">res.company</field>
+        <field name="arch" type="xml">
+            <field name="company_registry" position="after">
+                <field name="sector"/>
+                <field name="company_type"/>
+                <field name="rubro"/>
+                <field name="general_manager_id"/>
+                <field name="sigla"/>
+            </field>
+            <notebook position="inside">
+                <page string="Configuraciones">
+                    <group name="configuration">
+                        <group string="Tasas de aporte empleador">
+                            <table class="table table-sm table-bordered" style="width: 90%">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th></th>
+                                        <th>TASA (%)</th>
+                                        <th>EPS (%)</th>
+                                        <th>RMV</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th style="background-color: #e9ecef;">ESSALUD</th>
+                                        <td><field name="essalud_tax" nolabel="1"/></td>
+                                        <td><field name="eps_tax" nolabel="1"/></td>
+                                        <td><field name="essalud_rmv" nolabel="1"/></td>
+                                    </tr>
+                                     <tr>
+                                        <th style="background-color: #e9ecef;">SCTR</th>
+                                        <td><field name="sctr_tax" nolabel="1"/></td>
+                                        <td></td>
+                                        <td><field name="sctr_rmv" nolabel="1"/></td>
+                                    </tr>
+                                     <tr>
+                                        <th style="background-color: #e9ecef;">UIT</th>
+                                        <td><field name="uit_tax" nolabel="1"/></td>
+                                        <td></td>
+                                        <td><field name="uit_rmv" nolabel="1"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </group>
+                        <group string="Otras">
+                            <field name="product_id" options="{'no_create': True}"/>
+                            <field name="insurance_premium_cap"/>
+                            <separator/>
+                            <field name="eps_credit_amount"/>
+                            <separator/>
+                            <field name="ofic_norm_prev"/>
+                        </group>
+                        <group string="Adelantos">
+                            <field name="account_type"/>
+                            <field name="account"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

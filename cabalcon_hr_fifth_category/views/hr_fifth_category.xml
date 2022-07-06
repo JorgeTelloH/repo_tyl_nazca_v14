@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_fifth_category_view_tree" model="ir.ui.view">
+            <field name="name">hr_fifth_category_view_tree</field>
+            <field name="model">hr.fifth.category</field>
+            <field name="arch" type="xml">
+                <tree string="Renta de quinta categoría">
+                    <field name="name"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_fifth_category_search_view" model="ir.ui.view">
+            <field name="name">hr.fifth.category.search</field>
+            <field name="model">hr.fifth.category</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="name"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_fifth_category_view_form" model="ir.ui.view">
+            <field name="name">hr_fifth_category_view_form</field>
+            <field name="model">hr.fifth.category</field>
+            <field name="arch" type="xml">
+                <form string="Quinta">
+                    <header>
+                        <button name="calculate" type="object" string="Generar" class="oe_highlight"
+                                attrs="{'invisible':[('state','in', ['close','paid'])]}"/>
+                        <button name="state_open" type="object" string="Abrir" states="close" class="oe_highlight"
+                                attrs="{'invisible':[('state','=', 'paid')]}"/>
+                        <button name="state_close" type="object" string="Cerrar" states="open" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="open,close,paid"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_open_fifth_category" class="oe_stat_button" icon="fa-book" type="object"
+                                    help="Listado de renta de 5ta categoría" attrs="{'invisible': [('lines_count', '=', 0)]}">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="lines_count"/>
+                                    </span>
+                                    <span class="o_stat_text">Renta 5ta Cat.</span>
+                                </div>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="name" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="option" widget="radio" attrs="{'readonly':[('state','in', ['close','paid'])]}" options="{'horizontal': true}"/>
+                            <field name="employee_ids" widget="many2many_tags"  options="{'no_create': True, 'no_open': True}" attrs="{'invisible':[('option','=', 'all')]}"/>
+                            <field name="struct_id" options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="date_from" attrs="{'readonly':[('state','in', ['close','paid'])]}"/>
+                                <field name="renta_year" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="date_to" attrs="{'readonly':[('state','in', ['close','paid'])]}"/>
+                            </group>
+                        </group>
+                        <field name="lines_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="employee_id"/>
+                                <field name="contract_id"/>
+                                <field name="wage"/>
+                                <field name="da"/>
+                                <field name="overtime"/>
+                                <field name="gratification_jul"/>
+                                <field name="gratification_dic"/>
+                                <field name="bonus"/>
+                                <field name="amount_another_companies"/>
+                                <field name="amount_utilities"/>
+                                <field name="amount_other_remuneration"/>
+                                <field name="remuneration"/>
+                                <field name="uit_tax"/>
+                                <field name="amount_maximum_deductible"/>
+                                <field name="net_taxable_income"/>
+                                <field name="amount_tax_1"/>
+                                <field name="amount_tax_2"/>
+                                <field name="amount_tax_3"/>
+                                <field name="amount_tax_4"/>
+                                <field name="amount_tax_5"/>
+                                <field name="amount_tax"/>
+                                <field name="monthly_retention"/>
+
+                                <field name="amount_uit_from_1" invisible="1"/>
+                                <field name="amount_uit_to_1" invisible="1"/>
+                                <field name="amount_uit_from_2" invisible="1"/>
+                                <field name="amount_uit_to_2" invisible="1"/>
+                                <field name="amount_uit_from_3" invisible="1"/>
+                                <field name="amount_uit_to_3" invisible="1"/>
+                                <field name="amount_uit_from_4" invisible="1"/>
+                                <field name="amount_uit_to_4" invisible="1"/>
+                                <field name="amount_uit_from_5" invisible="1"/>
+                                <field name="amount_uit_to_5" invisible="1"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_fifth_category_lines_view_search" model="ir.ui.view">
+           <field name="name">hr_fifth_category_lines_view_search</field>
+           <field name="model">hr.fifth.category.lines</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="contract_id" string="Contracto"/>
+                    <group expand="0" string="Group By">
+                        <filter name="Employee" string="Empleados" domain="[]" context="{'group_by':'employee_id'}"/>
+                    </group>
+                </search>
+           </field>
+        </record>
+
+        <record id="hr_fifth_category_lines_view_tree" model="ir.ui.view">
+            <field name="name">hr_fifth_category_lines_view_tree</field>
+            <field name="model">hr.fifth.category.lines</field>
+            <field name="arch" type="xml">
+                <tree string="_tree">
+                    <field name="employee_id"/>
+                    <field name="contract_id"/>
+                    <field name="wage"/>
+                    <field name="da"/>
+                    <field name="overtime"/>
+                    <field name="gratification_jul"/>
+                    <field name="gratification_dic"/>
+                    <field name="bonus"/>
+                    <field name="amount_another_companies" optional="hide"/>
+                    <field name="amount_utilities"/>
+                    <field name="amount_other_remuneration" optional="hide"/>
+                    <field name="remuneration"/>
+                    <field name="amount_maximum_deductible"/>
+                    <field name="net_taxable_income"/>
+                    <field name="amount_tax_1"/>
+                    <field name="amount_tax_2" optional="hide"/>
+                    <field name="amount_tax_3" optional="hide"/>
+                    <field name="amount_tax_4" optional="hide"/>
+                    <field name="amount_tax_5" optional="hide"/>
+                    <field name="amount_tax"/>
+                    <field name="monthly_retention"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_fifth_category_lines_view_form" model="ir.ui.view">
+            <field name="name">hr.fifth.category.lines.view.form</field>
+            <field name="model">hr.fifth.category.lines</field>
+            <field name="arch" type="xml">
+                <form string="Renta">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="employee_id"/>
+                            </group>
+                            <group>
+                                <field name="contract_id"/>
+                            </group>
+                        </group>
+                        <group string="Remuneración Mes">
+                            <group>
+                                <field name="wage"/>
+                                <field name="da"/>
+                                <field name="overtime"/>
+                                <field name="gratification_jul"/>
+                                <field name="gratification_dic"/>
+                                <field name="bonus"/>
+                            </group>
+                            <group>
+                                <field name="amount_other_remuneration"/>
+                                <field name="amount_another_companies"/>
+                                <field name="amount_utilities"/>
+                                <field name="remuneration"/>
+                                <field name="total_remuneration"/>
+                            </group>
+                        </group>
+                        <group string="Remuneraciones Percibidas">
+                            <group>
+                                <field name="wage_month_1"/>
+                                <field name="wage_month_2"/>
+                                <field name="wage_month_3"/>
+                                <field name="wage_month_4"/>
+                                <field name="wage_month_5"/>
+                                <field name="wage_month_6"/>
+                            </group>
+                            <group>
+                                <field name="wage_month_7"/>
+                                <field name="wage_gratification_jul"/>
+                                <field name="wage_month_8"/>
+                                <field name="wage_month_9"/>
+                                <field name="wage_month_10"/>
+                                <field name="wage_month_11"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <group string="Deducciones de la renta de 5ta categoría">
+                                <field name="amount_maximum_deductible"/>
+                            </group>
+                            <group string="Renta neta">
+                                <field name="net_taxable_income"/>
+                            </group>
+                            <group string="Impuesto a la renta">
+                                <field name="amount_tax_1"/>
+                                <field name="amount_tax_2"/>
+                                <field name="amount_tax_3"/>
+                                <field name="amount_tax_4"/>
+                                <field name="amount_tax_5"/>
+                            </group>
+                            <group string="Créditos contra el impuesto">
+<!--                                <field name="net_taxable_income"/>-->
+                            </group>
+                            <group string="Renteciones">
+                                <field name="retained_tax_another_companies"/>
+                                <field name="amount_tax"/>
+                                <field name="retained_tax_in_excess"/>
+                            </group>
+                            <group string="Rentenciones Anteriores">
+                            <group>
+                                <field name="retention_month_1"/>
+                                <field name="retention_month_2"/>
+                                <field name="retention_month_3"/>
+                                <field name="retention_month_4"/>
+                                <field name="retention_month_5"/>
+                                <field name="retention_month_6"/>
+                            </group>
+                            <group>
+                                <field name="retention_month_7"/>
+                                <field name="retention_month_8"/>
+                                <field name="retention_month_9"/>
+                                <field name="retention_month_10"/>
+                                <field name="retention_month_11"/>
+                            </group>
+                        </group>
+                            <group string="Impuesto total retenido">
+                                <field name="total_retained_tax"/>
+                                <field name="monthly_retention"/>
+                            </group>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_fifth_category_action" model="ir.actions.act_window">
+            <field name="name">Quinta</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.fifth.category</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Quinta"
+                  id="menu_hr_fifth_category"
+                  parent="hr_work_entry_contract.menu_hr_payroll_root"
+                  sequence="90"/>
+
+        <menuitem name="Procesamiento"
+                  id="menu_hr_fifth_category_calculate"
+                  parent="menu_hr_fifth_category"
+                  action="hr_fifth_category_action"
+                  sequence="10"/>
+
+<!--        <menuitem name="Impuestos a la renta"-->
+<!--                  id="menu_hr_fifth_category_tax"-->
+<!--                  parent="menu_hr_fifth_category"-->
+<!--                  action="hr_fifth_category_tax_act_window"-->
+<!--                  sequence="20"/>-->
+
+    </data>
+</odoo>

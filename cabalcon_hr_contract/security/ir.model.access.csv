@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_work_certificate_wizard_all,hr.work.certificate.wizard.all,model_hr_work_certificate_wizard,,1,1,1,1
+access_hr_employee_health_entity_user,hr_employee_health_entity.user,model_hr_employee_health_entity,hr.group_hr_user,1,1,1,1
+access_hr_employee_health_entity_employee,hr_employee_health_entity.employee,model_hr_employee_health_entity,base.group_user,1,0,0,0
+access_hr_employee_departure_reason,hr.employee.departure.reason,model_hr_employee_departure_reason,,1,1,1,1
+,,,,,,,
+,,,,,,,

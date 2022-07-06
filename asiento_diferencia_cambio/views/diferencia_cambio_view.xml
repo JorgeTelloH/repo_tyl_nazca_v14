@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+       <record id="view_diferencia_cambio_form" model="ir.ui.view">
+            <field name="name">diferencia cambio</field>
+            <field name="model">diferencia.cambio</field>
+            <field name="arch" type="xml">
+                <form string="Diferencia" class="o_invoice_form">
+                    <header>
+                        <button name="action_generate" type="object" states="draft" string="Generar" class="oe_highlight"/>
+                        <button name="action_draft" type="object" states="generate" string="Pasar a borrador" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,generate" />
+                    </header>
+                    <sheet>
+                        <group col="4" colspan="4">
+                            <field name="name"/>
+                            <field name="company_id"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="date"/>
+                            <field name="journal_id"/>
+                            <field name="rate_sale"/>
+                            <field name="rate_purchase"/>
+                            <field name="move_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="diferencia_cambio_tree" model="ir.ui.view">
+            <field name="name">diferencia.cambio.tree</field>
+            <field name="model">diferencia.cambio</field>
+            <field name="arch" type="xml">
+                <tree string="Diferencia">
+                    <field name="name"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="journal_id"/>
+                    <field name="rate_sale"/>
+                    <field name="rate_purchase"/>
+                    <field name="move_id"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+       <record id="action_diferencia_cambio" model="ir.actions.act_window">
+            <field name="name">Diferencia cambio</field>
+            <field name="res_model">diferencia.cambio</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="diferencia_cambio_tree"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Click para registrar una Nueva Diferencia de Cambio.
+              </p><p>
+                Registro de Diferencia de Cambio.
+              </p>
+            </field>
+        </record>
+
+       <menuitem action="action_diferencia_cambio" 
+            id="menu_diferencia_cambio_item" 
+            parent="account.menu_finance_entries_accounting_miscellaneous"
+            sequence="60"/>
+
+   </data>
+</odoo>

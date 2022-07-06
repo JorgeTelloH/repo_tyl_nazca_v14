@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_work_certificates_anc" model="ir.actions.report">
+            <field name="name">Certificado de trabajo</field>
+            <field name="model">hr.employee</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cabalcon_hr_contract.report_work_certificates_anc</field>
+            <field name="report_file">cabalcon_hr_contract.report_work_certificates_anc</field>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_work_certificates_anc">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h1 class="text-center">CERTIFICADO DE TRABAJO</h1>
+                                    <br/>
+                                    <p>
+                                        El departamento de GESTIÓN DE PERSONAS, de la empresa <b><t t-esc="doc.company_id.name"/></b>,
+                                        con RUC Nº <b><t t-esc="doc.company_id.company_registry"/></b>, certifica que:
+                                    </p>
+                                    <br/>
+                                    <h3><t t-esc="doc.lastname"/> <t t-esc="doc.lastname2"/> <t t-esc="doc.firstname"/></h3>
+                                    <br/>
+                                    <p>Identificado con D.N.I. Nº<span t-field="doc.identification_id"/>, laboro en
+                                        nuestra empresa <b><t t-esc="doc.company_id.name"/></b>, desempeñándose como <b><span t-field="doc.contract_id.job_id.name"/></b> desde el
+                                        <span t-esc="doc.get_date_to_report(doc.first_contract_date)"/> hasta <span t-esc="doc.get_date_to_report(doc.departure_date)"/>
+                                    </p>
+                                    <br/>
+                                    <br/>
+                                    <p>Se expide el presente certificado a solicitud del interesado para los fines que estime conveniente.</p>
+                                    <br/>
+                                    <br/>
+                                    <span t-field="doc.company_id.city"/>,
+                                    <span t-esc="doc.get_date_to_report(datetime.datetime.now())"/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <p class="text-right">___________________________________
+                                        <br/>
+                                        ÁREA GESTIÓN DE PERSONAS
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

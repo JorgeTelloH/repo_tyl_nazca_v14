@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="view_location_form_cabalcon" model="ir.ui.view">
+            <field name="name">res.location.form.cabalcon</field>
+            <field name="model">res.location</field>
+            <field eval="2" name="priority"/>
+            <field name="inherit_id" ref="operations_cabalcon.view_location_form"/>
+            <field name="arch" type="xml">
+                 <field name="code" position="after">
+                     <field name="department_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+
+</odoo>

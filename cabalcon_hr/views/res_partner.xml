@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="res_partner_view_form_private_cabalcon" model="ir.ui.view">
+            <field name="name">res.partner.view.form.private.cabalcon</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_view_form_private"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='bank_ids']//tree//field[@name='acc_holder_name']" position="before">
+                    <field name="type"/>
+                    <field name="cci"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_partner_bank_form_cabalcon" model="ir.ui.view">
+            <field name="name">res.partner.bank.form.cabalcon</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form"/>
+            <field name="arch" type="xml">
+                <field name="acc_holder_name" position="after">
+                    <field name="type"/>
+                    <field name="cci"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

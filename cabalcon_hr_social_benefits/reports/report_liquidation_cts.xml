@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_cts" model="report.paperformat">
+            <field name="name">CTS</field>
+            <field name="default" eval="True"/>
+            <field name="format">Letter</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="orientation">Portrait</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">40</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="action_liquidation_cts_report" model="ir.actions.report">
+            <field name="name">Liquidación de depósitos semestrales de CTS</field>
+            <field name="model">hr.social.benefits.gratification</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cabalcon_hr_social_benefits.report_liquidation_cts</field>
+            <field name="report_file">cabalcon_hr_social_benefits.report_liquidation_cts</field>
+            <field name="binding_type">report</field>
+            <field name="binding_model_id" ref="model_hr_social_benefits_gratification"/>
+            <field name="print_report_name">('CTS_%s' % (object.employee_id.identification_id))</field>
+            <field name="paperformat_id" ref="paperformat_cts"/>
+        </record>
+
+        <template id="report_liquidation_cts">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="text-center">Modelo de liquidación de depósitos semestrales de CTS</h2>
+                                    <br/>
+                                    <h3 class="text-center">LIQUIDACIÓN DE DEPÓSITO SEMESTRAL DE CTS</h3>
+                                    <br/>
+                                    <p>
+                                        <b><t t-esc="o.contract_id.company_id.name"/></b>, con RUC Nº <strong><t t-esc="o.contract_id.company_id.company_registry"/></strong>, domiciliada en <span t-field="o.contract_id.company_id.street"/>,
+                                        representada por su Gerente General <t t-esc="o.contract_id.company_id.general_manager_id.name"/> en aplicación del artículo 24º del TUO del
+                                        Decreto Legislativo Nº 650, Ley de Compensación por Tiempo de Servicios aprobado mediante el Decreto Supremo Nº 001 -97-TR,
+                                        otorga a <strong><span t-field="o.employee_id.name"/></strong>, la presente constancia del depósito de su Compensación por Tiempo de Servicios realizado
+                                        el <span t-esc="o.gratification_id.report_date"/>, en la cuenta CTS Nº <t t-esc="o.employee_id.cts_account.acc_number"/>, del Banco de Crédito del Perú - BCP,
+                                        por los siguientes montos y períodos:
+                                    </p>
+                                    <br/>
+                                    <p>1. Período(s) que se liquida(n):</p>
+                                    <p>Del <span t-esc="o.gratification_id.date_from"/> al <span t-esc="o.gratification_id.date_to"/>; …meses <span t-esc="o.months_work"/>, …días <span t-esc="o.days_work"/>.</p>
+                                     <br/>
+                                    <p>2. Remuneración computable:</p>
+
+                                    <table style="width:70%;">
+                                        <tr>
+                                            <td>
+                                                Básico
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="o.contract_id.wage"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Asignacion Familiar
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="o.da"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Alimentación principal
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="o.contract_id.meal_allowance"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Bonificaciones
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="'%.2f'% o.bonuses"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Comisiones (promedio semestral)
+                                            </td>
+                                            <td class="text-right">
+                                               <span t-esc=" '%.2f'% o.commissions"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Horas Extras (Promedio)
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="'%.2f'% o.overtime"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Gratificaciones (dozavos, sextos o promedio)
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="'%.2f'% o.amount_gratification1_6to"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Otros conceptos percibidos regularmente (especificar)
+                                            </td>
+                                            <td class="text-right">
+<!--                                                <span t-esc="'%.2f'% other"/>-->
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>TOTAL</strong>
+                                            </td>
+                                            <td class="text-right">
+<!--                                                <t t-set="total" t-value="o.contract_id.wage + o.contract_id.da + o.contract_id.meal_allowance + bonuses + commissions + overtime_average + average_gratification + other"/>-->
+                                                <span t-esc=" '%.2f'% o.computable_remuneration"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                    <p><strong>CALCULO:</strong></p>
+                                     <table style="width:70%;">
+                                        <tr>
+                                            <td>
+                                                Por los meses completos:
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="'%.2f'% o.computable_remuneration"/> ÷ 12 x <span t-esc="o.months_work"/>
+                                            </td>
+                                            <td class="text-right">
+                                               <t t-set="total_months" t-value="o.computable_remuneration / 12 * o.months_work"/>
+                                                <span t-esc="'%.2f'% total_months"/>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>
+                                                Por los días:
+                                            </td>
+                                            <td class="text-right">
+                                               <span t-esc="'%.2f'% o.computable_remuneration"/> ÷ 12 ÷ 30 x <span t-esc="o.days_work"/>
+                                            </td>
+                                             <td class="text-right">
+                                                <t t-set="total_days" t-value="o.computable_remuneration / 12 / 30 * o.days_work"/>
+                                                <span t-esc="'%.2f'% total_days"/>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td colspan="2">
+                                                <strong>TOTAL:</strong>
+                                            </td>
+                                             <td class="text-right">
+<!--                                                <t t-set="total_g" t-value="total_months + total_days"/>-->
+                                                <span t-esc="'%.2f'% o.amount_cts"/>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td colspan="2">
+                                                <strong>MONTO DEPOSITADO (1):</strong>
+                                            </td>
+                                             <td class="text-right">
+                                                <span t-esc="'%.2f'% o.amount_cts"/>
+                                            </td>
+                                        </tr>
+
+                                     </table>
+                                    <br/>
+                                    <br/>
+
+                                    <table style="width:80%;">
+                                        <tr>
+                                            <td style="width:50%;">
+                                                <p class="text-center">_______________________________
+                                                    <br/>
+                                                    Firma del Trabajador
+                                                </p>
+                                            </td>
+                                            <td style="width:50%;">
+                                                <p class="text-center">_______________________________
+                                                    <br/>
+                                                    Firma del representante del empleador
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

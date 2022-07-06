@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_employee_eps_form_view" model="ir.ui.view">
+            <field name="name">hr.employee.eps.form</field>
+            <field name="model">hr.employee.eps</field>
+            <field name="arch" type="xml">
+                <form string="Empleado">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="employee_id"/>
+                            <h1>
+                                <field name="employee_id" placeholder="Empleado" options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="eps_amount_plan"/>
+                                <field name="eps_amount_employee" readonly="1"/>
+                                <field name="eps_amount_employer"/>
+                            </group>
+                            <group>
+                                <field name="eps_credit"/>
+                                <field name="eps_credit_employer"/>
+                                <field name="eps_amount"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_employee_eps_tree_view" model="ir.ui.view">
+            <field name="name">hr.employee.eps.tree</field>
+            <field name="model">hr.employee.eps</field>
+            <field name="arch" type="xml">
+                <tree string="Empleados">
+                    <field name="employee_id"/>
+                    <field name="eps_amount_plan"/>
+                    <field name="eps_credit"/>
+                    <field name="eps_credit_employer"/>
+                    <field name="eps_amount"/>
+                    <field name="eps_amount_employee"/>
+                    <field name="eps_amount_employer"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--        <record id="ModelName_act_window" model="ir.actions.act_window">-->
+<!--            <field name="name">ModelTitle</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">hr.employee.eps</field>-->
+<!--            <field name="view_type">form</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--            <field name="help" type="html">-->
+<!--                <p class="oe_view_nocontent_create">-->
+<!--                    There is no examples click here to add new ModelTitle.-->
+<!--                </p>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+
+    </data>
+</odoo>

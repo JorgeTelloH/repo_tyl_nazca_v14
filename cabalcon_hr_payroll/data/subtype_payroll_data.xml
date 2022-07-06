@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="subtype_payroll_G" model="hr.payslip.subtype.payroll">
+            <field name="name">GRATIFICACION</field>
+            <field name="code">G</field>
+        </record>
+
+        <record id="subtype_payroll_V" model="hr.payslip.subtype.payroll">
+            <field name="name">VACACIONES</field>
+            <field name="code">V</field>
+        </record>
+
+        <record id="subtype_payroll_M" model="hr.payslip.subtype.payroll">
+            <field name="name">MOVILIDAD</field>
+            <field name="code">M</field>
+        </record>
+
+        <record id="subtype_payroll_P" model="hr.payslip.subtype.payroll">
+            <field name="name">PENSIONISTA</field>
+            <field name="code">P</field>
+        </record>
+
+         <record id="subtype_payroll_T" model="hr.payslip.subtype.payroll">
+            <field name="name">PRESTAMOS</field>
+            <field name="code">T</field>
+        </record>
+
+         <record id="subtype_payroll_4" model="hr.payslip.subtype.payroll">
+            <field name="name">CUARTA CATEGORIA</field>
+            <field name="code">4</field>
+        </record>
+
+         <record id="subtype_payroll_O" model="hr.payslip.subtype.payroll">
+            <field name="name">OTROS</field>
+            <field name="code">O</field>
+        </record>
+
+         <record id="subtype_payroll_X" model="hr.payslip.subtype.payroll">
+            <field name="name">QUINTA CATEGORIA</field>
+            <field name="code">X</field>
+        </record>
+
+         <record id="subtype_payroll_Z" model="hr.payslip.subtype.payroll">
+            <field name="name">OTROS PAGOS AL PERSONAL</field>
+            <field name="code">Z</field>
+        </record>
+
+    </data>
+</odoo>

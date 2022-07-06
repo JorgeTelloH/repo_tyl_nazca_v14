@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="hr_applicant_view_form_cabalcon">
+            <field name="name">Jobs - Recruitment Form cabalcon</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+            <field name="arch" type="xml">
+                <field name="legend_done" position="after">
+                    <field name="image_1920" widget='image' class="oe_avatar" options='{"zoom": true, "preview_image":"image_128"}'/>
+                </field>
+                <field name="partner_name" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="partner_name" position="after">
+                    <field name="firstname" placeholder="Nombres..."/>
+                    <field name="lastname" placeholder="Apellido paterno..."/>
+                    <field name="lastname2" placeholder="Apellido materno..."/>
+                </field>
+                <field name="description" position="after">
+                    <notebook>
+                        <page name="other" string="Otras Imformaciones">
+                            <group>
+                                <group>
+                                    <field name="document_type"/>
+                                    <field name="gender"/>
+                                    <field name="birthday"/>
+                                    <field name="children"/>
+                                </group>
+                                <group>
+                                    <field name="identification_id"/>
+                                    <field name="marital"/>
+                                    <field name="country_id"/>
+                                    <label for="blood_name" />
+                                    <div class="o_row">
+                                        <field name="blood_name"/>
+                                        <span></span>
+                                        <field name="blood_type"/>
+                                    </div>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Dirección">
+                                    <div class="o_address_format" style="width: 90%;">
+                                        <field name="street" placeholder="Calle..." class="o_address_street"/>
+                                        <div class="o_row">
+                                            <label for="street_number" class="oe_edit_only"/>
+                                            <field name="street_number"/>
+                                            <span></span>
+                                            <label for="street_number2" class="oe_edit_only"/>
+                                            <field name="street_number2" />
+                                        </div>
+                                        <field name="l10n_pe_district" placeholder="Districto..." options='{"no_open": True, "no_create": True}'/>
+                                        <field name="city_id" placeholder="Provincia..." options='{"no_open": True, "no_create": True}'/>
+                                        <field name="state_id" class="o_address_state" placeholder="Estado..." options='{"no_open": True, "no_create": True}'/>
+                                        <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                        <field name="addres_country_id" placeholder="País" class="o_address_country"  options='{"no_open": True, "no_create": True}'/>
+                                    </div>
+                                </group>
+                                <group>
+                                    <field name="bank_id"/>
+                                    <field name="bank_account"/>
+                                    <field name="cci"/>
+                                    <field name="number_ruc"/>
+                                    <field name="type_vehicle"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="contact" string="Contactos">
+                            <group>
+                                <table class="o_group o_inner_group">
+                                    <tr>
+                                        <td class="o_td_label"><label for="contact_name1"/></td>
+                                        <td class="o_td_label"><label for="contact_relation1"/></td>
+                                        <td class="o_td_label"><label for="contact_mobile1"/></td>
+                                    </tr>
+                                     <tr>
+                                        <td><field name="contact_name1" nolabel="1"/></td>
+                                        <td><field name="contact_relation1" nolabel="1"/></td>
+                                        <td><field name="contact_mobile1" nolabel="1"/></td>
+                                    </tr>
+                                     <tr>
+                                        <td><field name="contact_name2" nolabel="1"/></td>
+                                        <td><field name="contact_relation2" nolabel="1"/></td>
+                                        <td><field name="contact_mobile2" nolabel="1"/></td>
+                                    </tr>
+                                </table>
+                            </group>
+                        </page>
+                        <page name="family" string="Información de familiares">
+                            <field name="family_ids" nolabel="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="relation_id"/>
+                                    <field name="birth_date"/>
+                                    <field name="member_id"/>
+                                    <field name="age"/>
+                                </tree>
+                            </field>
+                            <group>
+                                <field name="has_family"/>
+                                <field name="family_name" attrs="{'invisible': [('has_family', '=', False)]}"/>
+                                <field name="department" attrs="{'invisible': [('has_family', '=', False)]}"/>
+                            </group>
+                        </page>
+                        <page name="driver" string="Información del Vehículo">
+                            <group>
+                                <group>
+                                    <field name="vehicular_plate"/>
+                                    <field name="year_of_manufacture"/>
+                                    <field name="model_vehicle"/>
+                                    <field name="mark_of_vehicle"/>
+                                    <field name="color_of_vehicle"/>
+                                </group>
+                                <group>
+                                    <field name="proprietor"/>
+                                    <field name="expiration_date" />
+                                    <field name="category_of_license"/>
+                                    <field name="driver_license"/>
+                                    <field name="soat_expiration"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </field>
+                
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hr_kanban_view_applicant">
+            <field name="name">Hr Applicants kanban</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_kanban_view_applicant"/>
+            <field name="arch" type="xml">
+                <xpath expr="//templates" position="replace">
+                    <templates>
+                    <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+                        <field name="image_128" widget="image" class="o_kanban_image_fill_left" options="{'zoom': true, 'zoom_delay': 1000, 'background': true, 'preventClicks': false}"/>
+                        <div t-attf-class="{{!selection_mode ? 'oe_kanban_color_' + kanban_getcolor(record.color.raw_value) : ''}} oe_kanban_card oe_kanban_global_click oe_applicant_kanban oe_semantic_html_override">
+                            <span class="badge badge-pill badge-danger pull-right mr-4" attrs="{'invisible': [('active', '=', True)]}">Refused</span>
+                            <div class="o_dropdown_kanban dropdown">
+                                <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" href="#" aria-label="Dropdown menu" title="Dropdown menu" data-display="static">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                                    <a role="menuitem" name="action_makeMeeting" type="object" class="dropdown-item">Schedule Interview</a>
+                                    <div role="separator" class="dropdown-divider"></div>
+                                    <ul class="oe_kanban_colorpicker text-center" data-field="color"/>
+                                </div>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <b class="o_kanban_record_title mt8" t-if="record.partner_name.raw_value">
+                                            <field name="partner_name"/><br/>
+                                        </b><t t-else="1">
+                                            <i class="o_kanban_record_title"><field name="name"/></i><br/>
+                                        </t>
+                                        <div class="o_kanban_record_subtitle" invisible="context.get('search_default_job_id', False)">
+                                            <field name="job_id"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <field name="categ_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                <t t-if="record.partner_mobile.raw_value"><i class="fa fa-mobile mr4" role="img" aria-label="Mobile" title="Mobile"/><field name="partner_mobile" widget="phone"/><br/></t>
+                                <div class="o_kanban_record_bottom mt4">
+                                    <div class="oe_kanban_bottom_left">
+                                        <div class="float-left mr4" groups="base.group_user">
+                                            <field name="priority" widget="priority"/>
+                                        </div>
+                                        <div class="o_kanban_inline_block mr8">
+                                            <field name="activity_ids" widget="kanban_activity"/>
+                                        </div>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <a name="action_get_attachment_tree_view" type="object">
+                                            <span title='Documents'><i class='fa fa-paperclip' role="img" aria-label="Documents"/>
+                                                <t t-esc="record.attachment_number.raw_value"/>
+                                            </span>
+                                        </a>
+                                        <div class="o_kanban_state_with_padding ml-1 mr-2" >
+                                            <field name="kanban_state" widget="kanban_state_selection"/>
+                                            <field name="legend_normal" invisible="1"/>
+                                            <field name="legend_blocked" invisible="1"/>
+                                            <field name="legend_done" invisible="1"/>
+                                        </div>
+                                        <field name="user_id" widget="many2one_avatar_user"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </div>
+                    </t>
+                    </templates>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

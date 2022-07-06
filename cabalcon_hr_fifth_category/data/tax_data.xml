@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record model="hr.fifth.category.tax" id="tax_1">
+            <field name="name">Hasta 5 UIT</field>
+            <field name="tax">8</field>
+            <field name="uit_from">0</field>
+            <field name="uit_to">5</field>
+        </record>
+
+        <record model="hr.fifth.category.tax" id="tax_2">
+            <field name="name">Más de 5 UIT hasta 20 UIT</field>
+            <field name="tax">14</field>
+            <field name="uit_from">5</field>
+            <field name="uit_to">20</field>
+        </record>
+
+        <record model="hr.fifth.category.tax" id="tax_3">
+            <field name="name">Más de 20 UIT hasta 35 UIT</field>
+            <field name="tax">17</field>
+            <field name="uit_from">20</field>
+            <field name="uit_to">35</field>
+        </record>
+
+        <record model="hr.fifth.category.tax" id="tax_4">
+            <field name="name">Más de 35 UIT hasta 45 UIT</field>
+            <field name="tax">20</field>
+             <field name="uit_from">35</field>
+            <field name="uit_to">45</field>
+        </record>
+
+        <record model="hr.fifth.category.tax" id="tax_5">
+            <field name="name">Más de 45 UIT</field>
+            <field name="tax">30</field>
+             <field name="uit_from">45</field>
+            <field name="uit_to">60</field>
+        </record>
+
+
+    </data>
+</odoo>

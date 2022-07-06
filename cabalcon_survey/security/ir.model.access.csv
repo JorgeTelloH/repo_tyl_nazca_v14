@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_survey_category_user,survey.category.user,model_survey_category,base.group_user,1,0,0,0
+access_survey_survey_category_user,survey.survey.category.user,model_survey_category,survey.group_survey_user,1,1,1,1
+access_survey_category_manager,survey.survey.category.manager,model_survey_category,survey.group_survey_manager,1,1,1,1
+access_survey_export_wizard_all,survey_export_wizard_all,model_survey_export_wizard,,1,1,1,1

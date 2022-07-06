@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+
+    <record id="hr_rule_input_gratification" model="hr.payslip.input.type">
+        <field name="code">GR</field>
+        <field name="name">Gratificaciones</field>
+    </record>
+
+    <record id="hr_rule_input_gratification_trunca" model="hr.payslip.input.type">
+        <field name="code">GRTRUNCA</field>
+        <field name="name">Gratificaciones truncas</field>
+    </record>
+
+    <record id="hr_rule_input_bonus" model="hr.payslip.input.type">
+        <field name="code">BSBONO</field>
+        <field name="name">Bonificación 9%</field>
+    </record>
+
+    <record id="hr_rule_input_cts" model="hr.payslip.input.type">
+        <field name="code">CTS</field>
+        <field name="name">CTS</field>
+    </record>
+
+    <record id="hr_rule_input_cts_trunca" model="hr.payslip.input.type">
+        <field name="code">CTSTRUNCA</field>
+        <field name="name">CTS Trunca</field>
+    </record>
+
+    <record id="hr_rule_input_vacation_trunca" model="hr.payslip.input.type">
+        <field name="code">VACTRUN</field>
+        <field name="name">Vacaciones Trunca</field>
+    </record>
+
+    <record id="hr_rule_input_vacation_liq" model="hr.payslip.input.type">
+        <field name="code">VACLIQ</field>
+        <field name="name">Vacaciones liquidadas</field>
+    </record>
+
+</odoo>

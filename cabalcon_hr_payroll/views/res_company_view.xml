@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_company_form_payroll">
+        <field name="name">res.company.form.inherit.payroll</field>
+        <field name="inherit_id" ref="cabalcon_hr.view_company_form"/>
+        <field name="model">res.company</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='configuration']" position="inside">
+                <group string="Contabilización de la Nómina">
+                    <field name="move_by_employee"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

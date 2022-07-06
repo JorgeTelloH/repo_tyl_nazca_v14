@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_purchase_order_cancel" model="ir.ui.view">
+        <field name="name">purchase.order.cancel</field>
+        <field name="model">purchase.order.cancel</field>
+        <field name="arch" type="xml">
+            <form string="Razón de Cancelación">
+                <p class="oe_grey">
+                    Elija la razón de Cancelación de la Orden de Compra.
+                </p>
+                <group>
+                    <field name="reason_id" widget="selection"/>
+                </group>
+                <footer>
+                    <button name="confirm_cancel" string="Confirmar" type="object" class="oe_highlight"/>
+                    o
+                    <button string="Cancelar" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_purchase_order_cancel" model="ir.actions.act_window">
+        <field name="name">Razón de Cancelación</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order.cancel</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_purchase_order_cancel" />
+        <field name="target">new</field>
+    </record>
+</odoo>

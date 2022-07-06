@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="survey_export_wizard_view_form" model="ir.ui.view">
+            <field name="name">survey.export.wizard.view.form</field>
+            <field name="model">survey.export.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="survey_id" options="{'no_create': True, 'no_edit': True}"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+<!--                    <group>-->
+<!--                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True, 'no_edit': True}"/>-->
+<!--                    </group>-->
+                    <footer>
+                        <button name="action_print" string="Exportar" type="object" class="oe_highlight"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="survey_export_wizard_action" model="ir.actions.act_window">
+            <field name="name">Exportar encuesta</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">survey.export.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="action_survey_report_xlsx" model="ir.actions.report">
+            <field name="name">Encuesta</field>
+            <field name="model">survey.survey</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">cabalcon_survey.survey_report_xlsx</field>
+            <field name="report_file">encuesta</field>
+        </record>
+
+       <menuitem name="Exportar encuesta"
+                  id="menu_survey_export"
+                  parent="survey_menu_report"
+                  action="survey_export_wizard_action"
+                  sequence="90"/>
+
+
+    </data>
+</odoo>

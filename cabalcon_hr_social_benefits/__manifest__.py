@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'Employee social benefits',
+    'version': '14.0.1.0.0',
+    'summary': """Calculo de las gratificaciones, CTS y liquidación""",
+    'description': 'Este módulo lo ayuda a calcular las gratificaciones, CTS y liquidación de los empleados.',
+    'category': 'Generic Modules/Human Resources',
+    'author': 'Cabalcon',
+    'website': "www.cabalcon.com",
+    'depends': ['cabalcon_hr_payroll'],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/data.xml',
+        'data/salary_rule_social_benefit.xml',
+        'views/hr_social_benefits.xml',
+        'views/hr_payslip_run.xml',
+        'reports/report_liquidation_cts.xml',
+        'reports/report_liquidation.xml',
+        'wizard/liquidation_wizard_views.xml',
+    ],
+    'images': ['static/description/banner.png'],
+    'license': 'AGPL-3',
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+}

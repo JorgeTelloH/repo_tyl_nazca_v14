@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<odoo>
+    <data>
+         <template id="assets_survey_backend" name="survey survey_assets"
+inherit_id="survey.survey_assets">
+        <xpath expr="//script[contains(@src,'survey_form.js')]" position="replace">
+         <script type="text/javascript"
+src="/web_recruitment_survey/static/src/js/survey_form.js"></script>
+          </xpath>
+        </template>
+    </data>
+</odoo>

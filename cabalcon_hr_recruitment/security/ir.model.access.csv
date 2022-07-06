@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_request_job_user,hr_request_job.user,model_hr_request_job,hr_recruitment.group_hr_recruitment_user,1,1,1,1
+access_hr_request_job_manager,hr_request_job.manager,model_hr_request_job,hr_recruitment.group_hr_recruitment_manager,1,1,1,1
+access_hr_request_job_request,hr_request_job.request,model_hr_request_job,group_hr_request_job,1,1,1,1
+access_hr_applicant_contact,hr_applicant_contact,model_hr_applicant_contact,,1,1,1,1

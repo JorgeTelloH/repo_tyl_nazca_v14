@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_afp_net_report_xlsx" model="ir.actions.report">
+        <field name="name">AFP Net XLSX</field>
+        <field name="model">hr.employee</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">cabalcon_hr_payroll.afp_net_report_xlsx</field>
+        <field name="report_file">afp_net</field>
+<!--        <field name="binding_model_id" ref="hr.model_hr_employee"/>-->
+<!--        <field name="binding_type">report</field>-->
+    </record>
+
+</odoo>

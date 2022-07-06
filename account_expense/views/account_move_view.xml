@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_invoice_supplier_tree_detraction" model="ir.ui.view">
+            <field name="name">view.invoice.supplier</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="fiscal_position_id" position="after">
+                    <field name="expense_inv_id" attrs="{'invisible': [('move_type', 'not in', ('in_invoice', 'in_receipt'))]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="view_sale_order_line_tree" model="ir.ui.view">
+		<field name="name">sale.order.line</field>
+		<field name="model">sale.order.line</field>
+		<field name="priority">2</field>
+		<field name="arch" type="xml">
+			<tree string="Detalle de Pedidos" create="false">
+				<field name="order_ref" string="Pedido"/>
+				<field name="salesman_id" string="Vendedor"/>
+				<field name="date_order" string="Fecha de Pedido"/>
+				<field name="order_partner_id" string="Cliente"/>
+				<field name="company_id" string="Compañía" groups="base.group_multi_company"/>
+				<field name="product_id" string="Producto"/>
+				<field name="name" string="Descripción"/>
+				<field name="currency_id" string="Moneda"/>
+				<field name="price_unit" string="Precio Unitario"/>
+				<field name="product_uom_qty" string="Cantidad"/>
+				<field name="discount" string="Dscto"/>
+				<field name="tax_id" string="Impuestos" widget="many2many_tags"/>
+				<field name="price_tax" string="Total Impuestos" optional="show"/>
+				<field name="price_subtotal" string="Subtotal"/>
+				<field name="price_total" string="Total"/>
+				<field name="state" string="Estado"/>
+				<field name="qty_delivered" string="Entregado" optional="show"/>
+				<field name="qty_to_invoice" string="Cant A Facturar" optional="show"/>
+				<field name="qty_invoiced" string="Cant Facturada" optional="show"/>
+				<field name="invoice_status" string="Estado Factura" optional="show"/>
+			</tree>
+		</field>
+	</record>
+	
+	<record id="action_sale_lines_menu"
+		model="ir.actions.act_window">
+		<field name="name">Detalle de Pedidos</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">sale.order.line</field>
+		<field name="view_id" ref="sale_order_line.view_sale_order_line_tree"/>
+		<field name="view_mode">tree</field>
+	</record>
+	
+	<menuitem id="action_sale_lines_menu_id" 
+		name="Detalle de Pedidos"
+		action="sale_order_line.action_sale_lines_menu" 
+		parent="sale.sale_order_menu"
+		sequence="7"/>
+</odoo>

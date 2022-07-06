@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    <template id="report_payroll_voucher">-->
+    <!--        <t t-call="web.html_container">-->
+    <!--            <t t-foreach="docs" t-as="o">-->
+    <!--                <t t-call="web.internal_layout">-->
+    <!--                    <div class="page">-->
+    <!--                         <style>-->
+    <!--                            th{-->
+    <!--                               font-size:14px;-->
+    <!--                            }-->
+    <!--                            .mydiv {-->
+    <!--                                border:1px solid #e1e1e1;-->
+    <!--                             }-->
+    <!--                        </style>-->
+    <!--                        <h2 class="text-center">BOLETA DE PAGO</h2>-->
+    <!--                        <h5 class="text-center">ART. 19 DEL DECRETO SUPREMO N° 001-98-TR DEL 22-01-98</h5>-->
+    <!--                        <h5 class="text-center"><span t-esc="get_date_to_report(o.date_from)"/></h5>-->
+    <!--                        <div class="mydiv text-center" style="width:350px;">DATOS DE LA EMPRESA</div>-->
+    <!--                        <br/>-->
+    <!--                        <table class="table table-sm table-bordered">-->
+    <!--                            <thead>-->
+    <!--                                <tr>-->
+    <!--                                    <th class="text-center">RUC</th>-->
+    <!--                                    <th class="text-center">RAZON SOCIAL</th>-->
+    <!--                                    <th class="text-center">RUBRO DE LA EMPRESA</th>-->
+    <!--                                    <th class="text-center">DIRECCIÓN</th>-->
+    <!--                                </tr>-->
+    <!--                            </thead>-->
+    <!--                            <tbody>-->
+    <!--                                <tr>-->
+    <!--                                    <td class="text-center"><span t-field="o.company_id.vat"/></td>-->
+    <!--                                    <td class="text-center"><span t-field="o.company_id.name"/></td>-->
+    <!--                                    <td class="text-center"><span t-field="o.company_id.rubro"/></td>-->
+    <!--                                    <td>-->
+    <!--                                        <div class="o_address_format">-->
+    <!--                                            <span t-field="o.company_id.street" class="o_address_street"/>-->
+    <!--                                            <span t-field="o.company_id.street2" class="o_address_street"/>-->
+    <!--                                            <span t-field="o.company_id.city" class="o_address_city"/>-->
+    <!--                                        </div>-->
+    <!--                                    </td>-->
+    <!--                                </tr>-->
+    <!--                            </tbody>-->
+    <!--                        </table>-->
+    <!--                        <div class="mydiv text-center" style="width:350px;">DATOS DEL TRAJADOR</div>-->
+    <!--                        <br/>-->
+    <!--                        <table class="table table-sm table-bordered">-->
+    <!--                            <thead>-->
+    <!--                                <tr>-->
+    <!--                                    <th class="text-center">CÓDIGO</th>-->
+    <!--                                    <th class="text-center">NOMBRES</th>-->
+    <!--                                    <th class="text-center">APELLIDOS</th>-->
+    <!--                                    <th class="text-center">DNI</th>-->
+    <!--                                    <th class="text-center">F. NAC.</th>-->
+    <!--                                    <th class="text-center">HIJOS</th>-->
+    <!--                                    <th class="text-center">DIRECCIÓN</th>-->
+    <!--                                </tr>-->
+    <!--                            </thead>-->
+    <!--                            <tbody>-->
+    <!--                                <tr>-->
+    <!--                                    <td class="text-center"><span t-field="o.employee_id.code"/></td>-->
+    <!--                                    <td class="text-center"><span t-field="o.employee_id.firstname"/></td>-->
+    <!--                                    <td class="text-center"><span t-field="o.employee_id.lastname"/> <span t-field="o.employee_id.lastname2"/></td>-->
+    <!--                                    <td class="text-center"><span t-field="o.employee_id.identification_id"/></td>-->
+    <!--                                    <td class="text-center"><span t-field="o.employee_id.birthday"/></td>-->
+    <!--                                    <td class="text-center"><span t-field="o.employee_id.children"/></td>-->
+    <!--                                    <td><div t-field="o.employee_id.address_home_id"-->
+    <!--                                             t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>-->
+    <!--                                    </td>-->
+    <!--                                </tr>-->
+    <!--                            </tbody>-->
+    <!--                        </table>-->
+    <!--                        <div class="mydiv text-center" style="width:700px;">DATOS DEL TRABAJADOR VINCULADOS A LA RELACION LABORAL</div>-->
+    <!--                        <br/>-->
+    <!--                        <table class="table table-sm table-bordered">-->
+    <!--                            <thead>-->
+    <!--                                <tr>-->
+    <!--                                    <th class="text-center">CARGO</th>-->
+    <!--                                    <th class="text-center">CATEGORÍA</th>-->
+    <!--                                    <th class="text-center">PERIODIC.</th>-->
+    <!--                                    <th class="text-center">ONP</th>-->
+    <!--                                    <th class="text-center">AFP</th>-->
+    <!--                                    <th class="text-center">C.U.S.P.P.</th>-->
+    <!--                                    <th class="text-center">F. ING.</th>-->
+    <!--                                    <th class="text-center">F. CESE</th>-->
+    <!--                                    <th class="text-center">INI. VAC.</th>-->
+    <!--                                    <th class="text-center">FIN VAC.</th>-->
+    <!--                                    <th class="text-center">DÍAS VAC.</th>-->
+    <!--                                </tr>-->
+    <!--                            </thead>-->
+    <!--                            <tbody>-->
+    <!--                                <tr>-->
+    <!--                                    <td class="text-center"><span t-field="o.employee_id.job_id.name"/></td>-->
+    <!--                                    <td class="text-center"><span t-field="o.employee_id.job_id.occupational_category_id.name"/></td>-->
+    <!--                                    <td class="text-center"><span t-field="o.struct_type_id.default_schedule_pay"/> </td>-->
+    <!--                                    <td class="text-center"><span t-esc="o.employee_id.is_onp()"/></td>-->
+    <!--                                    <td class="text-center"><span t-field="o.employee_id.afp_id.name"/></td>-->
+    <!--                                    <td class="text-center"><span t-field="o.employee_id.CUSPP"/></td>-->
+    <!--                                    <td class="text-center"><div t-field="o.contract_id.date_start"/></td>-->
+    <!--                                    <td class="text-center"><div t-field="o.contract_id.date_end"/></td>-->
+    <!--                                    <td class="text-center">-->
+    <!--                                         <t t-set="holidays" t-value="get_vacations(o.employee_id, o.date_from,o.date_to)"/>-->
+    <!--                                         <span t-esc="holidays['date_from']"/>-->
+    <!--                                    </td>-->
+    <!--                                    <td class="text-center"><span t-esc="holidays['date_to']"/></td>-->
+    <!--                                    <td class="text-center"><span t-esc="holidays['days']"/></td>-->
+    <!--                                </tr>-->
+    <!--                            </tbody>-->
+    <!--                        </table>-->
+    <!--                        <br/>-->
+    <!--                        <table style="width:100%;">-->
+    <!--                            <tr>-->
+    <!--                                <td width="50%">-->
+    <!--                                    <table class="table table-sm table-bordered">-->
+    <!--                                        <thead>-->
+    <!--                                            <tr>-->
+    <!--                                                <th class="text-center">DÍAS LABORADOS</th>-->
+    <!--                                                <th class="text-center">TOTAL HORAS LABORADAS</th>-->
+    <!--                                                <th class="text-center">HORAS EXTRAS</th>-->
+    <!--                                                <th class="text-center">DÍAS NO LABORADOS</th>-->
+    <!--                                            </tr>-->
+    <!--                                        </thead>-->
+    <!--                                        <tbody>-->
+    <!--                                            <tr>-->
+    <!--                                                <td class="text-center"><span t-esc="o._get_worked_days_line_number_of_days('WORK100')"/></td>-->
+    <!--                                                <td class="text-center"><span t-esc="o._get_worked_days_line_number_of_hours('WORK100')"/></td>-->
+    <!--                                                <td class="text-center"><span t-esc="get_hours_extra(o.employee_id, o.date_from,o.date_to)"/></td>-->
+    <!--                                                <td class="text-center"></td>-->
+    <!--                                            </tr>-->
+    <!--                                        </tbody>-->
+    <!--                                    </table>-->
+    <!--                                </td>-->
+    <!--                                <td width="1%">-->
+    <!--                                    <![CDATA[&nbsp;]]>-->
+    <!--                                </td>-->
+    <!--                                <td width="20%">-->
+    <!--                                    <table class="table table-sm table-bordered">-->
+    <!--                                        <tr>-->
+    <!--                                            <th class="text-center" rowspan="2">OTRO EMPLEADOR</th>-->
+    <!--                                            <th class="text-center">IMPORTE REMUN.</th>-->
+    <!--                                        </tr>-->
+    <!--                                        <tr>-->
+    <!--                                            <td class="text-center"></td>-->
+    <!--                                        </tr>-->
+    <!--                                    </table>-->
+    <!--                                </td>-->
+    <!--                                <td width="1%">-->
+    <!--                                    <![CDATA[&nbsp;]]>-->
+    <!--                                </td>-->
+    <!--                                <td width="28%">-->
+    <!--                                    <table class="table table-sm table-bordered">-->
+    <!--                                        <thead>-->
+    <!--                                            <tr>-->
+    <!--                                                <th>CUENTA <br/> AHORRO DE DEPÓSITO</th>-->
+    <!--                                            </tr>-->
+    <!--                                        </thead>-->
+    <!--                                        <tbody>-->
+    <!--                                            <tr>-->
+    <!--                                                <td><span t-field="o.employee_id.bank_account_id"/></td>-->
+    <!--                                            </tr>-->
+    <!--                                        </tbody>-->
+    <!--                                    </table>-->
+    <!--                                </td>-->
+    <!--                            </tr>-->
+    <!--                        </table>-->
+    <!--                        <br/>-->
+    <!--                        <table class="table table-sm table-bordered">-->
+    <!--                            <thead>-->
+    <!--                                <tr>-->
+    <!--                                    <th class="text-center">REMUNERACIONES</th>-->
+    <!--                                    <th class="text-center">RETENCIONES / DESCUENTOS</th>-->
+    <!--                                    <th class="text-center">APORTACIONES DEL EMPLEADOR</th>-->
+    <!--                                </tr>-->
+    <!--                            </thead>-->
+    <!--                            <tbody>-->
+    <!--                                <tr>-->
+    <!--                                    <td width="35%">-->
+    <!--                                        <table style="width:100%;border:0px" border="0" cellpadding="0" cellspacing="0">-->
+    <!--                                            <t t-set="rem_total" t-value="0"/>-->
+    <!--                                            <tr t-foreach="get_basic(o.id)" t-as="bas">-->
+    <!--                                                <td style="border:0px"><span t-field="bas.name"/></td>-->
+    <!--                                                <td style="border:0px" class="text-right"><span t-esc="'%.2f'% bas.total"/></td>-->
+    <!--                                                <t t-set="rem_total" t-value="rem_total + bas.total"/>-->
+    <!--                                            </tr>-->
+    <!--                                            <tr t-foreach="get_remunerations(o.id)" t-as="rem">-->
+    <!--                                                <td style="border:0px"><span t-field="rem.name"/></td>-->
+    <!--                                                <td style="border:0px" class="text-right"><span t-esc="'%.2f'% rem.total"/></td>-->
+    <!--                                                <t t-set="rem_total" t-value="rem_total + rem.total"/>-->
+    <!--                                            </tr>-->
+    <!--                                        </table>-->
+
+    <!--                                    </td>-->
+    <!--                                    <td width="35%">-->
+    <!--                                        <table style="width:100%;border:0px" border="0" cellpadding="0" cellspacing="0">-->
+    <!--                                            <t t-set="ded_total" t-value="0"/>-->
+    <!--                                            <tr t-foreach="get_deductions(o.id)" t-as="ded">-->
+    <!--                                                <td style="border:0px"><span t-field="ded.name"/></td>-->
+    <!--                                                <td style="border:0px" class="text-right"><span t-esc="'%.2f'% ded.total"/></td>-->
+    <!--                                                <t t-set="ded_total" t-value="ded_total + ded.total"/>-->
+    <!--                                            </tr>-->
+    <!--                                        </table>-->
+    <!--                                    </td>-->
+    <!--                                    <td width="30%">-->
+    <!--                                         <table style="width:100%;border:0px" border="0" cellpadding="0" cellspacing="0">-->
+    <!--                                            <t t-set="emp_total" t-value="0"/>-->
+    <!--                                            <tr t-foreach="get_employer_contributions(o.id)" t-as="emp">-->
+    <!--                                                <td style="border:0px"><span t-field="emp.name"/></td>-->
+    <!--                                                <td style="border:0px" class="text-right"><span t-esc="'%.2f'% emp.total"/></td>-->
+    <!--                                                <t t-set="emp_total" t-value="emp_total + emp.total"/>-->
+    <!--                                            </tr>-->
+    <!--                                        </table>-->
+    <!--                                    </td>-->
+    <!--                                </tr>-->
+    <!--                                <tr>-->
+    <!--                                    <t t-set="neto" t-value="rem_total + ded_total "/>-->
+    <!--                                    <td class="text-right font-weight-bold">Total Remuneraciones: <span t-esc="'%.2f'% rem_total"/></td>-->
+    <!--                                    <td class="text-right font-weight-bold">Total Descuentos:<span t-esc="'%.2f'% ded_total"/></td>-->
+    <!--                                    <td class="text-right font-weight-bold">Neto a Pagar<span t-esc="'%.2f'% neto"/></td>-->
+    <!--                                </tr>-->
+    <!--                            </tbody>-->
+    <!--                        </table>-->
+    <!--                        <br/>-->
+    <!--                        <div class="row">-->
+    <!--                            <div class="col-1"></div>-->
+    <!--                            <div class="col-5">-->
+    <!--                                <p>_______________________________-->
+    <!--                                    <br/>-->
+    <!--                                    <strong>EMPLEADOR</strong>-->
+    <!--                                </p>-->
+    <!--                            </div>-->
+    <!--                            <div class="col-5 text-right">-->
+    <!--                                <p>_______________________________-->
+    <!--                                    <br/>-->
+    <!--                                    <strong>TRABAJADOR</strong>-->
+    <!--                                </p>-->
+    <!--                            </div>-->
+    <!--                            <div class="col-1"></div>-->
+    <!--                        </div>-->
+
+    <!--                    </div>-->
+    <!--                </t>-->
+    <!--            </t>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+        <record id="paperformat_voucher" model="report.paperformat">
+            <field name="name">Boleta de pago</field>
+            <field name="default" eval="True"/>
+            <field name="format">Letter</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="orientation">Portrait</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">40</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+    <!--    <record id="action_report_payroll_voucher" model="ir.actions.report">-->
+    <!--        <field name="name">Boleta de pago</field>-->
+    <!--        <field name="model">hr.payslip</field>-->
+    <!--        <field name="report_type">qweb-pdf</field>-->
+    <!--        <field name="report_name">cabalcon_hr_payroll.report_payroll_voucher</field>-->
+    <!--        <field name="report_file">cabalcon_hr_payroll.report_payroll_voucher</field>-->
+    <!--        <field name="binding_model_id" ref="hr_payroll.model_hr_payslip"/>-->
+    <!--        <field name="print_report_name">('VAL_%s_%s' % (object.employee_id.identification_id, object.date_from.strftime('%m-%Y')))</field>-->
+    <!--        <field name="paperformat_id" ref="cabalcon_hr_payroll.paperformat_voucher"/>-->
+    <!--    </record>-->
+
+    <record id="hr_payroll.action_report_payslip" model="ir.actions.report">
+        <field name="model">hr.payslip</field>
+        <field name="print_report_name">('VAL_%s_%s' % (object.employee_id.identification_id,
+            object.date_from.strftime('%m-%Y')))
+        </field>
+    </record>
+
+    <template id="report_payslip" inherit_id="hr_payroll.report_payslip">
+        <xpath expr="//div[@class='page']" position="replace">
+            <div class="page">
+                <style>
+                    th{
+                    font-size:14px;
+                    }
+                    .mydiv {
+                    border:1px solid #e1e1e1;
+                    }
+                </style>
+                <h2 class="text-center">BOLETA DE PAGO</h2>
+                <h5 class="text-center">ART. 19 DEL DECRETO SUPREMO N° 001-98-TR DEL 22-01-98</h5>
+                <h5 class="text-center">
+                    <span t-esc="get_date_to_report(o.date_from)"/>
+                </h5>
+                <div class="mydiv text-center" style="width:350px;">DATOS DE LA EMPRESA</div>
+                <br/>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">RUC</th>
+                            <th class="text-center">RAZON SOCIAL</th>
+                            <th class="text-center">RUBRO DE LA EMPRESA</th>
+                            <th class="text-center">DIRECCIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">
+                                <span t-field="o.company_id.vat"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="o.company_id.name"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="o.company_id.rubro"/>
+                            </td>
+                            <td>
+                                <div class="o_address_format">
+                                    <span t-field="o.company_id.street" class="o_address_street"/>
+                                    <span t-field="o.company_id.street2" class="o_address_street"/>
+                                    <span t-field="o.company_id.city" class="o_address_city"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="mydiv text-center" style="width:350px;">DATOS DEL TRAJADOR</div>
+                <br/>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">CÓDIGO</th>
+                            <th class="text-center">NOMBRES</th>
+                            <th class="text-center">APELLIDOS</th>
+                            <th class="text-center">DNI</th>
+                            <th class="text-center">F. NAC.</th>
+                            <th class="text-center">HIJOS</th>
+                            <th class="text-center">DIRECCIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">
+                                <span t-field="o.employee_id.code"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="o.employee_id.firstname"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="o.employee_id.lastname"/>
+                                <span t-field="o.employee_id.lastname2"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="o.employee_id.identification_id"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="o.employee_id.birthday"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="o.employee_id.children"/>
+                            </td>
+                            <td>
+                                <div t-field="o.employee_id.address_home_id"
+                                     t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="mydiv text-center" style="width:700px;">DATOS DEL TRABAJADOR VINCULADOS A LA RELACION
+                    LABORAL
+                </div>
+                <br/>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">CARGO</th>
+                            <th class="text-center">CATEGORÍA</th>
+                            <th class="text-center">PERIODIC.</th>
+                            <th class="text-center">ONP</th>
+                            <th class="text-center">AFP</th>
+                            <th class="text-center">C.U.S.P.P.</th>
+                            <th class="text-center">F. ING.</th>
+                            <th class="text-center">F. CESE</th>
+                            <th class="text-center">INI. VAC.</th>
+                            <th class="text-center">FIN VAC.</th>
+                            <th class="text-center">DÍAS VAC.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">
+                                <span t-field="o.employee_id.job_id.name"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="o.employee_id.job_id.occupational_category_id.name"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="o.struct_type_id.default_schedule_pay"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="o.employee_id.is_onp()"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="o.employee_id.afp_id.name"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="o.employee_id.CUSPP"/>
+                            </td>
+                            <td class="text-center">
+                                <div t-field="o.contract_id.date_start"/>
+                            </td>
+                            <td class="text-center">
+                                <div t-field="o.contract_id.date_end"/>
+                            </td>
+                            <td class="text-center">
+                                <t t-set="holidays" t-value="get_vacations(o.employee_id, o.date_from,o.date_to)"/>
+                                <span t-esc="holidays['date_from']"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="holidays['date_to']"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="holidays['days']"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <table style="width:100%;">
+                    <tr>
+                        <td width="50%">
+                            <table class="table table-sm table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">DÍAS LABORADOS</th>
+                                        <th class="text-center">TOTAL HORAS LABORADAS</th>
+                                        <th class="text-center">HORAS EXTRAS</th>
+                                        <th class="text-center">DÍAS NO LABORADOS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">
+                                            <span t-esc="o._get_worked_days_line_number_of_days('WORK100')"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-esc="o._get_worked_days_line_number_of_hours('WORK100')"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-esc="get_hours_extra(o.employee_id, o.date_from,o.date_to)"/>
+                                        </td>
+                                        <td class="text-center"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td width="1%">
+                            <![CDATA[&nbsp;]]>
+                        </td>
+                        <td width="20%">
+                            <table class="table table-sm table-bordered">
+                                <tr>
+                                    <th class="text-center" rowspan="2">OTRO EMPLEADOR</th>
+                                    <th class="text-center">IMPORTE REMUN.</th>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width="1%">
+                            <![CDATA[&nbsp;]]>
+                        </td>
+                        <td width="28%">
+                            <table class="table table-sm table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>CUENTA
+                                            <br/>
+                                            AHORRO DE DEPÓSITO
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span t-field="o.employee_id.bank_account_id"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">REMUNERACIONES</th>
+                            <th class="text-center">RETENCIONES / DESCUENTOS</th>
+                            <th class="text-center">APORTACIONES DEL EMPLEADOR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td width="35%">
+                                <table style="width:100%;border:0px" border="0" cellpadding="0" cellspacing="0">
+                                    <t t-set="rem_total" t-value="0"/>
+                                    <tr t-foreach="get_basic(o.id)" t-as="bas">
+                                        <td style="border:0px">
+                                            <span t-field="bas.name"/>
+                                        </td>
+                                        <td style="border:0px" class="text-right">
+                                            <span t-esc="'%.2f'% bas.total"/>
+                                        </td>
+                                        <t t-set="rem_total" t-value="rem_total + bas.total"/>
+                                    </tr>
+                                    <tr t-foreach="get_remunerations(o.id)" t-as="rem">
+                                        <td style="border:0px">
+                                            <span t-field="rem.name"/>
+                                        </td>
+                                        <td style="border:0px" class="text-right">
+                                            <span t-esc="'%.2f'% rem.total"/>
+                                        </td>
+                                        <t t-set="rem_total" t-value="rem_total + rem.total"/>
+                                    </tr>
+                                </table>
+
+                            </td>
+                            <td width="35%">
+                                <table style="width:100%;border:0px" border="0" cellpadding="0" cellspacing="0">
+                                    <t t-set="ded_total" t-value="0"/>
+                                    <tr t-foreach="get_deductions(o.id)" t-as="ded">
+                                        <td style="border:0px">
+                                            <span t-field="ded.name"/>
+                                        </td>
+                                        <td style="border:0px" class="text-right">
+                                            <span t-esc="'%.2f'% ded.total"/>
+                                        </td>
+                                        <t t-set="ded_total" t-value="ded_total + ded.total"/>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="30%">
+                                <table style="width:100%;border:0px" border="0" cellpadding="0" cellspacing="0">
+                                    <t t-set="emp_total" t-value="0"/>
+                                    <tr t-foreach="get_employer_contributions(o.id)" t-as="emp">
+                                        <td style="border:0px">
+                                            <span t-field="emp.name"/>
+                                        </td>
+                                        <td style="border:0px" class="text-right">
+                                            <span t-esc="'%.2f'% emp.total"/>
+                                        </td>
+                                        <t t-set="emp_total" t-value="emp_total + emp.total"/>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <t t-set="neto" t-value="rem_total + ded_total "/>
+                            <td class="text-right font-weight-bold">Total Remuneraciones:
+                                <span t-esc="'%.2f'% rem_total"/>
+                            </td>
+                            <td class="text-right font-weight-bold">Total Descuentos:
+                                <span t-esc="'%.2f'% ded_total"/>
+                            </td>
+                            <td class="text-right font-weight-bold">Neto a Pagar
+                                <span t-esc="'%.2f'% neto"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <p>_______________________________
+                            <br/>
+                            <strong>EMPLEADOR</strong>
+                        </p>
+                    </div>
+                    <div class="col-5 text-right">
+                        <p>_______________________________
+                            <br/>
+                            <strong>TRABAJADOR</strong>
+                        </p>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+
+            </div>
+        </xpath>
+    </template>
+
+
+</odoo>

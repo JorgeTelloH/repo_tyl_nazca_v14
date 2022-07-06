@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_report_ple_14_tree" model="ir.ui.view">
+            <field name="name">report.ple.14.tree</field>
+            <field name="model">report.ple.14</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="indicator_operation"/>
+                    <field name="indicator_content"/>
+                    <field name="currency_id"/>
+                    <field name="state"/>
+                    <field name="create_uid" string="Creado por"/>
+                    <field name="create_date" string="Fecha creación"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_report_ple_14_form" model="ir.ui.view">
+            <field name="name">report.ple.14.form</field>
+            <field name="model">report.ple.14</field>
+            <field name="arch" type="xml">
+                <form duplicate="0">
+                    <header>
+                        <button name="action_generate" string="Generar" type="object" class="oe_highlight" states="draft,validated"/>
+                        <button name="action_declare" string="Declarar" type="object" class="oe_highlight" states="validated"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div style="width: 70%;">
+                            <table>
+                                <tr>
+                                    <td><label for="company_id"/></td>
+                                    <td style="padding-left: 20px;"><field name="company_id" style="width: 100%;" options="{'no_create': True, 'no_create_edit':True, 'no_quick_create': True, 'no_open': True}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="date_from"/></td>
+                                    <td style="padding-left: 20px;"><field name="date_from" style="width: 100%;"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="date_to"/></td>
+                                    <td style="padding-left: 20px;"><field name="date_to" style="width: 100%;"/></td>
+                                </tr>
+                                 <tr>
+                                    <td><label for="indicator_operation"/></td>
+                                    <td style="padding-left: 20px;"><field name="indicator_operation" style="width: 100%;"/></td>
+                                </tr>
+                                 <tr>
+                                    <td><label for="indicator_content"/></td>
+                                    <td style="padding-left: 20px;"><field name="indicator_content" style="width: 100%;"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="type_report"/></td>
+                                    <td style="padding-left: 20px;"><field name="type_report"/></td>
+                                </tr>
+                                 <tr>
+                                    <td><label for="currency_id"/></td>
+                                    <td style="padding-left: 20px;"><field name="currency_id" style="width: 100%;" options="{'no_create': True, 'no_create_edit':True, 'no_quick_create': True, 'no_open': True}"/></td>
+                                </tr>
+                                <tr  attrs="{'invisible': [('type_report', 'not in', 'normal')]}">
+                                    <td><label for="file_txt"/></td>
+                                    <td style="padding-left: 20px;">
+                                        <field name="filename_txt" invisible="True"/>
+                                        <field name="file_txt" filename="filename_txt" widget="binary"/>
+                                    </td>
+                                </tr>
+                                <tr  attrs="{'invisible': [('type_report', 'in', 'normal')]}">
+                                    <td><label for="file_simplified"/></td>
+                                    <td style="padding-left: 20px;">
+                                        <field name="filename_simplified" invisible="True"/>
+                                        <field name="file_simplified" filename="filename_simplified" widget="binary" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <notebook>
+                            <page string="Detalle">
+                                <field name="line_ids">
+                                    <tree>
+                                        <field name="date_emission"/>
+                                        <field name="document_payment_type"/>
+                                        <field name="document_payment_series"/>
+                                        <field name="document_payment_number"/>
+                                        <field name="customer_name"/>
+                                        <field name="amount_export" sum="Total exportación"/>
+                                        <field name="amount_untaxed" sum="Total base imponible"/>
+                                        <field name="amount_tax_igv" sum="Total IGV"/>
+                                        <field name="amount_tax_exo" sum="Total exonerado"/>
+                                        <field name="amount_tax_ina" sum="Total inafecto"/>
+                                        <field name="amount_tax_isc" sum="Total ISC"/>
+                                        <field name="amount_tax_other" sum="Total otros"/>
+                                        <field name="amount_total" sum="Importe total"/>
+                                        <field name="exchange_currency"/>
+                                        <field name="date_emission_update"/>
+                                        <field name="document_payment_type_update"/>
+                                        <field name="document_payment_series_update"/>
+                                        <field name="document_payment_correlative_update"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Sequences-->
+        <record model="ir.sequence" id="sequence_ple_report_sale">
+            <field name="name">Registro de ventas</field>
+            <field name="code">report.ple.14</field>
+            <field name="prefix">RV-</field>
+            <field name="padding">6</field>
+        </record>
+
+        <!-- Reports XLS-->
+        <!--<report  id="report_ple__14" model="report.ple.14" string="Registro de ventas(Excel)"  report_type="xlsx"
+                  name="ple.14" file="Registro de ventas" attachment_use="False"/>-->
+        <record id="report_ple__14" model="ir.actions.report">
+            <field name="name">Report Excel</field>
+            <field name="model">report.ple.14</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">report.ple.14</field>
+            <field name="report_file">report.ple.14</field>
+            <field name="binding_model_id" ref="model_report_ple_14"></field>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

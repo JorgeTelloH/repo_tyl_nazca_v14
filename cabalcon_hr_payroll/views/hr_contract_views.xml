@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Contract View -->
+    <record id="hr_contract_form_cabalcon" model="ir.ui.view">
+        <field name="name">hr.contract.view.form.cabalcon</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <group name="yearly_advantages" position="attributes">
+                <attribute name="attrs">{}</attribute>
+            </group>
+            <xpath expr="//group[@name='salary_and_advantages']" position="inside">
+                    <field name="is_af" invisible="1"/>
+                    <label for="da" attrs="{'invisible': [('is_af', '=', False)]}"/>
+                    <div class="o_row" attrs="{'invisible': [('is_af', '=', False)]}">
+                        <field name="is_da"/>
+                        <field name="da" nolabel="1" attrs="{'invisible': [('is_da', '=', False)]}"/>
+                        <span attrs="{'invisible': [('is_da', '=', False)]}">/ mes</span>
+                    </div>
+                    <label for="travel_allowance"/>
+                    <div class="o_row">
+                        <field name="travel_allowance_month" nolabel="1"/>
+                        <field name="travel_allowance" nolabel="1"/>
+                        <span attrs="{'invisible': [('travel_allowance_month', '=', True)]}">/ día</span>
+                        <span attrs="{'invisible': [('travel_allowance_month', '=', False)]}">/ mes</span>
+                    </div>
+                    <label for="meal_allowance"/>
+                    <div class="o_row">
+                        <field name="meal_allowance" nolabel="1"/>
+                        <span>/ día</span>
+                    </div>
+                    <label for="medical_allowance"/>
+                    <div class="o_row">
+                        <field name="medical_allowance" nolabel="1"/>
+                        <span>/ mes</span>
+                    </div>
+                    <label for="produce_5ta_category"/>
+                    <div class="o_row">
+                        <field name="produce_5ta_category" nolabel="1"/>
+                        <span>/ mes</span>
+                    </div>
+                    <label for="judicial_retention"/>
+                    <div class="o_row">
+                        <field name="judicial_retention" nolabel="1"/>
+                        <span>/ mes</span>
+                    </div>
+                     <label for="advance"/>
+                    <div class="o_row">
+                        <field name="advance" nolabel="1"/>
+                        <span>/ mes</span>
+                    </div>
+
+            </xpath>
+            <xpath expr="//group[@name='yearly_advantages']" position="inside">
+                <field name="basket"/>
+            </xpath>
+            <xpath expr="//group[@name='yearly_advantages']" position="after">
+                 <group>
+                     <field name="is_voluntary_contribution"/>
+                     <field name="voluntary_contribution" attrs="{'invisible': [('is_voluntary_contribution', '=', False)]}"/>
+                      <field name="is_voluntary_endless_contribution"/>
+                     <field name="voluntary_endless_contribution" attrs="{'invisible': [('is_voluntary_endless_contribution', '=', False)]}"/>
+                 </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

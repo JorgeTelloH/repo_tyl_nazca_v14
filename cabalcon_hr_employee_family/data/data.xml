@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="employee_relationship" model="hr.employee.relation">
+        <field name="name">Cónyuge</field>
+    </record>
+
+    <record id="employee_relationship_son" model="hr.employee.relation">
+        <field name="name">Hijo(a)</field>
+    </record>
+
+    <record id="employee_relationship_father" model="hr.employee.relation">
+        <field name="name">Padre</field>
+    </record>
+
+    <record id="employee_relationship_mother" model="hr.employee.relation">
+        <field name="name">Madre</field>
+    </record>
+
+
+    <record id="document_family_type01" model="hr.employee.document.family.type">
+        <field name="code">01</field>
+        <field name="name">ESCRITURA PÚBLICA</field>
+    </record>
+
+    <record id="document_family_type02" model="hr.employee.document.family.type">
+        <field name="code">02</field>
+        <field name="name">SENTENCIA DE DECLARATORIA DE PATERNIDAD</field>
+    </record>
+
+    <record id="document_family_type03" model="hr.employee.document.family.type">
+        <field name="code">03</field>
+        <field name="name">TESTAMENTO</field>
+    </record>
+
+    <record id="document_family_type04" model="hr.employee.document.family.type">
+        <field name="code">04</field>
+        <field name="name">RESOLUCIÓN DE INCAPACIDAD</field>
+    </record>
+
+    <record id="document_family_type05" model="hr.employee.document.family.type">
+        <field name="code">05</field>
+        <field name="name">ACTA O PARTIDA DE MATRIMONIO CIVIL</field>
+    </record>
+
+     <record id="document_family_type06" model="hr.employee.document.family.type">
+        <field name="code">06</field>
+        <field name="name">ACTA/PART MATRIM INSC EN REG CONS PER.</field>
+    </record>
+
+     <record id="document_family_type07" model="hr.employee.document.family.type">
+        <field name="code">07</field>
+        <field name="name">ACTA/PART MATRIM REALIZ EN EL EXTERIOR</field>
+    </record>
+
+     <record id="document_family_type08" model="hr.employee.document.family.type">
+        <field name="code">08</field>
+        <field name="name">ESCRIT PÚB REC. UNIÓN HECHO LEY 29560</field>
+    </record>
+
+     <record id="document_family_type09" model="hr.employee.document.family.type">
+        <field name="code">09</field>
+        <field name="name">RESOL JUDICIAL REC. UNIÓN DE HECHO</field>
+    </record>
+
+     <record id="document_family_type10" model="hr.employee.document.family.type">
+        <field name="code">10</field>
+        <field name="name">ACTA NAC/DOC ANALOGO SUST FILIACIÓN.</field>
+    </record>
+
+     <record id="document_family_type11" model="hr.employee.document.family.type">
+        <field name="code">11</field>
+        <field name="name">DDJJ EXISTENCIA UNIÓN DE HECHO</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_element_config_form" model="ir.ui.view">
+            <field name="name">element.config.form</field>
+            <field name="model">element.config</field>
+            <field name="arch" type="xml">
+            	<form string="Configuración grupo de Elementos" create="0">
+                      <group string="Elmentos del Balance">
+                          <div>
+                              <label for="account_balance"/>
+                              <field name="account_balance"/>
+                          </div>
+                          <div>
+                              <label for="account_nature"/>
+                              <field name="account_nature"/>
+                          </div>
+                          <div>
+                              <label for="account_function"/>
+                              <field name="account_function"/>
+                          </div>
+                          <button name="action_update" type="object" string="Actualizar" icon="fa-refresh"
+                          class="oe_highlight"/>
+                      </group>
+
+                  </form>
+            </field>
+        </record>
+
+        <record id="action_element_config_form" model="ir.actions.act_window">
+            <field name="name">Grupo de Elementos</field>
+            <field name="res_model">element.config</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_element_config_form"/>
+            <field name="res_id" ref="element_config_01"/>
+        </record>
+
+        <menuitem id="menu_element_config" 
+          action="action_element_config_form"
+          parent="account.account_account_menu"
+          groups="account.group_account_manager"/>
+
+	</data>
+</odoo>

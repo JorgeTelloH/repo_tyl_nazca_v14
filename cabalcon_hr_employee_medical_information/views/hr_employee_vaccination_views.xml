@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <record model="ir.ui.view" id="hr_employee_vaccination_form_view">
+        <field name="name">hr.employee.vaccination.form</field>
+        <field name="model">hr.employee.vaccination</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                            <field name="vaccine_id"/>
+                        </group>
+                        <group>
+                            <field name="vaccine_date"/>
+                            <field name="doce" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_employee_medical_examination_search_view">
+        <field name="name">hr.employee.vaccination.search</field>
+        <field name="model">hr.employee.vaccination</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id" />
+                <field name="vaccine_id" />
+
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_employee_vaccination_tree_view">
+        <field name="name">hr.employee.vaccination.tree</field>
+        <field name="model">hr.employee.vaccination</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id" />
+                <field name="vaccine_id" />
+                <field name="vaccine_date" />
+                <field name="doce"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hr_employee_vaccination_act_window">
+        <field name="name">Vacunaión</field>
+        <field name="res_model">hr.employee.vaccination</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="hr_employee_medical_examination_all"
+        name="Vacunaión"
+        parent="hr.menu_hr_employee_payroll"
+        action="hr_employee_vaccination_act_window"
+    />
+</odoo>

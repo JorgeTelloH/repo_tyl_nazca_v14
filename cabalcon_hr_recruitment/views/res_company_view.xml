@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_company_form_contract_rec">
+        <field name="name">res.company.form.inherit.contract.rec</field>
+        <field name="inherit_id" ref="cabalcon_hr_contract.view_company_form_contract"/>
+        <field name="model">res.company</field>
+        <field name="arch" type="xml">
+            <field name="notification_contract_expiration_ids" position="after">
+                <field name="notification_request_job_ids" widget="many2many_tags" options="{'no_create': True}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

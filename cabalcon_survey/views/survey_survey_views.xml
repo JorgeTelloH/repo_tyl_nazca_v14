@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="survey_form_cabalcon">
+            <field name="name">survey cabalcon</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_form"/>
+            <field name="arch" type="xml">
+                <field name="has_conditional_questions" position="after">
+                    <field name="category_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="survey_tree_cabalcon">
+            <field name="name">Tree survey cabalcon</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_tree"/>
+            <field name="arch" type="xml">
+                <field name="title" position="after">
+                    <field name="category_id"/>
+                </field>
+
+            </field>
+        </record>
+
+            <record model="ir.ui.view" id="survey_kanban_cabalcon">
+                <field name="name">Kanban view for survey cabalcon</field>
+                <field name="model">survey.survey</field>
+                 <field name="inherit_id" ref="survey.survey_kanban"/>
+                <field name="arch" type="xml">
+                    <field name="title" position="after">
+                        <field name="category_id"/>
+                    </field>
+                    <xpath expr="//div[hasclass('o_kanban_record_top')]" position="after">
+                        <field name="category_id"/>
+                    </xpath>
+                </field>
+            </record>
+
+        <record id="survey_survey_view_search_cabalcon" model="ir.ui.view">
+            <field name="name">survey.survey.search.cabalcon</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_survey_view_search"/>
+            <field name="arch" type="xml">
+                <filter name="groupby_state" position="after">
+                    <filter string="Categoria" name="category_id" context="{'group_by': 'category_id'}"/>
+                </filter>
+            </field>
+        </record>
+
+        <record id="view_survey_pivot" model="ir.ui.view">
+            <field name="name">survey.user_input.line.pivot</field>
+            <field name="model">survey.user_input.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Analysis" disable_linking="True" sample="1">
+                    <field name="survey_id" type="row"/>
+                    <field name="user_input_id" type="row"/>
+                    <field name="question_id" type="col"/>
+                    <field name="answer_score"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_survey_pivot_action" model="ir.actions.act_window">
+            <field name="name">Analisys</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">survey.user_input.line</field>
+            <field name="view_mode">pivot</field>
+        </record>
+
+        <!--   GRAFICOS    -->
+        <record id="view_survey_user_input_graph" model="ir.ui.view">
+            <field name="name">survey.user_input.graph</field>
+            <field name="model">survey.user_input</field>
+            <field name="arch" type="xml">
+                <graph string="Analysis" type="bar" sample="1" disable_linking="1">
+                    <field name="scoring_percentage" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="survey.action_survey_user_input">
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+
+        <record id="view_survey_user_input_line_graph" model="ir.ui.view">
+            <field name="name"> survey.user_input.line.graph</field>
+            <field name="model">survey.user_input.line</field>
+            <field name="arch" type="xml">
+                <graph string="Analysis" type="bar" sample="1" disable_linking="1">
+                    <field name="question_id" type="col"/>
+                    <field name="answer_score" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="survey.survey_user_input_line_action" model="ir.actions.act_window">
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+
+        <menuitem name="Informes"
+                  id="survey_menu_report"
+                  parent="survey.menu_surveys"
+                  groups="base.group_no_one"
+                  sequence="90"/>
+
+
+
+    </data>
+</odoo>

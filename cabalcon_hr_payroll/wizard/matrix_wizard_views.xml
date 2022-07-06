@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="matrix_wizard_report_wizard_view_form" model="ir.ui.view">
+            <field name="name">matrix.wizard.wizard.view.form</field>
+            <field name="model">matrix.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="struct_id" options="{'no_create': True, 'no_edit': True}"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="month"/>
+                            <field name="year"/>
+                        </group>
+                        <group>
+                            <field name="df"/>
+                            <field name="dd"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True, 'no_edit': True}"/>
+                    </group>
+                    <footer>
+                        <button name="action_print" string="Imprimir" type="object" class="oe_highlight"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="matrix_wizard_action" model="ir.actions.act_window">
+            <field name="name">Modelo de contabilidad</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">matrix.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_matrix"
+                  name="Modelo de contabilidad"
+                  action="matrix_wizard_action"
+                  parent="hr_payroll.menu_hr_payroll_report"/>
+
+
+    </data>
+</odoo>

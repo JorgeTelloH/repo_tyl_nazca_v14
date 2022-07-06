@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="element_config_01" model="element.config">
+        	<field name="account_balance">1,2,3,4,5</field>
+			<field name="account_nature">6,7</field>
+			<field name="account_function">7,9,69</field>
+        </record>
+    </data>
+</odoo>

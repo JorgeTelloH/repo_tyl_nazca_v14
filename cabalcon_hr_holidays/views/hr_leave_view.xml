@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_leave_view_form_cabalcon" model="ir.ui.view">
+            <field name="name">hr.leave.view.form.cabalcon</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="is_vacation" invisible="1"/>
+                    <field name="report_date" attrs="{'invisible': [('is_vacation','=', False)], 'required':[('is_vacation','=',True)],'readonly': [('state', 'not in', ('draft', 'confirm'))]}"/>
+                    <field name="is_sick_leave" invisible="1"/>
+                    <field name="days_insurance" attrs="{'invisible': [('is_sick_leave','=', False)]}" readonly="1"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

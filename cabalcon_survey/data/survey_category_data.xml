@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="survey_category_01" model="survey.category">
+            <field name="name">Clima</field>
+        </record>
+        <record id="survey_category_02" model="survey.category">
+            <field name="name">Reclutamiento</field>
+        </record>
+         <record id="survey_category_03" model="survey.category">
+            <field name="name">Capacitación</field>
+        </record>
+    </data>
+</odoo>

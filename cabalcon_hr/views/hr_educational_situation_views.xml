@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_educational_situation_form_view" model="ir.ui.view">
+            <field name="name">cabalcon_hr.hr_hr.educational_situation.form</field>
+            <field name="model">hr.educational.situation</field>
+            <field name="arch" type="xml">
+                <form string="Situación educacional">
+                    <sheet>
+                       <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" groups="hr.group_hr_user"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                    options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                       <group >
+                           <field name="code" colspan="2"/>
+                           <field name="name" colspan="2"/>
+                           <field name="desc" colspan="2"/>
+                       </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_educational_situation_tree_view" model="ir.ui.view">
+            <field name="name">cabalcon_hr.hr_hr.educational_situation.tree</field>
+            <field name="model">hr.educational.situation</field>
+            <field name="arch" type="xml">
+                <tree string="Situación educacional">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="desc"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_educational_situation_search_view" model="ir.ui.view">
+            <field name="name">cabalcon_hr.hr_hr.educational_situation.search</field>
+            <field name="model">hr.educational.situation</field>
+            <field name="arch" type="xml">
+                <search string="Situación educacional">
+                    <field name="code"/>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_educational_situation_act_window" model="ir.actions.act_window">
+            <field name="name">Situación educacional</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.educational.situation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+       <menuitem
+                id="menu_educational_situation_tree"
+                action="hr_educational_situation_act_window"
+                parent="hr.menu_human_resources_configuration"
+                sequence="16"
+                groups="hr.group_hr_user"/>
+    </data>
+</odoo>

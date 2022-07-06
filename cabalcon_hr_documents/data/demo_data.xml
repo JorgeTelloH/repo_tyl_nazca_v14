@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="document_type_DNI" model="hr.employee.document.type">
+            <field name="code">01</field>
+            <field name="name">DNI</field>
+            <field name="desc">DOCUMENTO NACIONAL DE IDENTIDAD</field>
+            <field name="identity">True</field>
+        </record>
+        <record id="document_type_CEXT" model="hr.employee.document.type">
+            <field name="code">04</field>
+            <field name="name">CARNÉ EXT.</field>
+            <field name="desc">CARNÉ DE EXTRANJERÍA</field>
+            <field name="identity">True</field>
+        </record>
+        <record id="document_type_RUC" model="hr.employee.document.type">
+            <field name="code">06</field>
+            <field name="name">RUC</field>
+            <field name="desc">REG. ÚNICO DE CONTRIBUYENTES (SOLO APLICA AL PRESTADOR DE SERVICIOS A QUE SE REFIERE EL NUMERAL I) DEL LITERAL D)  DEL ARTÍCULO 1°° DEL DECRETO, CUANDO SE REGISTRE EN EL PLAME.)</field>
+            <field name="identity">True</field>
+        </record>
+        <record id="document_type_PASSPORT" model="hr.employee.document.type">
+            <field name="code">07</field>
+            <field name="name">PASAPORTE</field>
+            <field name="desc">PASAPORTE</field>
+            <field name="identity">True</field>
+        </record>
+        <record id="document_type_CSR" model="hr.employee.document.type">
+            <field name="code">09</field>
+            <field name="name">CARNÉ SOLIC REFUGIO</field>
+            <field name="desc">CARNÉ DE SOLICIT DE REFUGIO (Incorporado el 19.05.2013)</field>
+            <field name="identity">True</field>
+        </record>
+        <record id="document_type_PN" model="hr.employee.document.type">
+            <field name="code">11</field>
+            <field name="name">PART. NAC.</field>
+            <field name="desc">PARTIDA DE NACIMIENTO (PERMITIÓ LA IDENTIFICACION DE  "PERSONAL EN FORMACIÓN -MODALIDAD FORMATIVA LABORAL Y OTROS" MENORES DE EDAD HASTA EL 19 .05.2013.)</field>
+            <field name="identity">True</field>
+        </record>
+        <record id="document_type_CI_RREE" model="hr.employee.document.type">
+            <field name="code">22</field>
+            <field name="name">C.IDENT.-RREE</field>
+            <field name="desc">CARNÉ DE IDENTIDAD - RELACIONES EXTERIORES (Incorporado el 1.2.2019)</field>
+            <field name="identity">True</field>
+        </record>
+        <record id="document_type_C_PTP" model="hr.employee.document.type">
+            <field name="code">23</field>
+            <field name="name">CARNÉ PTP</field>
+            <field name="desc">CARNÉ DE PERM.TEMP.PERMANENCIA (Incorporado el 1.2.2019)</field>
+            <field name="identity">True</field>
+        </record>
+        <record id="document_type_CI_EXT" model="hr.employee.document.type">
+            <field name="code">23</field>
+            <field name="name">DOC.ID.EXTR.</field>
+            <field name="desc">DOC. DE IDENTIDAD EXTRANJERO (Incorporado el 1.2.2019)</field>
+            <field name="identity">True</field>
+        </record>
+        <record id="document_type_DI" model="hr.employee.document.type">
+            <field name="code">DI</field>
+            <field name="name">Documento de ingreso</field>
+            <field name="desc">Documento de ingreso</field>
+            <field name="identity">False</field>
+        </record>
+        <record id="document_type_CT" model="hr.employee.document.type">
+            <field name="code">CT</field>
+            <field name="name">Certificado de trabajo</field>
+            <field name="desc">Certificado de trabajo</field>
+            <field name="identity">False</field>
+        </record>
+        <record id="document_type_CR" model="hr.employee.document.type">
+            <field name="code">CR</field>
+            <field name="name">Carta de retiro</field>
+            <field name="desc">Carta de retiro</field>
+            <field name="identity">False</field>
+        </record>
+    </data>
+</odoo>

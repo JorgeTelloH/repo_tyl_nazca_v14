@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--        <record id="currency_apiperu_update" model="ir.ui.view">-->
+<!--            <field name="name">res.currency.apiperu.form</field>-->
+<!--            <field name="model">res.currency.apiperu</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Actualización de Tipo de Cambio">-->
+<!--                    <group col="4">-->
+<!--                        <field name="date"/>-->
+<!--                    </group>-->
+<!--                    <footer>-->
+<!--                        <button string="Actualizar" name="continuar" type="object" class="btn-primary"/>-->
+<!--                        <button string="Cancelar" class="btn-default" special="cancel"/>-->
+<!--                    </footer>-->
+<!--               </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <act_window id="action_get_currency_rate"
+            name="Actualizar Tipo de Cambio"
+            src_model="res.currency"
+            res_model="res.currency.apiperu"
+            view_type="form" view_mode="form"
+            key2="client_action_multi" target="new"/>
+
+    </data>
+</odoo>

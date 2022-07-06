@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="subtype_payroll_form_view" model="ir.ui.view">
+            <field name="name">subtype.payroll.form</field>
+            <field name="model">hr.payslip.subtype.payroll</field>
+            <field name="arch" type="xml">
+                <form string="Subtipo de Planilla de Haberes">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Nombre"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                                <field name="salary_rule_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="subtype_payroll_tree_view" model="ir.ui.view">
+            <field name="name">subtype_payroll.tree</field>
+            <field name="model">hr.payslip.subtype.payroll</field>
+            <field name="arch" type="xml">
+                <tree string="Subtipo de Planilla de Haberes">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="salary_rule_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="subtype_payroll_act_window" model="ir.actions.act_window">
+            <field name="name">Subtipo de Planilla de Haberes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.payslip.subtype.payroll</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Subtipo de Planilla de Haberes"
+                  id="subtype_payroll_menu"
+                  parent="hr_work_entry_contract.menu_hr_payroll_configuration"
+                  action="subtype_payroll_act_window"
+                  sequence="120"/>
+
+    </data>
+</odoo>

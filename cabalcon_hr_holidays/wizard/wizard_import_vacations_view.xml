@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="wizard_import_vacations_view_form" model="ir.ui.view">
+            <field name="name">wizard_import_vacations.form</field>
+            <field name="model">wizard.import.assignments.vacations</field>
+            <field name="arch" type="xml">
+                <form string="File">
+                    <group invisible="1">
+                         <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                    <label for="file_name" string="Seleccione el fichero Excel a Importar."/>
+                    <group>
+                        <field name="binary_file" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                    </group>
+                    <group>
+                        <field name="name" />
+<!--                        <field name="allow_negative"/>-->
+                    </group>
+                    <footer>
+                        <button name="import_file" string="Importar" type="object" class="oe_highlight"
+                            icon="fa-download"/>
+                        or
+                        <button special="cancel" string="Cancelar" type="object"
+                            icon="fa-times" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_import_vacations_wzd" model="ir.actions.act_window">
+            <field name="name">Importar asignaciones de vacaciones</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.import.assignments.vacations</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+                id="hr_holidays_menu_manager_import"
+                name="Importar asignaciones de vacaciones"
+                parent="hr_holidays.menu_hr_holidays_approvals"
+                action="action_import_vacations_wzd"
+                sequence="3"/>
+
+    </data>
+</odoo>

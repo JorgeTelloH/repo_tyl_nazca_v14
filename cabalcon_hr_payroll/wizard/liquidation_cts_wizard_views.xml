@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_liquidation_cts_report_wizard_view_form" model="ir.ui.view">
+            <field name="name">hr.liquidation.cts.wizard.view.form</field>
+            <field name="model">hr.liquidation.cts.wizard</field>
+            <field name="arch" type="xml">
+               <form>
+                    <sheet>
+                        <group>
+                            <field name="employee_id" readonly="not context.get('from_menu', False)" options="{'no_create': True, 'no_edit': True, 'no_open': True}" />
+                        </group>
+                        <group>
+                            <group>
+                                <field name="date_from"/>
+                                <field name="bonuses"/>
+                                <field name="overtime_average"/>
+                                <field name="other"/>
+                            </group>
+                            <group>
+                                <field name="date_to"/>
+                                <field name="commissions"/>
+                                <field name="average_gratification"/>
+                                <field name="date_deposit"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_print" string="Imprimir" type="object" class="oe_highlight"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_liquidation_cts_action" model="ir.actions.act_window">
+            <field name="name">Liquidación de depósitos semestrales de CTS</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.liquidation.cts.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="context">{'from_menu': True}</field>
+            <field name="target">new</field>
+        </record>
+
+         <menuitem
+             id="menu_hr_liquidation_cts"
+             parent="hr.hr_menu_hr_reports"
+             action="hr_liquidation_cts_action"
+             sequence="99"/>
+
+    </data>
+</odoo>

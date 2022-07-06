@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!--        <record id="hr_contract_view_form_inherit" model="ir.ui.view">-->
+<!--            <field name="name">hr.contract.form.inherit</field>-->
+<!--            <field name="model">hr.contract</field>-->
+<!--            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                -->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="hr_contract_view_search_cabalcon" model="ir.ui.view">
+            <field name="name">hr.contract.search.cabalcon</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_search"/>
+            <field name="arch" type="xml">
+                <filter name="to_renew" position="after">
+                    <filter string="Cerca de expirar" name="near_expire" domain="[('state', '=', 'near_expire')]"/>
+                </filter>
+                <filter name="inactive" position="after">
+                    <separator/>
+                    <filter name="date_start" date="date_start"/>
+                    <filter name="date_end" date="date_end"/>
+                    <separator/>
+                </filter>
+                <filter name='group_by_state' position="after">
+                    <filter string="Tipo de contrato" name='contract_type_id' domain="[]" context="{'group_by': 'contract_type_id'}"/>
+                    <filter string="Tipo de Estructura Salarial" name='structure_type_id' domain="[]" context="{'group_by': 'structure_type_id'}"/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</odoo>

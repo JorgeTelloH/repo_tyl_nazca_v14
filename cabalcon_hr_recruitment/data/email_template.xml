@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="email_template_notification_request_job" model="mail.template" forcecreate="1">
+            <field name="name">Notificación de solicitud de nuevo puesto de trabajo</field>
+            <field name="subject">Notificación de solicitud de nuevo puesto de trabajo - ${object.job_id.name}</field>
+            <field name="email_from">
+                <![CDATA[${object.company_id.name|safe} ${(object.company_id.email or '')|safe}]]></field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+            Se solicita el reclutamiento de nuevo(s) empleado(s) para el puesto ${object.job_id.name}
+            en el departamento ${object.department_id.name}.
+           ]]></field>
+        </record>
+    </data>
+</odoo>

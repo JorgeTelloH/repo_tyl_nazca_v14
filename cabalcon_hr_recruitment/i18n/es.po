@@ -1,0 +1,192 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cabalcon_hr_recruitment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-03 23:47+0000\n"
+"PO-Revision-Date: 2022-03-03 23:47+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+
+#. module: hr_recruitment
+#: model:ir.model.fields,field_description:hr_recruitment.field_hr_applicant__name
+msgid "Subject / Cliente interno"
+msgstr "Asunto / Cliente interno"
+
+#. module: cabalcon_hr_recruitment
+#: model:mail.template,body_html:cabalcon_hr_recruitment.email_template_notification_request_job
+msgid ""
+"\n"
+"            Se solicita el reclutamiento de nuevo(s) empleado(s) para el puesto ${object.job_id.name}\n"
+"            en el departamento ${object.department_id.name}.\n"
+"           "
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model,name:cabalcon_hr_recruitment.model_hr_applicant
+msgid "Applicant"
+msgstr "Candidato"
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields.selection,name:cabalcon_hr_recruitment.selection__hr_request_job__state__draft
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_recruitment.hr_request_job_form_view
+msgid "Borrador"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__quantity
+msgid "Cantidad de puestos"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_applicant__name
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__employee_id
+msgid "Cliente interno"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model,name:cabalcon_hr_recruitment.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__company_id
+msgid "Company"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_recruitment.hr_request_job_search_view
+msgid "Departamento"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__department_id
+msgid "Departmento"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_applicant__display_name
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__display_name
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_res_company__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields.selection,name:cabalcon_hr_recruitment.selection__hr_request_job__state__done
+msgid "Ejecudado"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_recruitment.hr_request_job_form_view
+msgid "Ejecutar"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,help:cabalcon_hr_recruitment.field_hr_applicant__name
+msgid "Email subject for applications sent via email"
+msgstr ""
+"Asunto del correo electrónico para las solicitudes enviadas por correo "
+"electrónico"
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__state
+msgid "Estado"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_recruitment.hr_request_job_search_view
+msgid "Group By"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_applicant__id
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__id
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_res_company__id
+msgid "ID"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_applicant____last_update
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job____last_update
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_res_company____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__note
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_recruitment.hr_request_job_form_view
+msgid "Nota"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:mail.template,subject:cabalcon_hr_recruitment.email_template_notification_request_job
+msgid ""
+"Notificación de solicitud de nuevo puesto de trabajo - ${object.job_id.name}"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_res_company__notification_request_job_ids
+msgid "Notificar solicitud de nuevos puestos"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields,field_description:cabalcon_hr_recruitment.field_hr_request_job__job_id
+msgid "Puesto a poner en convocatoria"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model.fields.selection,name:cabalcon_hr_recruitment.selection__hr_request_job__state__open
+msgid "Solicitado"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_recruitment.hr_request_job_form_view
+msgid "Solicitar"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:res.groups,name:cabalcon_hr_recruitment.group_hr_request_job
+msgid "Solicitar nuevos puestos"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.actions.act_window,name:cabalcon_hr_recruitment.hr_request_job_act_window
+#: model:ir.ui.menu,name:cabalcon_hr_recruitment.menu_request_job
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_recruitment.hr_request_job_form_view
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_recruitment.hr_request_job_search_view
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_recruitment.hr_request_job_tree_view
+msgid "Solicitud de nuevo puesto"
+msgstr ""
+
+#. module: cabalcon_hr_recruitment
+#: model:ir.model,name:cabalcon_hr_recruitment.model_hr_request_job
+msgid "Solicitudes de nuevos puestos de trabajo"
+msgstr ""

@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="hr_recruitment_apply_form" name="Job Application Form" inherit_id="website_hr_recruitment.apply" customize_show="True">
+        <xpath expr="//form[@id='hr_recruitment_form']" position="replace">
+            <form id="hr_recruitment_form" action="/website_form/" method="post" enctype="multipart/form-data"
+                  class="o_mark_required" data-mark="*" data-model_name="hr.applicant"
+                  data-success-mode="redirect" data-success-page="/job-thank-you" hide-change-model="true">
+                <div class="s_website_form_rows row s_col_no_bgcolor">
+                    <div class="form-group col-12 s_website_form_field s_website_form_dnone">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment1">
+                                <span class="s_website_form_label_content">Your Name</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="recruitment1" type="hidden" class="form-control s_website_form_input"
+                                       name="partner_name"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_required s_website_form_model_required"
+                         data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment10">
+                                <span class="s_website_form_label_content">Nombres</span>
+                                <span class="s_website_form_mark">*</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="recruitment10" type="text" class="form-control s_website_form_input"
+                                       name="firstname" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_required s_website_form_model_required"
+                         data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment8">
+                                <span class="s_website_form_label_content">Apellido Paterno</span>
+                                <span class="s_website_form_mark">*</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="recruitment8" type="text" class="form-control s_website_form_input"
+                                       name="lastname" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_required s_website_form_model_required"
+                         data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment9">
+                                <span class="s_website_form_label_content">Apellido Materno</span>
+                                <span class="s_website_form_mark">*</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="recruitment9" type="text" class="form-control s_website_form_input"
+                                       name="lastname2" required=""/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="email"
+                         data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment2">
+                                <span class="s_website_form_label_content">Correo Electrónico</span>
+                                <span class="s_website_form_mark">*</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="recruitment2" type="email" class="form-control s_website_form_input"
+                                       name="email_from" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="char"
+                         data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment3">
+                                <span class="s_website_form_label_content">Número de Teléfono</span>
+                                <span class="s_website_form_mark">*</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="recruitment3" type="tel" class="form-control s_website_form_input"
+                                       name="partner_phone" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment4">
+                                <span class="s_website_form_label_content">Mencione su motivación para desempeñarse con nosotros</span>
+                            </label>
+                            <div class="col-sm">
+                                <textarea id="recruitment4" class="form-control s_website_form_input"
+                                          name="description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment11a">
+                                <span class="s_website_form_label_content">Tipo de documento</span>
+                            </label>
+                            <div class="col-sm">
+                                <select id="recruitment11a" name="document_type"
+                                        class="form-control country-applicant col-sm-6">
+                                    <option value="">--Seleccione--</option>
+                                    <t t-foreach="document_types" t-as="doc">
+                                        <option t-att-value="doc.id">
+                                            <t t-esc="doc.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment11">
+                                <span class="s_website_form_label_content">Identificación No.</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="recruitment11" type="text" class="form-control s_website_form_input col-sm-6"
+                                       name="identification_id"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment13">
+                                <span class="s_website_form_label_content">Sexo</span>
+                            </label>
+                            <div class="col-sm">
+                                <select id="recruitment13" name="gender" class="form-control col-sm-6">
+                                    <option value="">--Seleccione--</option>
+                                    <option value="male">
+                                        Masculino
+                                    </option>
+                                    <option value="female">
+                                        Femenino
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment14">
+                                <span class="s_website_form_label_content">Fecha de nacimiento</span>
+                            </label>
+                            <div class="col-sm">
+                                 <input id="recruitment14" type="date" class="form-control s_website_form_input col-sm-6"
+                                       name="birthday"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment15">
+                                <span class="s_website_form_label_content">Nacionalidad (País)</span>
+                            </label>
+                            <div class="col-sm">
+                                <select id="recruitment15" name="country_id" class="form-control col-sm-6">
+                                    <option t-att-value="peru">--Seleccione--</option>
+                                    <t t-foreach="countries" t-as="country">
+                                        <option t-att-value="country.id" t-att-selected="'selected' if country.id == peru else none">
+                                            <t t-esc="country.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment16">
+                                <span class="s_website_form_label_content">Estado civil</span>
+                            </label>
+                            <div class="col-sm">
+                                <select id="recruitment16" name="marital" class="form-control col-sm-6">
+                                    <option value="">--Seleccione--</option>
+                                    <option value="single">
+                                        Soltero(a)
+                                    </option>
+                                    <option value="married">
+                                        Casado(a)
+                                    </option>
+                                    <option value="cohabitant">
+                                        Cohabitante legal
+                                    </option>
+                                    <option value="widower">
+                                        Viudo(a)
+                                    </option>
+                                    <option value="divorced">
+                                        Divorciado(a)
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment17">
+                                <span class="s_website_form_label_content">Números de hijos</span>
+                            </label>
+                            <div class="col-sm">
+                                 <input id="recruitment17" type="text" class="form-control s_website_form_input col-sm-6"
+                                       name="children"/>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment18">
+                                <span class="s_website_form_label_content">Tipo de sangre</span>
+                            </label>
+                            <div class="col-sm" style="width: 0px">
+                                <select id="recruitment18" name="blood_name" >
+                                    <option value="">--Seleccione--</option>
+                                    <option value="A">
+                                        A
+                                    </option>
+                                    <option value="B">
+                                        B
+                                    </option>
+                                    <option value="O">
+                                        O
+                                    </option>
+                                    <option value="AB">
+                                        AB
+                                    </option>
+                                </select>
+                                <select id="recruitment18a" name="blood_type" >
+                                    <option value="">--Seleccione--</option>
+                                    <option value="+">
+                                        +
+                                    </option>
+                                    <option value="-">
+                                        -
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment19">
+                                <span class="s_website_form_label_content">Dirección</span>
+                            </label>
+                            <div class="col-sm">
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td colspan="2">
+                                            <input id="recruitment19" type="text" class="form-control s_website_form_input"
+                                                   name="street" placeholder="Calle..."/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%">
+                                            <input id="recruitment20" type="text" class="form-control"
+                                                   name="street_number" placeholder="Casa..."/>
+                                        </td>
+                                        <td style="width: 50%">
+                                            <input id="recruitment21" type="text" class="form-control"
+                                                   name="street_number2" placeholder="Puerta..."/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <select id="recruitment24" name="l10n_pe_district" class="form-control">
+                                                <option value="">--Seleccione el districto--</option>
+                                                <t t-foreach="districts" t-as="district">
+                                                    <option t-att-value="district.id">
+                                                        <t t-esc="district.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select id="recruitment25" name="city_id" class="form-control">
+                                                <option value="">--Seleccione la provincia--</option>
+                                                <t t-foreach="cities" t-as="city">
+                                                    <option t-att-value="city.id">
+                                                        <t t-esc="city.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <select id="recruitment26" name="state_id" class="form-control">
+                                                <option value="">--Seleccione el estado--</option>
+                                                <t t-foreach="states" t-as="state">
+                                                    <option t-att-value="state.id">
+                                                        <t t-esc="state.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input id="recruitment28" type="text" class="form-control s_website_form_input"
+                                                   name="zip" placeholder="Código postal..."/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <select id="recruitment27" name="addres_country_id"
+                                                    class="form-control country-applicant">
+                                                <option value="">--Seleccione el país--</option>
+                                                <t t-foreach="countries" t-as="country">
+                                                    <option t-att-value="country.id" t-att-selected="'selected' if country.id == peru else none">
+                                                        <t t-esc="country.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment29">
+                                <span class="s_website_form_label_content">Tipo de vehículo que maneja</span>
+                            </label>
+                            <div class="col-sm">
+                                 <input id="recruitment29" type="text" class="form-control s_website_form_input col-sm-6"
+                                       name="type_vehicle"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment30">
+                                <span class="s_website_form_label_content">Contactos</span>
+                            </label>
+                            <div class="col-sm">
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td>
+                                            <input id="recruitment30" type="text" class="form-control s_website_form_input"
+                                                   name="contact_name1" placeholder="Nombre y Apellidos..."/>
+                                        </td>
+                                        <td>
+                                            <input id="recruitment31" type="text" class="form-control s_website_form_input"
+                                                   name="contact_relation1" placeholder="Parentesco..."/>
+                                        </td>
+                                        <td>
+                                            <input id="recruitment32" type="text" class="form-control s_website_form_input"
+                                                   name="contact_mobile1" placeholder="Movil..."/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input id="recruitment33" type="text" class="form-control s_website_form_input"
+                                                   name="contact_name2" placeholder="Nombre y Apellidos..."/>
+                                        </td>
+                                        <td>
+                                            <input id="recruitment34" type="text" class="form-control s_website_form_input"
+                                                   name="contact_relation2" placeholder="Parentesco..."/>
+                                        </td>
+                                        <td>
+                                            <input id="recruitment35" type="text" class="form-control s_website_form_input"
+                                                   name="contact_mobile2" placeholder="Movil..."/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment36">
+                                <span class="s_website_form_label_content">Banco</span>
+                            </label>
+                            <div class="col-sm">
+                                <select id="recruitment36" name="bank_id" class="form-control">
+                                    <option value="">--Seleccione--</option>
+                                    <t t-foreach="banks" t-as="bank">
+                                        <option t-att-value="bank.id">
+                                            <t t-esc="bank.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment37">
+                                <span class="s_website_form_label_content">Cuenta</span>
+                            </label>
+                            <div class="col-sm">
+                                 <input id="recruitment37" type="text" class="form-control s_website_form_input"
+                                       name="bank_account"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment38">
+                                <span class="s_website_form_label_content">CCI</span>
+                            </label>
+                            <div class="col-sm">
+                                 <input id="recruitment38" type="text" class="form-control s_website_form_input"
+                                        name="cci"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment39">
+                                <span class="s_website_form_label_content">Número de RUC</span>
+                            </label>
+                            <div class="col-sm">
+                                 <input id="recruitment39" type="text" class="form-control s_website_form_input"
+                                        name="number_ruc"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment40">
+                                <span class="s_website_form_label_content">¿Tiene familiares (padres, hermanos, hijos, tíos, primos, esposo (a), cuñados) laborando en esta empresa?</span>
+                            </label>
+                            <div class="col-sm">
+                                 <input id="recruitment40" type="checkbox" class="form-control s_website_form_input"
+                                       name="has_family"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment41">
+                                <span class="s_website_form_label_content">Nombre del familiar</span>
+                            </label>
+                            <div class="col-sm">
+                                 <input id="recruitment41" type="text" class="form-control s_website_form_input"
+                                       name="family_name"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment42">
+                                <span class="s_website_form_label_content">Área de trabajo</span>
+                            </label>
+                            <div class="col-sm">
+                                 <input id="recruitment42" type="text" class="form-control s_website_form_input"
+                                       name="department"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment30">
+                                <span class="s_website_form_label_content">Datos del vehículo</span>
+                            </label>
+                            <div class="col-sm">
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td>
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 100%;padding-bottom:0px"
+                                                   for="recruitment43">
+                                                <span class="s_website_form_label_content">Placa vehicular</span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 100%;padding-bottom:0px"
+                                                   for="recruitment44">
+                                                <span class="s_website_form_label_content">Año de fabricación</span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                               <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 100%;padding-bottom:0px"
+                                                   for="recruitment45">
+                                                <span class="s_website_form_label_content">Modelo del vehículo</span>
+                                               </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input id="recruitment43" type="text" class="form-control s_website_form_input"
+                                                   name="vehicular_plate" />
+                                        </td>
+                                        <td>
+                                            <input id="recruitment44" type="text" class="form-control s_website_form_input"
+                                                   name="year_of_manufacture" />
+                                        </td>
+                                        <td>
+                                            <input id="recruitment45" type="text" class="form-control s_website_form_input"
+                                                   name="model_vehicle" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 100%;padding-bottom:0px"
+                                                   for="recruitment47">
+                                                <span class="s_website_form_label_content">Marca del vehículo</span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 100%;padding-bottom:0px"
+                                                   for="recruitment48">
+                                                <span class="s_website_form_label_content">Color del vehículo
+                                                </span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                               <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 100%;padding-bottom:0px"
+                                                   for="recruitment49">
+                                                <span class="s_website_form_label_content">Propietario del vehículo</span>
+                                               </label>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input id="recruitment47" type="text" class="form-control s_website_form_input"
+                                                   name="mark_of_vehicle"/>
+                                        </td>
+                                        <td>
+                                            <input id="recruitment48" type="text" class="form-control s_website_form_input"
+                                                   name="color_of_vehicle" />
+                                        </td>
+                                        <td>
+                                            <select id="recruitment49" name="proprietor" class="form-control s_website_form_input">
+                                                <option value="">--Seleccione--</option>
+                                                <option value="01">
+                                                    Vehículo propio
+                                                </option>
+                                                <option value="02">
+                                                    Vehículo alquilado
+                                                </option>
+                                                <option value="03">
+                                                    Vehículo de un familiar
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 100%;padding-bottom:0px"
+                                                   for="recruitment50">
+                                                <span class="s_website_form_label_content">Vencimiento de licencia de conducir</span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 100%;padding-bottom:0px"
+                                                   for="recruitment51">
+                                                <span class="s_website_form_label_content">Categoría de la Licencia de conducir
+                                                </span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                               <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 100%;padding-bottom:0px"
+                                                   for="recruitment52">
+                                                <span class="s_website_form_label_content">N° de Licencia de conducir</span>
+                                               </label>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input id="recruitment50" type="date" class="form-control s_website_form_input"
+                                                   name="expiration_date" />
+                                        </td>
+                                        <td>
+                                            <input id="recruitment51" type="text" class="form-control s_website_form_input"
+                                                   name="category_of_license" />
+                                        </td>
+                                        <td>
+                                            <input id="recruitment52" type="text" class="form-control s_website_form_input"
+                                                   name="driver_license" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 100%;padding-bottom:0px"
+                                                   for="recruitment53">
+                                                <span class="s_website_form_label_content">Vencimiento del SOAT</span>
+                                               </label>
+                                        </td>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                             <input id="recruitment53" type="date" class="form-control s_website_form_input"
+                                                   name="soat_expiration" />
+                                        </td>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 s_website_form_field s_website_form_custom" data-type="binary"
+                         data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment5">
+                                <span class="s_website_form_label_content">Resume</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="recruitment5" type="file" class="form-control s_website_form_input"
+                                       name="Resume"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_dnone">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment6">
+                                <span class="s_website_form_label_content">Job</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="recruitment6" type="hidden" class="form-control s_website_form_input"
+                                       name="job_id"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_dnone">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"
+                                   for="recruitment7">
+                                <span class="s_website_form_label_content">Department</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="recruitment7" type="hidden" class="form-control s_website_form_input"
+                                       name="department_id"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_submit" data-name="Submit Button">
+                        <div style="width: 200px;" class="s_website_form_label"/>
+                        <a href="#" role="button" class="btn btn-primary btn-lg s_website_form_send">Submit</a>
+                        <span id="s_website_form_result"></span>
+                    </div>
+                </div>
+            </form>
+
+        </xpath>
+    </template>
+
+<!--    -->
+
+<!--<template id="apply">-->
+<!--    <t t-call="website.layout">-->
+<!--        <t t-set="additional_title">Apply Job</t>-->
+
+<!--        <div id="wrap"  class="container">-->
+<!--            <h1 class="text-center mt-2">-->
+<!--                Job Application Form-->
+<!--            </h1>-->
+<!--            <h2 t-if="job" class="text-center text-muted">-->
+<!--                <span t-field="job.name"/>-->
+<!--            </h2>-->
+<!--            <span class="hidden" data-for="hr_recruitment_form" t-att-data-values="{'department_id': job and job.department_id.id or '', 'job_id': job and job.id or ''}" />-->
+<!--            <div id="jobs_section">-->
+<!--                <section id="forms" class="s_website_form" data-vcss="001" data-snippet="s_website_form">-->
+<!--                    <div class="container">-->
+<!--                        <form id="hr_recruitment_form" action="/website_form/" method="post" enctype="multipart/form-data" class="o_mark_required" data-mark="*" data-model_name="hr.applicant" data-success-mode="redirect" data-success-page="/job-thank-you" hide-change-model="true">-->
+<!--                            <div class="s_website_form_rows row s_col_no_bgcolor">-->
+<!--                                <div class="form-group col-12 s_website_form_field s_website_form_required s_website_form_model_required" data-type="char" data-name="Field">-->
+<!--                                    <div class="row s_col_no_resize s_col_no_bgcolor">-->
+<!--                                        <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="recruitment1">-->
+<!--                                            <span class="s_website_form_label_content">Your Name</span>-->
+<!--                                            <span class="s_website_form_mark"> *</span>-->
+<!--                                        </label>-->
+<!--                                        <div class="col-sm">-->
+<!--                                            <input id="recruitment1" type="text" class="form-control s_website_form_input" name="partner_name" required=""/>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="email" data-name="Field">-->
+<!--                                    <div class="row s_col_no_resize s_col_no_bgcolor">-->
+<!--                                        <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="recruitment2">-->
+<!--                                            <span class="s_website_form_label_content">Your Email</span>-->
+<!--                                            <span class="s_website_form_mark"> *</span>-->
+<!--                                        </label>-->
+<!--                                        <div class="col-sm">-->
+<!--                                            <input id="recruitment2" type="email" class="form-control s_website_form_input" name="email_from" required=""/>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="char" data-name="Field">-->
+<!--                                    <div class="row s_col_no_resize s_col_no_bgcolor">-->
+<!--                                        <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="recruitment3">-->
+<!--                                            <span class="s_website_form_label_content">Your Phone Number</span>-->
+<!--                                            <span class="s_website_form_mark"> *</span>-->
+<!--                                        </label>-->
+<!--                                        <div class="col-sm">-->
+<!--                                            <input id="recruitment3" type="tel" class="form-control s_website_form_input" name="partner_phone" required=""/>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">-->
+<!--                                    <div class="row s_col_no_resize s_col_no_bgcolor">-->
+<!--                                        <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="recruitment4">-->
+<!--                                            <span class="s_website_form_label_content">Short Introduction</span>-->
+<!--                                        </label>-->
+<!--                                        <div class="col-sm">-->
+<!--                                            <textarea id="recruitment4" class="form-control s_website_form_input" name="description"></textarea>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-group col-12 s_website_form_field s_website_form_custom" data-type="binary" data-name="Field">-->
+<!--                                    <div class="row s_col_no_resize s_col_no_bgcolor">-->
+<!--                                        <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="recruitment5">-->
+<!--                                            <span class="s_website_form_label_content">Resume</span>-->
+<!--                                        </label>-->
+<!--                                        <div class="col-sm">-->
+<!--                                            <input id="recruitment5" type="file" class="form-control s_website_form_input" name="Resume"/>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-group col-12 s_website_form_field s_website_form_dnone">-->
+<!--                                    <div class="row s_col_no_resize s_col_no_bgcolor">-->
+<!--                                        <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="recruitment6">-->
+<!--                                            <span class="s_website_form_label_content">Job</span>-->
+<!--                                        </label>-->
+<!--                                        <div class="col-sm">-->
+<!--                                            <input id="recruitment6" type="hidden" class="form-control s_website_form_input" name="job_id"/>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-group col-12 s_website_form_field s_website_form_dnone">-->
+<!--                                    <div class="row s_col_no_resize s_col_no_bgcolor">-->
+<!--                                        <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="recruitment7">-->
+<!--                                            <span class="s_website_form_label_content">Department</span>-->
+<!--                                        </label>-->
+<!--                                        <div class="col-sm">-->
+<!--                                            <input id="recruitment7" type="hidden" class="form-control s_website_form_input" name="department_id"/>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-group col-12 s_website_form_submit" data-name="Submit Button">-->
+<!--                                    <div style="width: 200px;" class="s_website_form_label"/>-->
+<!--                                    <a href="#" role="button" class="btn btn-primary btn-lg s_website_form_send">Submit</a>-->
+<!--                                    <span id="s_website_form_result"></span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </section>-->
+<!--            </div>-->
+<!--            <div class="oe_structure mt-2"/>-->
+<!--        </div>-->
+<!--    </t>-->
+<!--</template>-->
+
+    <template id="website_hr_recuitment_assets_editor" name="Website HR Recruitment Assets Editor" inherit_id="website.assets_editor">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/cabalcon_website_hr_recruitment/static/src/js/website_hr_recruitment_editor.js"></script>
+        </xpath>
+    </template>
+
+
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_afp_net_wizard_all,afp.net.wizard.all,model_afp_net_wizard,,1,1,1,1
+access_matrix_wizard_all,matrixt.wizard.all,model_matrix_wizard,,1,1,1,1
+contributive_week_all,contributive_week.all,model_contributive_week,,1,1,1,1
+access_export_txt_wizard_all,export_txt_wizard.all,model_export_txt_wizard,,1,1,1,1
+access_hr_payslip_subtype_payroll.all,hr_payslip_subtype_payroll.all,model_hr_payslip_subtype_payroll,,1,1,1,1

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_payment_register_form_inherit" model="ir.ui.view">
+            <field name="name">account.payment.register.inherit</field>
+            <field name="model">account.payment.register</field>
+            <field name="inherit_id" ref="account.view_account_payment_register_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//group//group[@name='group1']//field[@name='communication']" position="after">
+                    <field name="exchange_rate_value_p" invisible = "True" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

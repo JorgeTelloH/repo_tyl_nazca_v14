@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_account_payment_tree" model="ir.ui.view">
+        <field name="name">account.payment.invoice.tree</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_tree" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="invoice_number"/>
+            </field>
+        </field>
+    </record>
+    <!--
+    <record id="view_account_supplier_payment_tree" model="ir.ui.view">
+        <field name="name">account.supplier.payment.invoice.tree</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_supplier_payment_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="invoice_number"/>
+            </field>
+        </field>
+    </record>
+    -->
+</odoo>

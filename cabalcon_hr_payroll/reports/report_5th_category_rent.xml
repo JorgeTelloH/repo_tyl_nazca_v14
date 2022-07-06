@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_5th_category_rent_report" model="ir.actions.report">
+            <field name="name">Certificado sobre Renta de 5ta categoría</field>
+            <field name="model">hr.employee</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cabalcon_hr_payroll.report_5th_category_rent</field>
+            <field name="report_file">cabalcon_hr_payroll.report_5th_category_rent</field>
+            <field name="binding_type">report</field>
+<!--            <field name="paperformat_id" ref="cabalcon_hr_payroll.paperformat_voucher"/>-->
+        </record>
+
+        <template id="report_5th_category_rent">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="text-center">CERTIFICADO SOBBRE RENTA DE QUINTA CATEGORÍA</h3>
+                                    <p class="text-center">Art. 45 DS No 122-94-EF</p>
+                                    <p class="text-center">RS No 010-2006/SUNAT</p>
+                                    <br/>
+                                    <h3 class="text-center">EJERCICIO GRABABLE</h3>
+                                    <br/>
+                                    <p>
+                                        <b><t t-esc="o.company_id.name"/></b>, con RUC Nº <strong><t t-esc="o.company_id.company_registry"/></strong>, con domisilio fiscal en <span t-field="o.company_id.street"/>,
+                                        representado por <t t-esc="o.company_id.general_manager"/> identificado(a) con DNI No xxxxx
+
+                                    </p>
+                                    <br/>
+                                    <h4 class="text-center">CERTIFICA</h4>
+                                    <p>Que a <strong><span t-field="o.name"/></strong> con DNI No xxxxxxx y con domicilio fiscal ubicado en xxxxxx ,
+                                       se le ha retenido el importe xxxxxx (importe literal) como pago a cuenta del impuesto a la Renta correspondiente
+                                       al ejercicio gravable xxxx, calculado en base a las siguientes rentas, deducciones y créditos:  </p>
+
+                                    <h4>1. RENTAS BRUTAS</h4>
+                                    <h4>2. DEDUCCIONES DE LA RENTA DE 5TA. CATEGORÍA</h4>
+                                    <h4>3. RENTA NETA</h4>
+                                    <h4>4. IMPUESTO A LA RENTA</h4>
+                                    <h4>5. CRÉDITO CONTRA EL IMPUESTO</h4>
+                                    <h4>6. RENTECIONES</h4>
+                                    <h4>7. IMPUESTO TOTAL RETENIDO</h4>
+
+
+                                    <table style="width:80%;">
+                                        <tr>
+                                            <td style="width:50%;">
+                                                <p class="text-center">_______________________________
+                                                    <br/>
+                                                    <t t-esc="o.company_id.general_manager"/>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

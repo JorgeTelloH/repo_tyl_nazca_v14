@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View -->
+        <record id="survey_attachment_inherit_survey_user_input_line_form" model="ir.ui.view">
+            <field name="name">add upload to user input</field>
+            <field name="model">survey.user_input.line</field>
+            <field name="inherit_id" ref="survey.survey_user_input_line_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='suggested_answer_id']" position="after">
+                    <field name="name_file" invisible="1" />
+                    <field name="value_upload_file" filename="name_file"
+                           colspan='2' attrs="{'invisible': [('answer_type','!=','upload_file')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+         <record id="survey_survey_question_form" model="ir.ui.view">
+            <field name="name">survey.question.form</field>
+            <field name="model">survey.question</field>
+            <field name="inherit_id" ref="survey.survey_question_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='col-lg-6 offset-lg-3 o_preview_questions']" position="inside">
+                    <div attrs="{'invisible': [('question_type', '!=', 'upload_file')]}">
+                        <i class="fa fa-upload" role="img" aria-label="File upload" title="File upload">
+                            <strong> Attach files..</strong></i>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_view_form_inherit_date" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit.date</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <!--Se agrega Fecha de nacimiento o Fecha de Aniversario-->
+            <xpath expr="//field[@name='function']" position="after">
+                <field name="birth_date" attrs="{'invisible': [('is_company', '=', True)]}"/>
+                <field name="anniversary_date" attrs="{'invisible': [('type','!=', 'contact')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

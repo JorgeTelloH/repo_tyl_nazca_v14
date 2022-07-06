@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="survey_category_form_view" model="ir.ui.view">
+            <field name="name">survey.category.form</field>
+            <field name="model">survey.category</field>
+            <field name="arch" type="xml">
+                <form string="Categoría">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="survey_category_tree_view" model="ir.ui.view">
+            <field name="name">survey.category.tree</field>
+            <field name="model">survey.category</field>
+            <field name="arch" type="xml">
+                <tree string="Categorías">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="survey_category_act_window" model="ir.actions.act_window">
+            <field name="name">Categorías</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">survey.category</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Configuración"
+                  id="survey_menu_configuration"
+                  parent="survey.menu_surveys"
+                  sequence="100"/>
+
+        <menuitem name="Categorías" id="survey_category_menu" parent="survey_menu_configuration" action="survey_category_act_window"/>
+
+    </data>
+</odoo>

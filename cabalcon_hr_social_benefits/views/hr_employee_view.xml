@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="hr_employee_inherit_form_view">
+            <field name="name">hr.employee.form.view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='personal_information']/group" position="after">
+                    <group name="family_ids" colspan="4" string="Detalles de la Familia">
+                        <field name="family_ids" nolabel="1">
+                            <tree>
+                                <field name="name"/>
+                                <field name="relation_id"/>
+                                <field name="birth_date"/>
+                                <field name="member_id"/>
+                                <field name="age"/>
+                            </tree>
+                        </field>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_partner_view_form_mail" model="ir.ui.view">
+        <field name="name">res.partner.view.form.mail</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="email" position="after">
+                <button name="mail_blacklist_add" class="fa fa-toggle-on text-success" title="Bloquear envio email"
+                    type="object" groups="base.group_user" attrs="{'invisible': [('is_blacklisted', '=', True)]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

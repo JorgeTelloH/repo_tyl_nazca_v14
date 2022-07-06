@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="hr_attendance_inherit_form_view1">
+        <field name="name">hr.attendance.form.view1</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+            <field name="check_out" position="after">
+                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_salary_category_inherit_form_view1">
+        <field name="name">hr.salary.rule.category.form.view1</field>
+        <field name="model">hr.salary.rule.category</field>
+        <field name="inherit_id" ref="hr_payroll.hr_salary_rule_category_form"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_salary_rule_form_cabalcon" model="ir.ui.view">
+        <field name="name">hr.salary.rule.form.cabalcon</field>
+        <field name="model">hr.salary.rule</field>
+        <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+        <field name="arch" type="xml">
+            <field name="active" position="after">
+                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_payroll_structure_type_view_form_cabalcon" model="ir.ui.view">
+        <field name="name">hr.payroll.structure.type.form_cabalcon</field>
+        <field name="model">hr.payroll.structure.type</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payroll_structure_type_view_form"/>
+        <field name="arch" type="xml">
+            <field name="wage_type" position="after">
+                 <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

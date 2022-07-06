@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.pad</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+			<!-- <xpath expr="//div[id('down_payments')]" position="after" >-->
+			<xpath expr="//div[@id='down_payments']" position="after">
+                    <div class="col-12 col-lg-6 o_setting_box" id="enable_invoice">
+                        <div class="o_setting_left_pane">
+                            <field name="enable_create_invoice_type"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="enable_create_invoice_type"/>
+                            <div class="text-muted">
+                                Activa la configuración para la creación de facturas según el Tipo de Documento
+                            </div>
+                            <div class="content-group">
+                                <div id="enable_create_invoice_type"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" id="empt"/>
+                    <div class="col-12 col-lg-6 o_setting_box" id="invoice_01" attrs="{'invisible': [('enable_create_invoice_type','=',False)]}">
+                        <div class="o_setting_left_pane"/>
+<!--                        <div class="o_setting_left_pane">-->
+<!--                            <field name="type_document_partner_01" widget="many2many_tags"/>-->
+<!--                        </div>-->
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Tipo Doc Cliente - Facturas</span>
+                            <div class="text-muted">
+                                <field name="type_document_partner_01" widget="many2many_tags"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" id="invoice_03" attrs="{'invisible': [('enable_create_invoice_type','=',False)]}">
+                        <div class="o_setting_left_pane"/>
+<!--                        <div class="o_setting_left_pane">-->
+<!--                            <field name="type_document_partner_03" widget="many2many_tags"/>-->
+<!--                        </div>-->
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Tipo Doc Cliente - Boletas</span>
+                            <div class="text-muted">
+                                <field name="type_document_partner_03" widget="many2many_tags"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box" id="journal_01" attrs="{'invisible': [('enable_create_invoice_type','=',False)]}">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Diario Facturas</span>
+                            <div class="text-muted">
+                                <field name="type_document_journal_01"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box" id="journal_03" attrs="{'invisible': [('enable_create_invoice_type','=',False)]}">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Diario Boletas</span>
+                            <div class="text-muted">
+                                <field name="type_document_journal_03"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box" id="type_01" attrs="{'invisible': [('enable_create_invoice_type','=',False)]}">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Tipo de Documento Facturas</span>
+                            <div class="text-muted">
+                                <field name="type_document_01"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box" id="type_03" attrs="{'invisible': [('enable_create_invoice_type','=',False)]}">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Tipo de Documento Boletas</span>
+                            <div class="text-muted">
+                                <field name="type_document_03"/>
+                            </div>
+                        </div>
+                    </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--         ESTO DEBE PASER PARA EL MODULO DE VENEFICIOS SOSIALES-->
+<!--        <record model="ir.ui.view" id="hr_employee_liquidation_form_view">-->
+<!--            <field name="name">hr.employee.form.view.liquidation </field>-->
+<!--            <field name="model">hr.employee</field>-->
+<!--            <field name="inherit_id" ref="hr.view_employee_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//header" position="inside">-->
+<!--                    <button name="print_liquidation" string="Liquidación por tiempo de servicios" type="object" attrs="{'invisible': [('active', '=', True)]}"/>-->
+<!--                    <button name="print_liquidation_cts" string="Liquidación de depósitos semestrales de CTS" type="object" attrs="{'invisible': [('active', '=', False)]}"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="payroll_hr_employee_view_form_cabalcon" model="ir.ui.view">
+            <field name="name">payroll.hr.employee.view.form.cablcon</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_payroll.payroll_hr_employee_view_form"/>
+            <field name="arch" type="xml">
+                <field name="registration_number" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

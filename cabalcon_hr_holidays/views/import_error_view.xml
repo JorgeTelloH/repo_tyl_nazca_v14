@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_import_error_tree" model="ir.ui.view">
+            <field name="name">Errores en la importación</field>
+            <field name="model">hr_import_vacations.error</field>
+            <field name="arch" type="xml">
+                <tree string="Errores" create="0">
+                    <field name="ci"/>
+                    <field name="error"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

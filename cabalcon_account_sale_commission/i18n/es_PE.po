@@ -1,0 +1,197 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cabalcon_account_sale_commission
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20210104\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-28 08:42+0000\n"
+"PO-Revision-Date: 2021-11-28 08:42+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cabalcon_account_sale_commission
+#: model_terms:ir.ui.view,arch_db:cabalcon_account_sale_commission.account_sale_commission_view_move_form
+msgid ""
+"<span class=\"ml8\" attrs=\"{'invisible': [('commission_type', '=', "
+"'a')]}\">Amount:</span>"
+msgstr ""
+"<span class=\"ml8\" attrs=\"{'invisible': [('commission_type', '=', "
+"'a')]}\">Importe:</span>"
+
+#. module: cabalcon_account_sale_commission
+#: model_terms:ir.ui.view,arch_db:cabalcon_account_sale_commission.account_sale_commission_search
+msgid "Account Move"
+msgstr "Factura"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_account_bank_statement_line__commission_value_a
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_account_move__commission_value_a
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_account_payment__commission_value_a
+#: model:ir.model.fields.selection,name:cabalcon_account_sale_commission.selection__account_move__commission_type__a
+msgid "Amount"
+msgstr "Importe"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_hr_employee_participation__commission_value_a
+msgid "Amount"
+msgstr "Importe según monto"
+
+#. module: cabalcon_account_sale_commission
+#: model_terms:ir.ui.view,arch_db:cabalcon_account_sale_commission.account_sale_commission_view_form
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields.selection,name:cabalcon_account_sale_commission.selection__hr_employee_participation__state__approved
+msgid "Approved"
+msgstr "Aprobada"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_account_bank_statement_line__commission_type
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_account_move__commission_type
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_account_payment__commission_type
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_hr_employee_participation__commission_type
+msgid "Commission Type"
+msgstr "Tipo de comisión"
+
+#. module: cabalcon_account_sale_commission
+#: code:addons/cabalcon_account_sale_commission/models/account_sale_commission.py:0
+#, python-format
+msgid "Commission value can't be greater than Total."
+msgstr "El valor de la comisión no puede ser mayor que el Total."
+
+#. module: cabalcon_account_sale_commission
+#: model_terms:ir.ui.view,arch_db:cabalcon_account_sale_commission.account_sale_commission_view_form
+msgid "Commissions"
+msgstr "Comisiones"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_hr_employee_participation_line__contract_id
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: cabalcon_account_sale_commission
+#: model_terms:ir.actions.act_window,help:cabalcon_account_sale_commission.action_account_sale_commission
+msgid "Create a new sale commission"
+msgstr "Cree una nueva comisión de venta"
+
+#. module: cabalcon_account_sale_commission
+#: model_terms:ir.ui.view,arch_db:cabalcon_account_sale_commission.account_sale_commission_view_form
+msgid "Disapprove"
+msgstr "Desaprobar"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields.selection,name:cabalcon_account_sale_commission.selection__hr_employee_participation__state__disapproved
+msgid "Disapproved"
+msgstr "Desaprobada"
+
+#. module: cabalcon_account_sale_commission
+#: code:addons/cabalcon_account_sale_commission/models/account_sale_commission.py:0
+#: code:addons/cabalcon_account_sale_commission/models/account_sale_commission.py:0
+#, python-format
+msgid "Enter value between 0-100."
+msgstr "Entre un valor entre 0-100."
+
+#. module: cabalcon_account_sale_commission
+#: code:addons/cabalcon_account_sale_commission/models/account_sale_commission.py:0
+#, python-format
+msgid "You can't delete a sale commission in Approved state."
+msgstr "Ud no puede eliminar una comisión de venta en estado Aprobada."
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_hr_employee_participation__account_move_id
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields.selection,name:cabalcon_account_sale_commission.selection__hr_employee_participation__payment_state__not_paid
+msgid "Not Paid"
+msgstr "No pagada"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields.selection,name:cabalcon_account_sale_commission.selection__hr_employee_participation__payment_state__paid
+#: model_terms:ir.ui.view,arch_db:cabalcon_account_sale_commission.account_sale_commission_view_form
+msgid "Paid"
+msgstr "Pagada"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_hr_employee_participation_line__part_percent
+msgid "Participation Percent"
+msgstr "Porciento de participación"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_hr_employee_participation_line__part_value
+msgid "Participation Value"
+msgstr "Importe de participación"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_hr_employee_participation__payment_state
+msgid "Payment Status"
+msgstr "Estado de Pago"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_account_bank_statement_line__commission_p
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_account_move__commission_p
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_account_payment__commission_p
+#: model:ir.model.fields.selection,name:cabalcon_account_sale_commission.selection__account_move__commission_type__p
+msgid "Percent"
+msgstr "Porciento"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_account_bank_statement_line__commission_value_p
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_account_move__commission_value_p
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_account_payment__commission_value_p
+msgid "Percent Amount"
+msgstr "Importe por porciento"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_hr_employee_participation__commission_value_p
+msgid "Percent Amount"
+msgstr "Importe según porciento"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.actions.act_window,name:cabalcon_account_sale_commission.action_account_sale_commission
+#: model:ir.ui.menu,name:cabalcon_account_sale_commission.menu_account_sale_commission
+#: model_terms:ir.ui.view,arch_db:cabalcon_account_sale_commission.account_sale_commission_view_form
+#: model_terms:ir.ui.view,arch_db:cabalcon_account_sale_commission.account_sale_commission_view_tree
+msgid "Sale Commission"
+msgstr "Comisión de venta"
+
+#. module: cabalcon_account_sale_commission
+#: model_terms:ir.ui.view,arch_db:cabalcon_account_sale_commission.account_sale_commission_search
+msgid "Search Sale Commission"
+msgstr "Buscar comisión de venta"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_hr_employee_participation__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: cabalcon_account_sale_commission
+#: code:addons/cabalcon_account_sale_commission/models/account_sale_commission.py:0
+#, python-format
+msgid "Verify the participation percent because the total (%s) can't be bigger than 100."
+msgstr "Verifique el porcentaje de participación porque la suma total (%s) no puede ser mayor que 100."
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.fields,field_description:cabalcon_account_sale_commission.field_hr_employee_participation__part_line_ids
+msgid "Commission Lines"
+msgstr "Líneas de comisión"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.constraint,message:cabalcon_account_sale_commission.constraint_hr_employee_participation_line_part_contract_uniq
+msgid "Duplicate contracts in commission lines not allowed!"
+msgstr "¡No se permiten los contratos duplicados en las líneas de comisión!"
+
+#. module: cabalcon_account_sale_commission
+#: model:ir.model.constraint,message:cabalcon_account_sale_commission.constraint_hr_employee_participation_account_uniq
+msgid "Duplicate invoice in commission not allowed!"
+msgstr "¡No se permite la duplicación de facturas en la comisión!"
+
+

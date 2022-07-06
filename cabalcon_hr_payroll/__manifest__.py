@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+
+{
+    'name': 'Nómina de empleados',
+    'version': '1.0',
+    'author': "Cabalcon",
+    'website': "www.cabalcon.com",
+    'category': 'Human Resources',
+    'summary': 'Personalización de la nómina.',
+    'depends': ['hr_payroll', 'cabalcon_hr_contract', 'cabalcon_hr_holidays', 'report_xlsx', 'hr_payroll_account'],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/hr_salary_rule_data.xml',
+        'data/subtype_payroll_data.xml',
+        'views/hr_employee_views.xml',
+        'views/hr_salary_rule_views.xml',
+        'views/hr_contract_views.xml',
+        'views/contributive_week.xml',
+        'views/hr_payslip_run_views.xml',
+        'views/subtype_payroll_views.xml',
+        'views/hr_payslip_views.xml',
+        'views/res_company_view.xml',
+        'reports/report_payroll_voucher_templates.xml',
+        'reports/payroll_report.xml',
+        'reports/afp_net_report_xlsx.xml',
+        'reports/afp_net_week_report_xlsx.xml',
+        'reports/matrix_report_xlsx.xml',
+        'wizard/afp_net_wizard_views.xml',
+        'wizard/matrix_wizard_views.xml',
+        'wizard/hr_payroll_payslips_by_employees_views.xml',
+        'wizard/export_txt_wizard_views.xml'
+    ],
+    'installable': True,
+    'application': False,
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="export_txt_wizard_wizard_view_form" model="ir.ui.view">
+            <field name="name">export.txt.wizard.view.form</field>
+            <field name="model">export.txt.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="struct_id" options="{'no_create': True, 'no_edit': True}"/>
+                        <field name="subtype_of_payroll_id" options="{'no_create': True, 'no_edit': True}"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="account_type"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                            <field name="account"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_print" string="Exportar Txt" type="object" class="oe_highlight"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="export_txt_wizard_action" model="ir.actions.act_window">
+            <field name="name">Exportar fichero Txt</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">export.txt.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_export_txt"
+                  name="Exportar fichero Txt"
+                  action="export_txt_wizard_action"
+                  parent="hr_payroll.menu_hr_payroll_report"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_expense,account.expense,model_account_expense,account.group_account_invoice,1,1,1,1
+reister_payment,account.reister_payment,model_account_register_expense_payment,account.group_account_invoice,1,1,1,1
+account_payment_reg,account.expense.reg,model_account_expense_payment,account.group_account_invoice,1,1,1,1

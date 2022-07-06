@@ -1,0 +1,51 @@
+<odoo>
+    <data noupdate="1">
+        <record id="catalog_sunat1" model="catalogs.sunat.guia">
+            <field name="name">Venta</field>
+            <field name="code">01</field>
+            <field name="type_catalog">20</field>
+        </record>
+        <record id="catalog_sunat2" model="catalogs.sunat.guia">
+            <field name="name">Compra</field>
+            <field name="code">02</field>
+            <field name="type_catalog">20</field>
+        </record>
+        <record id="catalog_sunat3" model="catalogs.sunat.guia">
+            <field name="name">Traslado entre establecimientos de la misma empresa</field>
+            <field name="code">04</field>
+            <field name="type_catalog">20</field>
+        </record>
+        <record id="catalog_sunat4" model="catalogs.sunat.guia">
+            <field name="name">Importación</field>
+            <field name="code">08</field>
+            <field name="type_catalog">20</field>
+        </record>
+        <record id="catalog_sunat5" model="catalogs.sunat.guia">
+            <field name="name">Exportación</field>
+            <field name="code">09</field>
+            <field name="type_catalog">20</field>
+        </record>
+         <record id="catalog_sunat6" model="catalogs.sunat.guia">
+            <field name="name">Otros</field>
+            <field name="code">13</field>
+            <field name="type_catalog">20</field>
+        </record>
+        <record id="catalog_sunat7" model="catalogs.sunat.guia">
+            <field name="name">Venta sujeta a confirmación del comprador</field>
+            <field name="code">14</field>
+            <field name="type_catalog">20</field>
+        </record>
+        <record id="catalog_sunat8" model="catalogs.sunat.guia">
+            <field name="name">Traslado emisor itinerante CP</field>
+            <field name="code">18</field>
+            <field name="type_catalog">20</field>
+        </record>
+        <record id="catalog_sunat9" model="catalogs.sunat.guia">
+            <field name="name">Traslado a zona primaria</field>
+            <field name="code">19</field>
+            <field name="type_catalog">20</field>
+        </record>
+
+
+    </data>
+</odoo>

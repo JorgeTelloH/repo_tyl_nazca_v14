@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_matrix_report_xlsx" model="ir.actions.report">
+        <field name="name">Modelo de contabilidad</field>
+        <field name="model">hr.employee</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">cabalcon_hr_payroll.matrix_report_xlsx</field>
+        <field name="report_file">matriz</field>
+    </record>
+
+</odoo>

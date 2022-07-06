@@ -1,0 +1,103 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-06 16:27+0000\n"
+"PO-Revision-Date: 2022-04-06 11:29-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_PE\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: survey_type
+#: model:ir.model.fields,field_description:survey_type.field_survey_type__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: survey_type
+#: model:ir.ui.menu,name:survey_type.survey_type_root
+msgid "Configuracion"
+msgstr "Configuracion"
+
+#. module: survey_type
+#: model_terms:ir.actions.act_window,help:survey_type.action_survey_type
+msgid "Crea un Tipo de Encuesta"
+msgstr "Crea un Tipo de Encuesta"
+
+#. module: survey_type
+#: model:ir.model.fields,field_description:survey_type.field_survey_type__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: survey_type
+#: model:ir.model.fields,field_description:survey_type.field_survey_type__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: survey_type
+#: model:ir.model.fields,field_description:survey_type.field_survey_survey__display_name
+#: model:ir.model.fields,field_description:survey_type.field_survey_type__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: survey_type
+#: model_terms:ir.ui.view,arch_db:survey_type.survey_type_form
+msgid "Encuestas"
+msgstr "Encuestas"
+
+#. module: survey_type
+#: model:ir.model.fields,field_description:survey_type.field_survey_survey__id
+#: model:ir.model.fields,field_description:survey_type.field_survey_type__id
+msgid "ID"
+msgstr ""
+
+#. module: survey_type
+#: model:ir.model.fields,field_description:survey_type.field_survey_survey____last_update
+#: model:ir.model.fields,field_description:survey_type.field_survey_type____last_update
+msgid "Last Modified on"
+msgstr "Ultima Modificación en"
+
+#. module: survey_type
+#: model:ir.model.fields,field_description:survey_type.field_survey_type__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: survey_type
+#: model:ir.model.fields,field_description:survey_type.field_survey_type__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: survey_type
+#: model:ir.model,name:survey_type.model_survey_survey
+msgid "Survey"
+msgstr "Encuesta"
+
+#. module: survey_type
+#: model:ir.model.fields,field_description:survey_type.field_survey_type__name
+msgid "Survey Type"
+msgstr "Tipo de encuesta"
+
+#. module: survey_type
+#: model:ir.model.fields,field_description:survey_type.field_survey_survey__survey_type_id
+msgid "Tipo de Encuesta"
+msgstr "Tipo de Encuesta"
+
+#. module: survey_type
+#: model:ir.actions.act_window,name:survey_type.action_survey_type
+#: model:ir.ui.menu,name:survey_type.survey_type_root_02
+#: model_terms:ir.ui.view,arch_db:survey_type.survey_type_tree
+msgid "Tipos de encuesta"
+msgstr "Tipos de encuesta"
+
+#. module: survey_type
+#: model:ir.model,name:survey_type.model_survey_type
+msgid "survey.type"
+msgstr ""

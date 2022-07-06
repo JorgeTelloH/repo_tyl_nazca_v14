@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="contributive_week_form_view" model="ir.ui.view">
+            <field name="name">contributive.week.form</field>
+            <field name="model">contributive.week</field>
+            <field name="arch" type="xml">
+                <form string="Semana contributiva">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Nombre" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="week"/>
+                                <field name="week_from"/>
+                            </group>
+                            <group>
+                                <field name="year_week"/>
+                                <field name="week_to"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="contributive_week_tree_view" model="ir.ui.view">
+            <field name="name">contributive.week.tree</field>
+            <field name="model">contributive.week</field>
+            <field name="arch" type="xml">
+                <tree string="Semana contributiva">
+                    <field name="name"/>
+                    <field name="year_week"/>
+                    <field name="week_from"/>
+                    <field name="week_to"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="contributive_week_search_view" model="ir.ui.view">
+            <field name="name">contributive.week.search</field>
+            <field name="model">contributive.week</field>
+            <field name="arch" type="xml">
+                <search string="Semana contributiva">
+                    <field name="name"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Año" name="year_week" domain="[]"
+                                context="{'group_by':'year_week'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="contributive_week_act_window" model="ir.actions.act_window">
+            <field name="name">Semana contributiva</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contributive.week</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Semanas contributivas"
+                  id="contributive_week_menu"
+                  parent="hr_work_entry_contract.menu_hr_payroll_configuration"
+                  action="contributive_week_act_window"
+                  sequence="100"/>
+
+    </data>
+</odoo>

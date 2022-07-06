@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* web_recruitment_survey
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-12 12:19+0000\n"
+"PO-Revision-Date: 2021-11-12 12:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: web_recruitment_survey
+#: model_terms:ir.ui.view,arch_db:web_recruitment_survey.hr_recruitment_apply_form
+msgid "<span class=\"s_website_form_label_content\">Department</span>"
+msgstr "<span class=\"s_website_form_label_content\">Departamento</span>"
+
+#. module: web_recruitment_survey
+#: model_terms:ir.ui.view,arch_db:web_recruitment_survey.hr_recruitment_apply_form
+msgid "<span class=\"s_website_form_label_content\">Job</span>"
+msgstr "<span class=\"s_website_form_label_content\">Trabajo</span>"
+
+#. module: web_recruitment_survey
+#: model_terms:ir.ui.view,arch_db:web_recruitment_survey.hr_recruitment_apply_form
+msgid "<span class=\"s_website_form_label_content\">Resume</span>"
+msgstr "<span class=\"s_website_form_label_content\">Resumen</span>"
+
+#. module: web_recruitment_survey
+#: model_terms:ir.ui.view,arch_db:web_recruitment_survey.hr_recruitment_apply_form
+msgid "<span class=\"s_website_form_label_content\">Short Introduction</span>"
+msgstr "<span class=\"s_website_form_label_content\">Introducción Corta</span>"
+
+#. module: web_recruitment_survey
+#: model_terms:ir.ui.view,arch_db:web_recruitment_survey.hr_recruitment_apply_form
+msgid ""
+"<span class=\"s_website_form_label_content\">Your Email</span>\n"
+"                                            <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Tu Correo Electrónico</span>\n"
+"                                            <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: web_recruitment_survey
+#: model_terms:ir.ui.view,arch_db:web_recruitment_survey.hr_recruitment_apply_form
+msgid ""
+"<span class=\"s_website_form_label_content\">Your Name</span>\n"
+"                                            <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Tu Nombre</span>\n"
+"                                            <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: web_recruitment_survey
+#: model_terms:ir.ui.view,arch_db:web_recruitment_survey.hr_recruitment_apply_form
+msgid ""
+"<span class=\"s_website_form_label_content\">Your Phone Number</span>\n"
+"                                            <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Tu Número de Teléfono</span>\n"
+"                                            <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: web_recruitment_survey
+#: model_terms:ir.ui.view,arch_db:web_recruitment_survey.hr_recruitment_apply_form
+msgid "Send"
+msgstr "Siguiente"
+
+#. module: web_recruitment_survey
+#: model_terms:ir.ui.view,arch_db:web_recruitment_survey.hr_recruitment_apply_form
+msgid "Submit"
+msgstr "Enviar"

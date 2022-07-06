@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_calculate_eps_employee,hr_calculate_eps_employee,model_hr_calculate_eps,base.group_user,1,0,0,0
+access_hr_calculate_eps_manager,hr_calculate_eps_manager,model_hr_calculate_eps,hr_payroll.group_hr_payroll_manager,1,1,1,1
+access_hr_calculate_eps_user,hr_calculate_eps_user,model_hr_calculate_eps,hr_payroll.group_hr_payroll_user,1,1,1,1
+,,,,,,,
+access_hr_employee_eps_employee,hr_employee_eps_employee,model_hr_employee_eps,base.group_user,1,0,0,0
+access_hr_employee_eps_manager,hr_employee_eps_manager,model_hr_employee_eps,hr_payroll.group_hr_payroll_manager,1,1,1,1
+access_hr_employee_eps_user,hr_employee_eps_user,model_hr_employee_eps,hr_payroll.group_hr_payroll_user,1,1,1,1

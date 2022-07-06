@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="view_purchase_order_line_tree" model="ir.ui.view">
+		<field name="name">purchase.order.line</field>
+		<field name="model">purchase.order.line</field>
+		<field name="priority">2</field>
+		<field name="arch" type="xml">
+			<tree string="Purchase Order Lines" create="false">
+				<field name="order_ref" string="Pedido"/>
+				<field name="date_order" string="Fecha de Pedido"/>
+				<field name="date_planned" string="Fecha de Recepción" optional="show"/>
+				<field name="partner_id" string="Proveedor"/>
+				<field name="company_id" string="Compañía" groups="base.group_multi_company"/>
+				<field name="product_id" string="Producto"/>
+				<field name="name" string="Descripción"/>
+				<field name="currency_id" string="Moneda"/>
+				<field name="price_unit" string="Precio Unitario"/>
+				<field name="product_qty" string="Cantidad"/>
+				<field name="product_uom" string="UdM"/>
+				<field name="taxes_id" string="Impuestos" widget="many2many_tags"/>
+				<field name="price_tax" string="Total Impuestos" optional="show"/>
+				<field name="price_subtotal" string="Subtotal"/>
+				<field name="price_total" string="Total"/>
+				<field name="state" string="Estado"/>
+				<field name="qty_received" string="Recibido" optional="show"/>
+				<field name="qty_to_invoice" string="Cant A Facturar" optional="show"/>
+				<field name="qty_invoiced" string="Cant Facturada" optional="show"/>
+			</tree>
+		</field>
+	</record>
+	
+	<record id="action_purchase_lines_menu"
+		model="ir.actions.act_window">
+		<field name="name">Detalle de Compras</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">purchase.order.line</field>
+		<field name="view_id" ref="purchase_order_line.view_purchase_order_line_tree"/>
+		<field name="view_mode">tree</field>
+	</record>
+	
+	<menuitem id="action_purchase_lines_menu_id" 
+		name="Detalle de compra"
+		action="purchase_order_line.action_purchase_lines_menu" 
+		parent="purchase.menu_procurement_management"
+		sequence="10"/>
+</odoo>

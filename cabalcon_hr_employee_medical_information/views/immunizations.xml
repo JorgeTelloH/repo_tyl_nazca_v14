@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_medical_immunizations_form_view" model="ir.ui.view">
+            <field name="name">hr.medical.immunizations.form</field>
+            <field name="model">hr.medical.immunizations</field>
+            <field name="arch" type="xml">
+                <form string="Vacunas">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Nombre"/>
+                            </h1>
+                        </div>
+                        <group string="Descripción">
+                            <field name="description" nolabel="1"/>
+                        </group>
+                        <group string="Dosis">
+                             <field name="doce_ids" nolabel="1">
+                                 <tree editable="bottom">
+                                      <field name="name"/>
+                                 </tree>
+                             </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_medical_immunizations_tree_view" model="ir.ui.view">
+            <field name="name">hr.medical.immunizations.tree</field>
+            <field name="model">hr.medical.immunizations</field>
+            <field name="arch" type="xml">
+                <tree string="Vacunas">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="doce_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_medical_immunizations_search_view" model="ir.ui.view">
+            <field name="name">hr.medical.immunizations.search</field>
+            <field name="model">hr.medical.immunizations</field>
+            <field name="arch" type="xml">
+                <search string="Vacunas">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_medical_immunizations_act_window" model="ir.actions.act_window">
+            <field name="name">Vacunas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.medical.immunizations</field>
+           <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+                id="menu_immunizations_tree"
+                action="hr_medical_immunizations_act_window"
+                parent="hr.menu_human_resources_configuration"
+                sequence="60"
+                groups="hr.group_hr_user"/>
+
+    </data>
+</odoo>

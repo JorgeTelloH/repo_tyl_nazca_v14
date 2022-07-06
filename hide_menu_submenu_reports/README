@@ -1,0 +1,10 @@
+Version 14.0.0.1:
+	- Fixed issue of menus and reports not hiding unless service is restarted. 
+	- Fixed issue of fields not getting invisible or readonly based on given configuration. 
+	- Resolved issue of warning generated with user login.
+
+Version: 14.0.0.2 | Date : 26/02/2021
+-->  Fixed the issue of installation of any modules after installing bi_hide_show_menu_app module.
+
+Version: 14.0.0.3
+-->  Fixed the issue of open sale and purchase.

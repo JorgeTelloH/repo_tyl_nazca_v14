@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--Adding a salary rule for loan-->
+	<data noupdate="0">
+          <!-- Salary Structure -->
+        <record id="structure_social_benefits" model="hr.payroll.structure">
+            <field name="name">Liquidación y beneficios sociales</field>
+            <field name="type_id" ref="hr_contract.structure_type_employee"/>
+            <field name="country_id" eval="False"/>
+        </record>
+
+        <record id="employee_bs_gratification" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Liquidación - Gratificación Trunca</field>
+            <field name="code">BS_GRATIF_TRUNCA</field>
+            <field name="sequence">110</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.state == 'close' and inputs.GRTRUNCA</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.GRTRUNCA.amount</field>
+            <field name="struct_id" ref="structure_social_benefits"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_gratification_semester" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Beneficios sociales - Gratificación</field>
+            <field name="code">BS_GRATIF</field>
+            <field name="sequence">90</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = payslip.date_from.month in [7,12] and inputs.GR</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.GR.amount</field>
+            <field name="struct_id" ref="structure_social_benefits"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_bonus_semester" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Beneficios sociales - Bonificación 9%</field>
+            <field name="code">BS_BONO</field>
+            <field name="sequence">90</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = payslip.date_from.month in [7,12] and inputs.BSBONO</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.BSBONO.amount</field>
+            <field name="struct_id" ref="structure_social_benefits"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_bs_cts_trunca" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Liquidación - CTS Trunca</field>
+            <field name="code">BS_CTS_TRUNCA</field>
+            <field name="sequence">110</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.state == 'close' and inputs.CTSTRUNCA</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.CTSTRUNCA.amount</field>
+            <field name="struct_id" ref="structure_social_benefits"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_cts_semester" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Beneficios sociales - CTS</field>
+            <field name="code">BS_CTS</field>
+            <field name="sequence">110</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = payslip.date_from.month in [7,12] and inputs.CTS</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.CTS.amount</field>
+            <field name="struct_id" ref="structure_social_benefits"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_vacations_trun" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Vacaciones Truncas</field>
+            <field name="code">VACTRUN</field>
+            <field name="sequence">110</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.state == 'close' and inputs.VACTRUN</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.VACTRUN.amount</field>
+            <field name="struct_id" ref="structure_social_benefits"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_vacations_liq" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Vacaciones liquidadas</field>
+            <field name="code">VACLIQ</field>
+            <field name="sequence">110</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.state == 'close' and inputs.VACLIQ</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.VACLIQ.amount</field>
+            <field name="struct_id" ref="structure_social_benefits"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+
+	</data>
+</odoo>

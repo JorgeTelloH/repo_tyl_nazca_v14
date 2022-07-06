@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_cancel']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_cancel']" position="before">
+                <button name="%(action_purchase_order_cancel)d" string="Cancelar" type="action" groups="base.group_user" states="draft,to approve,sent,purchase"/>
+            </xpath>
+            <xpath expr="/form/sheet/div/h1" position="after">
+                <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
+                    <label for="cancel_reason_id" string="Razón de Cancelación:" />
+                    <field name="cancel_reason_id" class="oe_inline" options='{"no_open": True}'/>
+                </h2>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_cancel_reason_form" model="ir.ui.view">
+        <field name="name">purchase.order.cancel.reason.form</field>
+        <field name="model">purchase.order.cancel.reason</field>
+        <field name="arch" type="xml">
+            <form string="Razones de Cancelación de Orden de Compra">
+                <group>
+                    <field name="name"/>
+                    <field name="active"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_cancel_reason_tree" model="ir.ui.view">
+        <field name="name">purchase.order.cancel.reason.tree</field>
+        <field name="model">purchase.order.cancel.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Razones de Cancelación de Orden de Compra">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_purchase_order_cancel_reason" model="ir.actions.act_window">
+        <field name="name">Razones de Cancelación de Orden de Compra</field>
+        <field name="res_model">purchase.order.cancel.reason</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_purchase_order_cancel_reason"
+        parent="purchase.menu_purchase_config"
+        name="Razones de Cancelación"
+        action="action_purchase_order_cancel_reason"
+        sequence="150"
+        groups="purchase.group_purchase_manager"/>
+</odoo>

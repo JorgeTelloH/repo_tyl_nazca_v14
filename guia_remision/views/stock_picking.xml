@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.invoice.invoice</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+
+
+
+                <xpath expr="//field[@name='picking_type_id']" position="before">
+                    <field name="is_guie"/>
+                    <field name="serie" attrs="{'invisible':[('is_guie','=',False)],'required': [('is_guie', '=', True)]}"/>
+                    <field name="numero" attrs="{'invisible':[('is_guie','=',False)],'required': [('is_guie', '=', True)]}"/>
+                </xpath>
+
+                <xpath expr="/form/sheet/notebook" position="inside" >
+                    <page string="Guia de remision" attrs="{'invisible':[('is_guie','=',False)]}">
+                        <group>
+                            <group>
+                                <field name="direccion_salida"/>
+                                <field name="direccion_llegada"/>
+                                <field name="note"/>
+                            </group>
+                            <group>
+                                <field name="catalog_20" attrs="{'required': [('is_guie', '=', True)]}"/>
+                                <field name="type_modality" attrs="{'required': [('is_guie', '=', True)]}"/>
+                                <field name="transport_uom_id" attrs="{'required': [('is_guie', '=', True)]}"/>
+                                <field name="transport_quantity" attrs="{'required': [('is_guie', '=', True)]}"/>
+                                <field name="partner_transport_id" attrs="{'invisible':[('type_modality','=','02')], 'required': [('type_modality', '=', '01')] }"/>
+                            </group>
+                        </group>
+
+                        <field name="trasnportista" attrs="{'required': [('is_guie', '=', True)]}">
+                                <tree string="Bill lines" editable="bottom">
+
+                                    <field name="partner_id"/>
+                                    <field name="vehicle_model"/>
+                                    <field name="vehicle_brand"/>
+                                    <field name="license_plate"/>
+                                </tree>
+                        </field>
+
+
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

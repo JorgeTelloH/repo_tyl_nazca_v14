@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_hr_fleet_extended" model="ir.ui.view">
+        <field name="name">hr.employee.form.hr.fleet.extended</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+        	<button name="action_open_employee_cars" position="replace">
+                <button name="action_open_employee_cars" type="object"
+                        class="oe_stat_button" icon="fa-car" groups="fleet.fleet_group_manager">
+                    <field name="employee_cars_count" widget="statinfo"/>
+                </button>
+			</button>
+        </field>
+    </record>
+
+</odoo>

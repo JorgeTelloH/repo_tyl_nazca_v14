@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record id="view_wizard_holiday_report_form" model="ir.ui.view">
+            <field name="name">Reporte de ausencias</field>
+            <field name="model">wizard.holiday.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="list">
+                    <group>
+                        <field name="leave_type_id" options="{'no_create': True, 'no_open': True}"/>
+                    </group>
+                    <group>
+                        <field name="employee_id" options="{'no_create': True, 'no_open': True}"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="company_id" string="Company" groups="base.group_multi_company"
+                               options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                    </group>
+                    <footer>
+                        <button special="cancel" string="Cancelar" class="btn-secondary"/>
+                        <button name="print_report" string="Aceptar" type="object"
+                                default_focus="1" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_wizard_holiday_report">
+            <field name="name">Reporte de ausencias</field>
+            <field name="res_model">wizard.holiday.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Reporte de ausencias"
+                  id="wizard_holiday_report_menu"
+                  parent="hr_holidays.menu_hr_holidays_report"
+                  action="action_wizard_holiday_report"
+                  sequence="30"
+        />
+
+
+    </data>
+</odoo>

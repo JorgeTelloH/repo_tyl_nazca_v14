@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="view_operations_schedule_form_cabalcon" model="ir.ui.view">
+            <field name="name">operations.schedule.form.cabalcon</field>
+            <field name="model">operations.schedule</field>
+            <field eval="2" name="priority"/>
+            <field name="inherit_id" ref="operations_cabalcon.view_operations_schedule_form"/>
+            <field name="arch" type="xml">
+                <field name="mobility_id" position="after">
+                     <field name="roll_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="res_operations_schedule_tree_cabalcon" model="ir.ui.view">
+            <field name="name">operations.schedule.tree.cabalcon</field>
+            <field name="model">operations.schedule</field>
+            <field eval="100" name="priority"/>
+            <field name="inherit_id" ref="operations_cabalcon.res_operations_schedule_tree"/>
+            <field name="arch" type="xml">
+                 <field name="mobility_id" position="after">
+                     <field name="roll_id"/>
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

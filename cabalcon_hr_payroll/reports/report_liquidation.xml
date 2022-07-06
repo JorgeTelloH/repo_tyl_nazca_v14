@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_liquidation_report" model="ir.actions.report">
+            <field name="name">Liquidación por tiempo de servicios</field>
+            <field name="model">hr.employee</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cabalcon_hr_payroll.report_liquidation</field>
+            <field name="report_file">cabalcon_hr_payroll.report_liquidation</field>
+            <!--            <field name="binding_model_id" ref="hr.model_hr_employee"/>-->
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_liquidation">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="text-center">LIQUIDACION POR TIEMPO DE SERVICIOS</h2>
+                                    <table style="width:70%;">
+                                        <tr>
+                                            <td width="60%">
+                                                Nombres y apellidos
+                                            </td>
+                                            <td width="40%">
+                                                <span t-field="o.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Fecha de ingreso
+                                            </td>
+                                            <td>
+                                                <span t-field="o.first_contract_date"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Fecha de cese
+                                            </td>
+                                            <td>
+                                                <span t-field="o.departure_date"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Tiempo de servisio
+                                            </td>
+                                            <td>
+                                                <span t-field="o.time_work"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Cargo
+                                            </td>
+                                            <td>
+                                                <span t-field="o.job_id.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                AFP
+                                            </td>
+                                            <td>
+                                                <span t-field="o.afp_id.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Basico mensual
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-if="o.contract_id.wage_type == 'monthly'" >
+                                                    <span t-esc="'%.2f'% o.contract_id.wage"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span t-esc="'%.2f'% o.contract_id.hourly_wage * 30"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Asignacion Familiar
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="'%.2f'% o.contract_id.da"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Horas Extras (Promedio)
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="'%.2f'% o.overtime_average"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Remuneración Computable
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-if="o.contract_id.wage_type == 'monthly'" >
+                                                    <t t-set="wage" t-value="o.contract_id.wage"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-set="wage" t-value="o.contract_id.hourly_wage * 30"/>
+                                                </t>
+                                                <t t-set="remuneration" t-value="wage + o.contract_id.da + o.overtime_average"/>
+                                                <span t-esc="'%.2f'% remuneration"/>
+                                           </td>
+                                        </tr>
+                                    </table>
+
+                                    <table style="width:70%;">
+                                        <tr>
+                                            <td colspan="2">
+                                                <strong>I.- C T S -</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="70%">
+                                                Fecha de Inicio de Computo
+                                            </td>
+                                            <td class="text-left" width="30%">
+                                                <span t-field="o.liquidation_date_init"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Fecha de Liquidacion
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="o.departure_date"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <table style="width:70%;">
+                                        <tr>
+                                            <td width="70%">
+                                                <strong>Remuneracion Mensual</strong>
+                                            </td>
+                                            <td class="text-right" width="30%">
+                                               <span t-esc="'%.2f'% remuneration"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Promedio Gratificacion
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="'%.2f'% o.average_gratification"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Total
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-set="total" t-value="remuneration + o.average_gratification"/>
+                                                <span t-esc="'%.2f'% total"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <![CDATA[&nbsp;]]>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                S/. <span t-esc="'%.2f'% total"/> x 8.33% =
+                                            </td>
+                                            <td class="text-right">
+                                                 <t t-set="total_833" t-value="total * 8.33/100"/>
+                                                 <span t-esc="'%.2f'% total_833"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <![CDATA[&nbsp;]]>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <strong>CTS</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                CTS - Meses
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-set="ctsp" t-value="o.cts_period"/>
+                                                <span t-esc="'%.2f'% ctsp"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>TOTAL CTS </strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="'%.2f'% ctsp"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <![CDATA[&nbsp;]]>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <strong>II.- VACACIONES TRUNCAS</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Mensual = <span t-esc="'%.2f'% remuneration"/>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                Vacaciones Periodo 1
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <t t-set="vac_perio" t-value="remuneration / 12"/>
+                                                <t t-set="vac_perio_dia" t-value="remuneration / 30"/>
+                                                S/. <span t-esc="'%.2f'% remuneration"/> / 12 = <span t-esc="'%.2f'% vac_perio"/> x <span t-esc="o.cut_vacations"/> dias
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-set="vac_perio_total" t-value="vac_perio_dia * o.cut_vacations"/>
+                                                <span t-esc="'%.2f'% vac_perio_total"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                Vacaciones Periodo 2
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+<!--                                                S/. 4,393.00 / 12 = 366.08 x 10 meses-->
+                                                <span t-esc="'%.2f'% remuneration"/> / 12 = <span t-esc="'%.2f'% vac_perio"/> x <span t-esc="o.cut_vacations_m2"/> meses
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-set="vac_periom2_total" t-value="vac_perio_dia * o.cut_vacations_m2"/>
+                                                <span t-esc="'%.2f'% vac_periom2_total"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+<!--                                                S/. 4,393.00 / 12 = 366.08 x 06 dias-->
+                                                <span t-esc="'%.2f'% remuneration"/> / 12 = <span t-esc="'%.2f'% vac_perio"/> x <span t-esc="o.cut_vacations_d2"/> días
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-set="vac_period2_total" t-value="vac_perio_dia * o.cut_vacations_d2"/>
+                                                <span t-esc="'%.2f'% vac_period2_total"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Sub Total Vacaciones Truncas</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-set="vac_sub_total" t-value="vac_perio_total + vac_periom2_total + vac_period2_total"/>
+                                                <span t-esc="'%.2f'% vac_sub_total"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                (-) AFP <span t-field="o.afp_id.name"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="o.afp"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>TOTAL VACACIONES TRUNCAS</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-set="vac_total" t-value="vac_sub_total - abs(o.afp)"/>
+                                                <span t-esc="'%.2f'% vac_total"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <![CDATA[&nbsp;]]>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <strong>III.- GRATIFICACION TRUNCA</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                 <span t-esc="o.gratification_description"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Mensual = S/. <span t-esc="'%.2f'% remuneration"/>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+<!--                                                S/. 4,393.00 : 06 = 732.16 x 06 meses-->
+                                                <t t-set="cut_grat" t-value="remuneration / o.cut_gratification"/>
+                                                <span t-esc="'%.2f'% remuneration"/> / 6 = <span t-esc="'%.2f'% cut_grat"/> x <span t-esc="o.cut_gratification"/> meses
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-set="cut_grat_total" t-value="cut_grat * o.cut_gratification"/>
+                                                <span t-esc="'%.2f'% cut_grat_total"/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Bonificación Extraordinaria - 9%
+                                            </td>
+                                            <td class="text-right">
+                                                 <span t-esc="'%.2f'% o.bonus"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>TOTAL GRATIFICACION TRUNCA</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-set="grat_total" t-value="cut_grat_total + o.bonus"/>
+                                                <span t-esc="'%.2f'% grat_total"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <![CDATA[&nbsp;]]>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-left:solid 1px #000;border-top:solid 1px #000;border-bottom:solid 1px #000;">
+                                                <strong>NETO A RECIBIR</strong>
+                                            </td>
+                                            <td class="text-right" style="border-right:solid 1px #000;border-top:solid 1px #000;;border-bottom:solid 1px #000;">
+                                                <t t-set="neto" t-value="grat_total + vac_total + ctsp"/>
+                                                <span t-esc="'%.2f'% neto"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                    <p>Yo, <span t-field="o.name"/>, declaro haber recibido de <span t-field="o.company_id.name"/> , la suma de
+                                       ( <span t-esc="o.get_amount_to_text(neto)"/> )</p>
+                                    <br/>
+                                    <p>Estando conforme con el importe recibido y de acuerdo con los dispositivos legales laborales vigentes a la fecha
+                                      no teniendo nada mas que reclamar firmo en señal de conformidad, sin que medie causa de obligacion alguna</p>
+                                    <br/>
+                                    <p><span t-field="o.company_id.city"/>, <span t-esc="o.get_date_to_report(o.departure_date)"/></p>
+                                    <br/>
+
+                                    <p class="text-right">_______________________________
+                                        <br/>
+                                        <strong><span t-field="o.name"/></strong>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

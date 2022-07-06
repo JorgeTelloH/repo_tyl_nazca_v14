@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_work_certificate_wizard_view_form" model="ir.ui.view">
+            <field name="name">hr.work.certificate.wizard.view.form</field>
+            <field name="model">hr.work.certificate.wizard</field>
+            <field name="arch" type="xml">
+               <form>
+                    <sheet>
+                        <group>
+                            <field name="employee_id" invisible="1"/>
+                            <field name="opinion" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_register" string="Imprimir" type="object" class="oe_highlight"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.server" id="action_work_certificates_print">
+            <field name="name">Certificado de trabajo</field>
+            <field name="model_id" ref="model_hr_work_certificate_wizard"/>
+            <field name="binding_model_id" ref="hr.model_hr_employee" />
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">
+if records:
+    action = records.print_work_certificates()
+            </field>
+        </record>
+
+    </data>
+</odoo>

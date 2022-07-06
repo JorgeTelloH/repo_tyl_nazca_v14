@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="afp_IN" model="res.afp">
+            <field name="code">IN</field>
+            <field name="name">Integra</field>
+            <field name="seat">10</field>
+            <field name="commission_flow">1.55</field>
+            <field name="commission_mixed">0.90</field>
+            <field name="insurance">1.36</field>
+        </record>
+
+        <record id="afp_PR" model="res.afp">
+            <field name="code">PR</field>
+            <field name="name">Profuturo</field>
+            <field name="seat">10</field>
+            <field name="commission_flow">1.69</field>
+            <field name="commission_mixed">1.07</field>
+            <field name="insurance">1.36</field>
+        </record>
+
+        <record id="afp_RI" model="res.afp">
+            <field name="code">RI</field>
+            <field name="name">Prima</field>
+            <field name="seat">10</field>
+            <field name="commission_flow">1.60</field>
+            <field name="commission_mixed">0.18</field>
+            <field name="insurance">1.36</field>
+        </record>
+
+        <record id="afp_HA" model="res.afp">
+            <field name="code">HA</field>
+            <field name="name">Hábitat</field>
+            <field name="seat">10</field>
+            <field name="commission_flow">1.47</field>
+            <field name="commission_mixed">0.38</field>
+            <field name="insurance">1.36</field>
+        </record>
+
+<!--        <record id="afp_ONP" model="res.afp">-->
+<!--            <field name="code">ONP</field>-->
+<!--            <field name="name">Oficina de normalización previsional</field>-->
+<!--            <field name="seat">9</field>-->
+<!--            <field name="commission_flow">0</field>-->
+<!--            <field name="commission_mixed">0</field>-->
+<!--            <field name="insurance">0</field>-->
+<!--        </record>-->
+
+
+    </data>
+</odoo>

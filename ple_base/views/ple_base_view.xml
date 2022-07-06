@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="ple_base_view_form" model="ir.ui.view">
+			<field name="name">ple.base.form</field>
+            <field name="model">ple.base</field>
+            <field name="arch" type="xml">
+            	<form>
+                    <header>
+                        <button name="action_print" 
+                            string="Imprimir"
+                            type="object"
+                            states='open,send'
+                            icon="fa-print"
+                            />
+                        <button name="action_draft"
+                            string="Borrador"
+                            states='open'
+                            type="object"
+                            />
+                        <button name="action_open"
+                            string="Generar Libro"
+                            states='draft,open'
+                            type="object"
+                            />
+                        <button name="action_send"
+                            string="Declarar Libro"
+                            confirm="Una vez confirmado no volvera a generar y/o editar el PLE"
+                            states='open'
+                            type="object"
+                            />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,send" />
+                    </header>
+                    <group>
+                        <group name="grupo_base" string="Periodo Fiscal">
+                            <label for="fiscal_year"/>
+                            <div>
+                    		    <field name="fiscal_year" placeholder="Año" class="oe_inline"/>
+                        		<field name="fiscal_month" placeholder="Mes" class="oe_inline"/>
+                            </div>
+                            <field name="company_id" options="{'no_create': True, 'no_create_edit':True}" groups="base.group_multi_company"/>
+                        </group>
+                        <group name="grupo_base_impresion" string="Parámetros de Impresión">
+                            <field name="print_format"/>
+                    		<field name="print_order"/>
+                    	    <field name="currency_id"/>
+                            <field name="bimonetario"/>
+                            <field name="currency_second_id" attrs="{'invisible':[('bimonetario','=',False)]}"/>
+
+                        </group>
+                    </group>
+                </form>
+            </field>
+		</record>
+
+		<record id="ple_base_view_tree" model="ir.ui.view">
+			<field name="name">ple.base.tree</field>
+            <field name="model">ple.base</field>
+            <field name="arch" type="xml">
+            	<tree>
+                    <field name="fiscal_year"/>
+                    <field name="fiscal_month"/>
+                    <!-- <field name="print_format"/> -->
+                    <!-- <field name="print_order"/> -->
+                    <field name="company_id"/>
+                    <!-- <field name="bimonetario"/> -->
+                   
+                    <!-- <field name="currency_second_id" attrs="{'invisible':[('bimonetario','==','False')]}"/> -->
+
+                    <!-- <field name="currency_second_id"/> -->
+                    <field name="state"/>
+                </tree>
+            </field>
+		</record>
+
+        <record id="action_ple_base" model="ir.actions.act_window">
+            <field name="name">ple.base</field>
+   		    <field name="res_model">ple.base</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--<menuitem
+            id="menu_ple_root" 
+            name="PLE - Libros" 
+            parent="account.menu_finance_reports" 
+            sequence="1"/>-->
+
+            <menuitem id="menu_ple_root" name="SUNAT" web_icon="ple_base,static/description/SUNAT.png"/>
+
+            <menuitem id="menu_registro" name="Registro" parent="menu_ple_root" groups="ple_base.group_ple_base_user"/>
+            <menuitem id="menu_diario" name="Diario" parent="menu_ple_root" groups="ple_base.group_ple_base_manager"/>
+            <menuitem id="menu_inventario_balance" name="Inventarios y Balances" parent="menu_ple_root" groups="ple_base.group_ple_base_manager"/>
+
+            <!--################################################################-->
+	</data>
+</odoo>

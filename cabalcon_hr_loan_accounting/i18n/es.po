@@ -1,0 +1,164 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cabalcon_hr_loan_accounting
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-15 03:27+0000\n"
+"PO-Revision-Date: 2021-11-15 03:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_res_config_settings__loan_approve
+msgid "Approval from Accounting Department"
+msgstr "Aprobación del Departamento de Contabilidad"
+
+#. module: cabalcon_hr_loan_accounting
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_loan_accounting.hr_loan_inherited
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields.selection,name:cabalcon_hr_loan_accounting.selection__hr_loan__state__approve
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: cabalcon_hr_loan_accounting
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_loan_accounting.hr_loan_inherited
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields.selection,name:cabalcon_hr_loan_accounting.selection__hr_loan__state__cancel
+msgid "Canceled"
+msgstr "Cancelado"
+
+#. module: cabalcon_hr_loan_accounting
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_loan_accounting.hr_loan_inherited
+msgid "Compute Installment"
+msgstr "Calcular pago a plazos"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model,name:cabalcon_hr_loan_accounting.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_loan__display_name
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_loan_line__display_name
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_payslip__display_name
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "Mostrar nombre"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields.selection,name:cabalcon_hr_loan_accounting.selection__hr_loan__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_account_move_line__id
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_loan__id
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_loan_line__id
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_payslip__id
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model,name:cabalcon_hr_loan_accounting.model_hr_loan_line
+msgid "Installment Line"
+msgstr "Línea de pago a plazos"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_loan__journal_id
+msgid "Journal"
+msgstr "Diario"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model,name:cabalcon_hr_loan_accounting.model_account_move_line
+msgid "Journal Item"
+msgstr "Apunte contable"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_loan____last_update
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_loan_line____last_update
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_payslip____last_update
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_loan__employee_account_id
+msgid "Loan Account"
+msgstr "Cuenta de préstamo"
+
+#. module: cabalcon_hr_loan_accounting
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_loan_accounting.view_account_config_inherit
+msgid "Loan Approval"
+msgstr "Aprobación del préstamo"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields,help:cabalcon_hr_loan_accounting.field_res_config_settings__loan_approve
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_loan_accounting.view_account_config_inherit
+msgid "Loan Approval from account manager"
+msgstr ""
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_account_move_line__loan_id
+msgid "Loan Id"
+msgstr "ID del préstamo"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model,name:cabalcon_hr_loan_accounting.model_hr_loan
+msgid "Loan Request"
+msgstr "Solicitud de préstamo"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model,name:cabalcon_hr_loan_accounting.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Recibo de nómina"
+
+#. module: cabalcon_hr_loan_accounting
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_loan_accounting.hr_loan_inherited
+msgid "Refuse"
+msgstr "Rechazar"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields.selection,name:cabalcon_hr_loan_accounting.selection__hr_loan__state__refuse
+msgid "Refused"
+msgstr "Rechazado"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_loan__state
+msgid "State"
+msgstr "Estado"
+
+#. module: cabalcon_hr_loan_accounting
+#: model_terms:ir.ui.view,arch_db:cabalcon_hr_loan_accounting.hr_loan_inherited
+msgid "Submit"
+msgstr "Enviar"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields.selection,name:cabalcon_hr_loan_accounting.selection__hr_loan__state__waiting_approval_1
+msgid "Submitted"
+msgstr "Propuesto"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields,field_description:cabalcon_hr_loan_accounting.field_hr_loan__treasury_account_id
+msgid "Treasury Account"
+msgstr "Cuenta de tesorería"
+
+#. module: cabalcon_hr_loan_accounting
+#: model:ir.model.fields.selection,name:cabalcon_hr_loan_accounting.selection__hr_loan__state__waiting_approval_2
+msgid "Waiting Approval"
+msgstr "Esperando aprobación"

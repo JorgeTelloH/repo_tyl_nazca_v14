@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_move_destiny_tree" model="ir.ui.view">
+            <field name="name">account.move.destiny.tree</field>
+            <field name="model">account.move.destiny</field>
+            <field name="arch" type="xml">
+                <tree string="Invoice Line">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="journal_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_account_move_destiny_form" model="ir.ui.view">
+            <field name="name">account.move.destiny.form</field>
+            <field name="model">account.move.destiny</field>
+            <field name="arch" type="xml">
+                <form string="Invoice Line">
+                    <header>
+                        <button name="action_open" type="object" states="draft" string="Validar" class="oe_highlight"/>
+                        <button name="action_cancel" type="object" states="open" string="Cancelar" class="oe_highlight"/>
+                        <button name="action_draft" states="cancel" string="Pasar a borrador" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,cancel" />
+                    </header>
+                    <sheet string="Destiny">
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="date"/>
+                                <field name="date_to"/>
+                                <field name="date_from"/>
+                            </group>
+                            <group>
+                                <field name="journal_id"/>
+                                <field name="move_id"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="action_account_move_destiny" model="ir.actions.act_window">
+            <field name="name">Generar asientos de destino</field>
+            <field name="res_model">account.move.destiny</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_account_move_destiny_tree"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear masivo de destinos
+              </p><p>
+                Create destinos, puede crear masivamente los destinos de un rango de fecha.
+              </p>
+            </field>
+        </record>
+
+
+        <menuitem action="action_account_move_destiny" id="menu_account_move_destiny" parent="account.menu_finance_entries" sequence="10"/>
+
+
+
+
+    </data>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="sale_status_membresia_report"
+            model="stock.picking"
+            string="Guia remision"
+            report_type="qweb-pdf"
+            name="guia_remision.report_guia_remision"
+            file="guia_remision.report_guia_remision"
+            attachment="('Guia remision '+(object.name or '')+'.pdf')"
+        />
+    </data>
+</odoo>

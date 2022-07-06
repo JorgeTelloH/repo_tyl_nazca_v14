@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_guia_remision">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+
+                        <div class="header">
+                            <t t-set="company" t-value="o.company_id.sudo()"/>
+                            <div class="row">
+<!--                                <div class="col-xs-3" style="background-color: green;">-->
+<!--                                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" style="max-height: 100px;"/>-->
+
+<!--                                </div>-->
+                                <div class="col-3 mb4">
+                                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                                </div>
+                                <div class="col-5 mb4" style="height: 150px;">
+                                    <div class="col-xs-12 text-left" style="margin-top:50px;">
+                                        <strong style="font-size: 20px !important; border: 0px solid black;">
+                                            <span t-field="company.name"/></strong><br/>
+                                        <span t-field="company.street"/> <br/>
+                                        <span t-field="company.state_id.name"/> - <span t-field="company.city"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-4 mb4" style="border: 1px solid black; text-align:center; width: 58%; text-align: center;">
+                                        <div style="margin-top: 30px;">
+                                            <strong>
+                                              <div>
+                                                <span>
+                                                    RUC: <span t-field="o.company_id.vat"/>
+                                                </span>
+                                              </div>
+                                              <div>
+                                                  <span><strong>GUÍA DE REMISIÓN</strong></span>
+                                              </div>
+                                              <div>
+                                                <span>
+                                                   <span t-field="o.serie"/> - <span t-field="o.numero"/>
+                                                </span>
+                                              </div>
+                                            </strong>
+                                        </div>
+                                </div>
+
+
+<!--                                <div class="col-xs-3" style="height: 150px; background-color: green;">-->
+<!--                                    <div class="col-xs-12 text-right" style="margin-top:10px;">-->
+<!--                                        <strong style="color:white; font-size: 17px !important; border: 0px solid black;">RUC</strong>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+                            </div>
+                        </div>
+
+
+                        <div class="page">
+                            <t t-set="company" t-value="o.company_id.sudo()"/>
+
+                        <br/>
+                        <div  class="row" style="border: 1px solid black; text-align: center;">
+                            <table class="ml4 mt4 mb4" style="width:100%; font-size: 12px; border-collapse: separate; border-spacing: 0 8px;">
+
+                              <tr style="bgcolor:white">
+                                <td width="20%" bgcolor="#FFFFFF">
+                                    <span><strong> Tipo de Guía: </strong></span>
+                                </td>
+                                <td width="40%" bgcolor="#FFFFFF">
+                                      <div style="text-align:left; width: 58%;">
+                                          GUÍA DE REMISIÓN REMITENTE
+                                      </div>
+                                </td>
+                                <td width="20%" bgcolor="#FFFFFF">
+                                    <span><strong>Fecha de Emisión: </strong></span>
+                                </td>
+                                <td width="20%" bgcolor="#FFFFFF">
+                                      <div style="text-align:left; width: 58%;">
+                                          <span t-esc="o.scheduled_date.strftime('%d-%m-%Y')"/>
+                                      </div>
+                                </td>
+                              </tr>
+
+                              <tr style="bgcolor:white; margin-top:10px;">
+                                <td width="20%" bgcolor="#FFFFFF">
+                                    <span><strong> Cliente: </strong></span>
+                                </td>
+                                <td width="40%" bgcolor="#FFFFFF">
+                                      <div style="text-align:left; width: 58%;">
+                                          <span t-field="o.partner_id.name"/>
+                                      </div>
+                                </td>
+                                <td width="20%" bgcolor="#FFFFFF">
+                                    <span><strong>Guía de Remisión de Referencia: </strong></span>
+                                </td>
+                                <td width="20%" bgcolor="#FFFFFF">
+                                      <div style="text-align:left; width: 58%;">
+                                          <span t-field="o.origin"/>
+                                      </div>
+                                </td>
+                              </tr>
+
+                              <tr style="bgcolor:white; margin-top:10px;">
+                                <td width="20%" bgcolor="#FFFFFF">
+                                    <span><strong> RUC: </strong></span>
+                                </td>
+                                <td width="40%" bgcolor="#FFFFFF">
+                                      <div style="text-align:left; width: 58%;">
+                                          <span t-field="o.partner_id.vat"/>
+                                      </div>
+                                </td>
+
+                              </tr>
+
+                              <tr style="bgcolor:white; margin-top:10px;">
+                                <td width="20%" bgcolor="#FFFFFF">
+                                    <span><strong> Dirección: </strong></span>
+                                </td>
+                                <td width="40%" bgcolor="#FFFFFF">
+                                      <div style="text-align:left; width: 58%;">
+                                          <span t-field="o.partner_id.name"/>
+                                      </div>
+                                </td>
+                                <td width="20%" bgcolor="#FFFFFF">
+                                    <span><strong>Documento relacionado: </strong></span>
+                                </td>
+                                <td width="20%" bgcolor="#FFFFFF">
+                                      <div style="text-align:left; width: 58%;">
+                                          <span t-field="o.origin"/>
+                                      </div>
+                                </td>
+                              </tr>
+
+                              <tr style="bgcolor:white; margin-top:10px;">
+                                <td width="20%" bgcolor="#FFFFFF">
+                                    <span><strong> Ciudad: </strong></span>
+                                </td>
+                                <td width="40%" bgcolor="#FFFFFF">
+                                      <div style="text-align:left; width: 58%;">
+                                          <span t-field="o.partner_id.state_id.name"/> - <span t-field="o.partner_id.city"/>
+                                      </div>
+                                </td>
+
+                              </tr>
+
+                            </table>
+                        </div>
+
+                        <br/><br/>
+
+                        <span style="font-size: 15px;"><strong>DETALLE DE GUIA: </strong></span> <br/>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-3 center" style="border: 1px solid black; text-align: center;">
+                                <span><strong>Tipo de Transportista: </strong></span> <br/>
+                                <t t-if="o.type_modality != '01'">
+                                    Publico
+                                </t>
+                                <t t-if="o.type_modality != '02'">
+                                    Privado
+                                </t>
+                            </div>
+                            <div class="col-3" style="border: 1px solid black; text-align: center;">
+                                <span><strong>Inicio de Traslado: </strong></span> <br/>
+                                <span t-field="o.date_done"/>
+                            </div>
+                            <div class="col-3" style="border: 1px solid black; text-align: center;">
+                                <span><strong>Peso bruto: </strong></span> <br/>
+                                <span t-field="o.transport_quantity"/>
+                            </div>
+                            <div class="col-3" style="border: 1px solid black; text-align: center;">
+                                <span><strong>Und. de Medida: </strong></span> <br/>
+                                <span t-field="o.transport_uom_id.name"/>
+                            </div>
+
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-6" style="border: 1px solid black; text-align: center;">
+                                <span><strong>Motivo: </strong></span> <br/>
+                                <span t-field="o.catalog_20.name"/>
+                            </div>
+                            <div class="col-6" style="border: 1px solid black; text-align: center;">
+                                <span><strong>Descripción: </strong></span> <br/>
+                                <span t-field="o.note"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <span style="font-size: 15px;"><strong>DATOS DEL TRANSPORTISTA: </strong></span> <br/>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-3 center" style="border: 1px solid black; text-align: center;">
+                                <span><strong>Razón Social Transportista: </strong></span> <br/>
+                                <span t-field="o.partner_transport_id.name"/>
+                            </div>
+                            <div class="col-3 center" style="border: 1px solid black; text-align: center;">
+                                <span><strong>Ruc del Transportista: </strong></span> <br/>
+                                <span t-field="o.partner_transport_id.vat"/>
+                            </div>
+                            <div class="col-3 center" style="border: 1px solid black; text-align: center;">
+                                <span><strong>Nombre del conductor: </strong></span> <br/>
+                                <span t-field="o.trasnportista[0].partner_id.name"/>
+                            </div>
+                            <div class="col-3 center" style="border: 1px solid black; text-align: center;">
+                                <span><strong>DNI el conductor: </strong></span> <br/>
+                                <span t-field="o.trasnportista[0].partner_id.vat"/>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                            <div class="col-6 center" style="border: 1px solid black; text-align: center;">
+                                <span><strong>N° Licencia del Conductor: </strong></span> <br/>
+                            </div>
+                            <div class="col-6 center" style="border: 1px solid black; text-align: center;">
+                                <span><strong>Placa del Vehículo: </strong></span> <br/>
+                                 <span t-field="o.trasnportista[0].license_plate"/>
+                            </div>
+
+                        </div>
+                        <div class="row" style="font-size: 12px">
+                        </div>
+
+                        <br/>
+
+                        <div class="row" style="font-size: 12px">
+
+                            <div class="col-5 center">
+                                <span style="font-size: 15px;"><strong>Dirección del punto de partida: </strong></span> <br/>
+                            </div>
+                            <div class="col-1 center">
+                            </div>
+                            <div class="col-5 center">
+                                <span style="font-size: 15px;"><strong>Dirección del punto de llegada: </strong></span> <br/>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 12px">
+
+                            <div class="col-5 center">
+                                <span t-field="o.direccion_salida"/> <br/>
+                            </div>
+                            <div class="col-1 center">
+                            </div>
+                            <div class="col-5 center">
+                                <span t-field="o.direccion_llegada"/> <br/>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        <t t-set="i" t-value="1"/>
+                        <table class="table table-condensed" t-if="o.move_line_ids">
+                              <t t-set="has_barcode" t-value="any([move_lines.product_id and move_lines.product_id.sudo().barcode or move_lines.package_id for move_lines in o.move_line_ids])"/>
+                              <t t-set="has_serial_number" t-value="o.move_line_ids.filtered(lambda ml: ml.lot_id or ml.lot_name)" groups="stock.group_production_lot"/>
+                              <thead>
+                                <tr>
+                                    <th width="5%" style="background-color:D5DBDB">Cantidad</th>
+                                    <th width="20%" style="background-color:D5DBDB">Medida</th>
+                                    <th width="20%" style="background-color:D5DBDB">Codigo</th>
+                                    <th width="55%" style="background-color:D5DBDB">Descripción</th>
+
+
+                                    <th width="60%" style="background-color:D5DBDB">
+                                        <t t-if="has_serial_number">Lot/Serial Number</t>
+                                    </th>
+
+                                </tr>
+                              </thead>
+                              <tbody>
+                                    <tr t-foreach="o.move_lines.sorted(key=lambda m: m.product_id.id)" t-as="move">
+                                        <td>
+                                           <span t-if="move.quantity_done" t-esc="move.quantity_done"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="move.product_id.uom_id"/>
+                                        </td>
+                                        <td>
+                                             <span t-field="move.product_id.code"/><br/>
+                                        </td>
+                                        <td>
+                                            <span t-field="move.product_id.name"/><br/>
+                                            <span t-field="move.product_id.description_picking"/>
+                                        </td>
+                                        <t t-set="i" t-value="i+1"/>
+                                    </tr>
+                              </tbody>
+                            </table>
+
+
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+
+        </template>
+    </data>
+</odoo>

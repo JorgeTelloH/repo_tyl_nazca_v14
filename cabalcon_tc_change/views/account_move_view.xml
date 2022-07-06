@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<odoo>
+    <data>
+       <record id="cabalcon_view_move_tc_form" model="ir.ui.view">
+            <field name="name">account.move.tc.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//div[@name='journal_div']" position="after">-->
+<!--                        <field name="is_special_tc" />-->
+<!--                        <field name="currency_tc" attrs="{'invisible': [('is_special_tc','=',False)]}"/>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='currency_id']" position="after">
+                        <field name="is_special_tc" attrs="{'readonly': [('state','!=','draft')]}"/>
+<!--                         <field name="currency_tc" attrs="{'invisible': [('is_special_tc','=',False)]}"/> -->
+                        <field name="currency_tc" attrs="{'readonly': ['|',('is_special_tc','=',False),('state','!=','draft')]}" force_save="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

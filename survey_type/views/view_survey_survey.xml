@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="survey_survey_inherit" model="ir.ui.view">
+        <field name="name">survey.survey.inherit</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook[1]" position="before">
+                <group>
+                    <field name="survey_type_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Survey kanban view inherte -->
+    <record model="ir.ui.view" id="survey_type_kanban_view">
+        <field name="name">survey.survey.kanban.inherit</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban//templates//div//div[@class='o_kanban_record_top']" position="after">
+                <field name="survey_type_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add group bye type survey -->
+    <record model="ir.ui.view" id="survey_type_search_inherit">
+        <field name="name">survey.survey.search.inherit</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_search"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="survey_type_id" string="Tipo de encuesta"/>
+                <group>
+                    <filter name="Tipo de encuesta" string="Tipo de encuesta" context="{'group_by':'survey_type_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <!-- Add  type survey  in tree view-->
+    <record model="ir.ui.view" id="survey_type_tree_view">
+        <field name="name">survey.survey.tree.inherit</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree//field[@name='answer_count']" position="before">
+                <field name="survey_type_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

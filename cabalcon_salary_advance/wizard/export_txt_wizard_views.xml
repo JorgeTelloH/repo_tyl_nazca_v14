@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="advance_export_txt_wizard_wizard_view_form" model="ir.ui.view">
+            <field name="name">advance.export.txt.wizard.view.form</field>
+            <field name="model">advance.export.txt.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_print" string="Exportar Txt" type="object" class="oe_highlight"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="advance_export_txt_wizard_action" model="ir.actions.act_window">
+            <field name="name">Exportar fichero Txt</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">advance.export.txt.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_advance_export_txt" action="advance_export_txt_wizard_action" parent="parent_menu_salary_advance" name="Exportar fichero Txt" sequence="2" />
+
+    </data>
+</odoo>

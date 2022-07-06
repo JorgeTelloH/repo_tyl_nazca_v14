@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_work_certificates" model="ir.actions.report">
+            <field name="name">Certificado de trabajo</field>
+            <field name="model">hr.employee</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cabalcon_hr_contract.report_work_certificates</field>
+            <field name="report_file">cabalcon_hr_contract.report_work_certificates</field>
+<!--            <field name="binding_model_id" ref="hr.model_hr_employee"/>-->
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_work_certificates">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h1 class="text-center">CERTIFICADO DE TRABAJO</h1>
+                                    <br/>
+                                    <p>
+                                        El que suscribe, en representación de <t t-esc="doc.company_id.name"/>,
+                                        con RUC Nº <t t-esc="doc.company_id.company_registry"/>, domiciliado en
+                                        <span t-field="doc.company_id.street"/>
+                                    </p>
+                                    <br/>
+                                    <h3>CERTIFICA:</h3>
+                                    <br/>
+                                    <p>Que, el señor(a) <t t-esc="doc.name"/>, identificado con D.N.I. Nº<span
+                                            t-field="doc.identification_id"/>, ha laborado en
+                                        esta empresa, desde el
+                                        <span t-esc="doc.get_date_to_report(doc.first_contract_date)"/>
+                                        hasta <span t-esc="doc.get_date_to_report(doc.departure_date)"/>, ocupando el
+                                        cargo de
+                                        <span t-field="doc.contract_id.job_id.name"/>
+                                    </p>
+                                    <br/>
+                                    <p><t t-esc="doc.opinion"/></p>
+                                    <br/>
+                                    <p>Se expide el presente documento, de acuerdo a Ley, para los fines que el
+                                        interesado
+                                        crea conveniente.
+                                    </p>
+                                    <br/>
+                                    <span t-field="doc.company_id.city"/>,
+                                    <span t-esc="doc.get_date_to_report(datetime.datetime.now())"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

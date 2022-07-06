@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="hr_employee_inherit_form_view">
+            <field name="name">hr.employee.form.view.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='hr_settings']//group[@name='identification_group']" position="after">
+                    <group string="Datos para las Vacaciones" attrs="{'invisible':[('is_not_dependent','=', True)]}">
+                        <field name="validity_start" readonly="1" widget='date'/>
+                        <field name="validity_stop" readonly="1" widget='date'/>
+                        <field name="days_worked_of_year" />
+                        <field name="number_unexcused_absences" />
+                        <field name="days_vacation"/>
+                        <field name="acumulate_vacation"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

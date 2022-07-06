@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_l10n_latam_identification_type_tree_on" model="ir.ui.view">
+        <field name="name">l10n_latam.identification.type.tree.on</field>
+        <field name="model">l10n_latam.identification.type</field>
+        <field name="inherit_id" ref="l10n_latam_base.view_l10n_latam_identification_type_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="/tree" position="attributes">
+                <attribute name="create">1</attribute>
+            </xpath>
+            <xpath expr="/tree" position="attributes">
+                <attribute name="edit">1</attribute>
+            </xpath>
+            <xpath expr="/tree" position="attributes">
+                <attribute name="editable">top</attribute>
+            </xpath>
+            <field name="name" position="before">
+            	<field name="l10n_pe_vat_code" string ="Código"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

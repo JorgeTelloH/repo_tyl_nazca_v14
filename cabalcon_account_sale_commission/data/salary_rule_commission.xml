@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--Adding a salary rule for commission-->
+	<data noupdate="0">
+          <!-- Salary Structure -->
+        <record id="structure_commission" model="hr.payroll.structure">
+            <field name="name">Comisiones</field>
+            <field name="type_id" ref="hr_contract.structure_type_employee"/>
+            <field name="country_id" eval="False"/>
+        </record>
+
+         <!-- Salary Rules -->
+		<record id="hr_rule_commission" model="hr.salary.rule">
+            <field name="code">COMM</field>
+            <field name="name">Comisiones</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.COMM</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.COMM.amount</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="190"/>
+            <field name="struct_id" ref="structure_commission"/>
+        </record>
+
+        <record id="hr_rule_input_commission" model="hr.payslip.input.type">
+            <field name="code">COMM</field>
+            <field name="name">Comisiones</field>
+        </record>
+
+	</data>
+</odoo>

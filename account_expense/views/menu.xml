@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_principal_expense"
+		name="Gastos"
+		sequence="10"
+		web_icon="account_expense,static/description/icon.png">
+		<menuitem id="menu_expenses" name="Gastos generales" sequence="10">
+		</menuitem>
+    </menuitem>
+</odoo>

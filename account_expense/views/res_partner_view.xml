@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_property_form" model="ir.ui.view">
+            <field name="name">res.partner.property.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <group name="accounting_entries" position="inside">
+                            <field name="property_account_expense_receivable_id"/>
+                            <field name="property_account_expense_payable_id"/>
+
+                </group>
+            </field>
+        </record>
+    </data>
+</odoo>

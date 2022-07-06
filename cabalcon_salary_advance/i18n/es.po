@@ -1,0 +1,501 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cabalcon_salary_advance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-21 16:35+0000\n"
+"PO-Revision-Date: 2021-11-21 16:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_needaction
+msgid "Action Needed"
+msgstr "Acción requerida"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Actividad  de Excepción"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__activity_state
+msgid "Activity State"
+msgstr "Estado de la actividad"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ícono de tipo de actvidad"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__advance
+#: model:ir.ui.menu,name:cabalcon_salary_advance.parent_menu_salary_advance
+msgid "Advance"
+msgstr "Avanzado"
+
+#. module: cabalcon_salary_advance
+#: model:hr.salary.rule,name:cabalcon_salary_advance.hr_payslip_rule_advance
+msgid "Advance Salary"
+msgstr "Salario por adelantado"
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_form
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields.selection,name:cabalcon_salary_advance.selection__salary_advance__state__approve
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_filter
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_filter
+msgid "Approved Requests"
+msgstr "Solicitudes aprobadas"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_attachment_count
+msgid "Attachment Count"
+msgstr "No. de archivos adjuntos"
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields.selection,name:cabalcon_salary_advance.selection__salary_advance__state__cancel
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__employee_contract_id
+msgid "Contract"
+msgstr "Contracto"
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.actions.act_window,help:cabalcon_salary_advance.action_my_salary_advance
+#: model_terms:ir.actions.act_window,help:cabalcon_salary_advance.action_my_salary_advance_request_approved
+#: model_terms:ir.actions.act_window,help:cabalcon_salary_advance.action_salary_advance_to_approve
+msgid "Create Requests."
+msgstr "Crear solicitudes."
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__credit
+msgid "Credit Account"
+msgstr "Cuenta de crédito"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__date
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_filter
+msgid "Date"
+msgstr "Fecha"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__debit
+msgid "Debit Account"
+msgstr "Cuenta de debito"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__department
+msgid "Department"
+msgstr "Departamento"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_hr_payroll_structure__display_name
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_hr_payslip__display_name
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields.selection,name:cabalcon_salary_advance.selection__salary_advance__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__employee_id
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__employee_id
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_filter
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__exceed_condition
+msgid "Exceed than Maximum"
+msgstr "Exceder el máximo"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Seguidores (Canales)"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Contactos)"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_hr_payroll_structure__id
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_hr_payslip__id
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__id
+msgid "ID"
+msgstr ""
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__message_needaction
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado hay nuevos mensajes que requieren su atención."
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__message_has_error
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra seleccionado, algunos mensajes tienen error de envío."
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__journal
+msgid "Journal"
+msgstr "Diario"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_hr_payroll_structure____last_update
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_hr_payslip____last_update
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjuntos principales"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_hr_payroll_structure__max_percent
+msgid "Max.Salary Advance Percentage"
+msgstr "Porcentaje de avance de salario máx."
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_hr_payroll_structure__max_percent
+msgid "Maximum salary advance percentage"
+msgstr "Porcentaje máximo de anticipo de salario"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Mi fecha límite de actividad"
+
+#. module: cabalcon_salary_advance
+#: model:ir.ui.menu,name:cabalcon_salary_advance.menu_my_salary_advance_approved
+msgid "My Approved Salary Advance"
+msgstr "Mi anticipo de salario aprobado"
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_filter
+msgid "My Requests"
+msgstr "Mis solicitudes"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_filter
+msgid "New Requests"
+msgstr "Nuevas solicitudes"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Siguiente plazo de actividad"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la siguiente actividad"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de la siguiente actividad"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leidos"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model,name:cabalcon_salary_advance.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Recibo de nómina"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__payment_method
+msgid "Payment Method"
+msgstr "Método de pago"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__reason
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__reason
+msgid "Reason"
+msgstr "Razón"
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_form
+msgid "Reject"
+msgstr "Rechazado"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields.selection,name:cabalcon_salary_advance.selection__salary_advance__state__reject
+msgid "Rejected"
+msgstr "Rechazada"
+
+#. module: cabalcon_salary_advance
+#: model:ir.ui.menu,name:cabalcon_salary_advance.menu_my_salary_advance
+msgid "Request Salary Advance"
+msgstr "Solicitar anticipo de salario"
+
+#. module: cabalcon_salary_advance
+#: code:addons/cabalcon_salary_advance/models/salary_advance.py:0
+#, python-format
+msgid "Request can be done after \"%s\" Days From prevoius month salary"
+msgstr "La solicitud se puede realizar después de \"%s\" Días del salario del mes anterior"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega del SMS"
+
+#. module: cabalcon_salary_advance
+#: model:ir.actions.act_window,name:cabalcon_salary_advance.action_my_salary_advance
+#: model:ir.actions.act_window,name:cabalcon_salary_advance.action_my_salary_advance_request_approved
+#: model:ir.actions.act_window,name:cabalcon_salary_advance.action_salary_advance_to_approve
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_filter
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_form
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_tree
+msgid "Salary Advance"
+msgstr "Adelanto de salario"
+
+#. module: cabalcon_salary_advance
+#: model:ir.ui.menu,name:cabalcon_salary_advance.menu_salary_advance
+msgid "Salary Advance To Approve"
+msgstr "Adelanto de salario para aprobar"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_hr_payroll_structure__advance_date
+msgid "Salary Advance-After days"
+msgstr "Días posteriores al adelanto de salario"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model,name:cabalcon_salary_advance.model_hr_payroll_structure
+msgid "Salary Structure"
+msgstr "Estructura salarial"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_hr_payroll_structure__advance_date
+msgid "Salary advance after days"
+msgstr "Avance de salario después de días"
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_filter
+msgid "Search"
+msgstr "Buscar"
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_filter
+msgid "State"
+msgstr "Estado"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Vencida: la fecha tope ya ha pasado\n"
+"Hoy: La fecha tope es hoy\n"
+"Planificada: futuras actividades."
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_form
+msgid "Submit"
+msgstr "Enviar"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__date
+msgid "Submit date"
+msgstr "Fecha de envio"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields.selection,name:cabalcon_salary_advance.selection__salary_advance__state__submit
+msgid "Submitted"
+msgstr "Enviado"
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_filter
+msgid "Submitted Requests"
+msgstr "Solicitudes enviadas"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__exceed_condition
+msgid "The Advance is greater than the maximum percentage in salary structure"
+msgstr "El anticipo es mayor que el porcentaje máximo en estructura salarial"
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_filter
+msgid "To Approve"
+msgstr "Aprobar"
+
+#. module: cabalcon_salary_advance
+#: model_terms:ir.ui.view,arch_db:cabalcon_salary_advance.view_salary_advance_filter
+msgid "To Submit"
+msgstr "Entregar"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción registrada."
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes sin leer"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Nº de mensajes sin leer"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields.selection,name:cabalcon_salary_advance.selection__salary_advance__state__waiting_approval
+msgid "Waiting Approval"
+msgstr "Esperando aprovación"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,field_description:cabalcon_salary_advance.field_salary_advance__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model.fields,help:cabalcon_salary_advance.field_salary_advance__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: cabalcon_salary_advance
+#: model:ir.model,name:cabalcon_salary_advance.model_salary_advance
+msgid "salary.advance"
+msgstr ""

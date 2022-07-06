@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.detraction.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@id='header_left_group']" position="inside">
+                    <field name="l10n_pe_withhold" attrs="{'invisible':[('move_type', 'not in', ('out_invoice', 'in_invoice', 'in_receipt', 'out_receipt'))]}"/>
+                    <field name="l10n_pe_withhold_code" attrs="{'invisible': [('l10n_pe_withhold', '=', False)]}"/>
+                    <field name="l10n_pe_withhold_percentage" attrs="{'invisible': [('l10n_pe_withhold', '=', False)]}"/>
+                    <field name="detraction_payer" attrs="{'readonly': [('state', '!=', 'draft')],'invisible': [('l10n_pe_withhold', '=', False)]}"/>
+                    <field name="det_fecpago" attrs="{'readonly': [('state', '!=', 'draft')],'invisible': [('l10n_pe_withhold', '=', False)]}"/>
+                    <field name="det_nropago" attrs="{'readonly': [('state', '!=', 'draft')],'invisible': [('l10n_pe_withhold', '=', False)]}"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

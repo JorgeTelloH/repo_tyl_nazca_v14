@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_journal_form" model="ir.ui.view">
+        <field name="model">account.journal</field>
+        <field name="name">account.journal.form</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <!--<field name="type" position="after">
+                <field name="serie" attrs="{'invisible': ['|', ('l10n_latam_company_use_documents', '=', False), ('type', 'not in', ['purchase','sale'])]}"/>
+            </field>-->
+            <field name="company_id" position="after">
+                <field name="sale_ple" attrs="{'invisible': [('type', 'not in', ['sale'])]}"/>
+                <field name="purchase_ple" attrs="{'invisible': [('type', 'not in', ['purchase'])]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_journal_form_latam_extend" model="ir.ui.view">
+        <field name="model">account.journal</field>
+        <field name="name">account.journal.form</field>
+        <field name="inherit_id" ref="l10n_latam_invoice_document.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <field name="l10n_latam_use_documents" position="after">
+                <field name="l10n_latam_document_type_id" widget="many2many_tags" attrs="{'invisible': [('l10n_latam_use_documents', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

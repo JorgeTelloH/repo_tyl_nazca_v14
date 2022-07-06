@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="es_01" model="hr.educational.situation">
+            <field name="code">01</field>
+            <field name="name">SIN EDUCACIÓN FORMAL</field>
+            <field name="desc">SIN EDUCACIÓN FORMAL</field>
+        </record>
+        <record id="es_02" model="hr.educational.situation">
+            <field name="code">02</field>
+            <field name="name">ESPECIAL INCOMPLETA</field>
+            <field name="desc">EDUCACIÓN ESPECIAL INCOMPLETA</field>
+        </record>
+        <record id="es_03" model="hr.educational.situation">
+            <field name="code">03</field>
+            <field name="name">ESPECIAL COMPLETA</field>
+            <field name="desc">EDUCACIÓN ESPECIAL COMPLETA</field>
+        </record>
+        <record id="es_04" model="hr.educational.situation">
+            <field name="code">04</field>
+            <field name="name">PRIMARIA INCOMPLETA</field>
+            <field name="desc">EDUCACIÓN PRIMARIA INCOMPLETA</field>
+        </record>
+        <record id="es_05" model="hr.educational.situation">
+            <field name="code">05</field>
+            <field name="name">PRIMARIA COMPLETA</field>
+            <field name="desc">EDUCACIÓN PRIMARIA COMPLETA</field>
+        </record>
+        <record id="es_06" model="hr.educational.situation">
+            <field name="code">06</field>
+            <field name="name">SECUNDARIA INCOMPLETA</field>
+            <field name="desc">EDUCACIÓN SECUNDARIA INCOMPLETA</field>
+        </record>
+        <record id="es_07" model="hr.educational.situation">
+            <field name="code">07</field>
+            <field name="name">SECUNDARIA COMPLETA</field>
+            <field name="desc">EDUCACIÓN SECUNDARIA COMPLETA</field>
+        </record>
+        <record id="es_08" model="hr.educational.situation">
+            <field name="code">08</field>
+            <field name="name">TÉCNICA INCOMPLETA</field>
+            <field name="desc">EDUCACIÓN TÉCNICA INCOMPLETA</field>
+        </record>
+        <record id="es_09" model="hr.educational.situation">
+            <field name="code">09</field>
+            <field name="name">TÉCNICA COMPLETA</field>
+            <field name="desc">EDUCACIÓN TÉCNICA COMPLETA</field>
+        </record>
+        <record id="es_10" model="hr.educational.situation">
+            <field name="code">10</field>
+            <field name="name">SUPERIOR INCOMPLETA (INSTIT. SUPER)</field>
+            <field name="desc">EDUCACIÓN SUPERIOR (INSTITUTO SUPERIOR, ETC) INCOMPLETA</field>
+        </record>
+        <record id="es_11" model="hr.educational.situation">
+            <field name="code">11</field>
+            <field name="name">SUPERIOR COMPLETA (INSTIT. SUPER)</field>
+            <field name="desc">EDUCACIÓN SUPERIOR (INSTITUTO SUPERIOR, ETC) COMPLETA</field>
+        </record>
+        <record id="es_12" model="hr.educational.situation">
+            <field name="code">12</field>
+            <field name="name">EDUCACIÓN UNIVERSITARIA INCOMPLETA</field>
+            <field name="desc">EDUCACIÓN UNIVERSITARIA INCOMPLETA</field>
+        </record>
+        <record id="es_13" model="hr.educational.situation">
+            <field name="code">13</field>
+            <field name="name">EDUCACIÓN UNIVERSITARIA COMPLETA</field>
+            <field name="desc">EDUCACIÓN UNIVERSITARIA COMPLETA</field>
+        </record>
+        <record id="es_14" model="hr.educational.situation">
+            <field name="code">14</field>
+            <field name="name">GRADO DE BACHILLER</field>
+            <field name="desc">GRADO DE BACHILLER</field>
+        </record>
+        <record id="es_15" model="hr.educational.situation">
+            <field name="code">15</field>
+            <field name="name">TITULADO</field>
+            <field name="desc">TITULADO</field>
+        </record>
+        <record id="es_16" model="hr.educational.situation">
+            <field name="code">16</field>
+            <field name="name">ESTUDIOS DE MAESTRÍA INCOMPLETA</field>
+            <field name="desc">ESTUDIOS DE MAESTRÍA INCOMPLETA</field>
+        </record>
+        <record id="es_17" model="hr.educational.situation">
+            <field name="code">17</field>
+            <field name="name">ESTUDIOS DE MAESTRÍA INCOMPLETA</field>
+            <field name="desc">ESTUDIOS DE MAESTRÍA INCOMPLETA</field>
+        </record>
+        <record id="es_18" model="hr.educational.situation">
+            <field name="code">18</field>
+            <field name="name">GRADO DE MAESTRÍA</field>
+            <field name="desc">GRADO DE MAESTRÍA</field>
+        </record>.
+        <record id="es_19" model="hr.educational.situation">
+            <field name="code">19</field>
+            <field name="name">ESTUD. DOCTORADO INCOMPLETO</field>
+            <field name="desc">ESTUDIOS DE DOCTORADO INCOMPLETO</field>
+        </record>
+        <record id="es_20" model="hr.educational.situation">
+            <field name="code">20</field>
+            <field name="name">ESTUD. DOCTORADO COMPLETO</field>
+            <field name="desc">ESTUDIOS DE DOCTORADO COMPLETO</field>
+        </record>
+        <record id="es_21" model="hr.educational.situation">
+            <field name="code">21</field>
+            <field name="name">GRADO DE DOCTOR</field>
+            <field name="desc">GRADO DE DOCTOR</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    
+    <record id="group_hr_request_job" model="res.groups">
+        <field name="name">Solicitar nuevos puestos</field>
+        <field name="category_id" ref="base.module_category_human_resources_recruitment"/>
+    </record>
+
+    <record id="hr_request_job_rule" model="ir.rule">
+        <field name="name">Solicitud de nuevos puesto - rule</field>
+        <field name="model_id" ref="model_hr_request_job"/>
+        <field name="groups" eval="[(4, ref('group_hr_request_job'))]"/>
+        <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+    </record>
+
+     <record id="hr_request_job_all_rule" model="ir.rule">
+        <field name="name">Solicitud de puesto - rule</field>
+        <field name="model_id" ref="model_hr_request_job"/>
+        <field name="groups" eval="[(4, ref('hr_recruitment.group_hr_recruitment_user')), (4, ref('hr_recruitment.group_hr_recruitment_manager'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+
+</odoo>

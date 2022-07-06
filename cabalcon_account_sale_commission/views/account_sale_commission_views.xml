@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_sale_commission_view_move_form" model="ir.ui.view">
+        <field name="name">account.sale.commission.view.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name="qr_code_method" position="after">
+                <field name="commission_type" widget="radio" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <div class="o_td_label">
+                    <label for="commission_p" string="%" attrs="{'invisible': [('commission_type', '=', 'a')]}"/>
+                    <label for="commission_value_a" string="$" attrs="{'invisible': [('commission_type', '!=', 'a')]}"/>
+                </div>
+                <div>
+                    <field name="commission_p" class="oe_inline" nolabel="1" attrs="{'invisible': [('commission_type', '=', 'a')], 'readonly': [('state', '!=', 'draft')]}"/>
+                    <span class="ml8" attrs="{'invisible': [('commission_type', '=', 'a')]}">Amount:</span>
+                    <field name="commission_value_p" attrs="{'readonly': 1, 'invisible': [('commission_type', '=', 'a')], 'readonly': [('state', '!=', 'draft')]}" force_save="1"/>
+                    <field name="commission_value_a" class="oe_inline" nolabel="1" attrs="{'invisible': [('commission_type', '!=', 'a')], 'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="commission_value" invisible="1"/>
+                </div>
+            </field>
+        </field>
+    </record>
+
+    <record id="account_sale_commission_view_form" model="ir.ui.view">
+        <field name="name">account.sale.commission.form</field>
+        <field name="model">hr.employee.participation</field>
+        <field name="arch" type="xml">
+            <form string="Sale Commission">
+                <header>
+                    <button name="button_approve" string="Approve" type="object"
+                            attrs="{'invisible' : ['|', '|', ('id', '=', False), ('state', '=', 'approved'), ('payment_state', '=', 'paid')]}"/>
+                    <button name="button_disapprove" string="Disapprove" type="object"
+                            attrs="{'invisible' : ['|', '|', ('id', '=', False), ('state', '!=', 'approved'), ('payment_state', '=', 'paid')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <field name="payment_state" invisible="1" force_save="1"/>
+                    <widget name="web_ribbon" title="Paid" attrs="{'invisible': [('payment_state', '!=', 'paid')]}"/>
+                    <group>
+                        <group>
+                            <field name="account_move_id" attrs="{'readonly': ['|', ('state', '=', 'approved'), ('payment_state', '=', 'paid')]}"
+                                   domain="[('state', '=', 'posted'),('move_type', '=', 'out_invoice')]"/>
+                            <field name="report_date"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="amount_total"/>
+                            </group>
+                            <group>
+                                <field name="commission_type" invisible="1"/>
+                                <field name="commission_value_p" attrs="{'invisible': ['|', ('account_move_id', '=', False), ('commission_type', '=', 'a')]}"/>
+                                <field name="commission_value_a" attrs="{'invisible': ['|', ('account_move_id', '=', False), ('commission_type', '=', 'p')]}"/>
+                            </group>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Commissions">
+                            <field name="part_line_ids" attrs="{'invisible': [('account_move_id', '=', False)], 'readonly': ['|', ('state', '=', 'approved'), ('payment_state', '=', 'paid')]}">
+                                <tree editable="bottom">
+                                    <field name="part_id" invisible="1"/>
+                                    <field name="contract_id" domain="[('state', '=', 'open')]"/>
+                                    <field name="part_percent" sum="Total"/>
+                                    <field name="part_value" readonly="1" force_save="1" sum="Total"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="account_sale_commission_view_tree" model="ir.ui.view">
+        <field name="name">account.sale.commission.tree</field>
+        <field name="model">hr.employee.participation</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Commission">
+                <field name="account_move_id"/>
+                <field name="commission_type"/>
+                <field name="commission_p"/>
+                <field name="commission_value"/>
+                <field name="part_line_ids" widget="many2many_tags"/>
+                <field name="state" widget="badge" decoration-success="state == 'approved'" decoration-danger="state == 'disapproved'"/>
+                <field name="payment_state" widget="badge" decoration-danger="payment_state == 'not_paid'" decoration-success="payment_state == 'paid'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="account_sale_commission_search" model="ir.ui.view">
+        <field name="name">account.sale.commission.search</field>
+        <field name="model">hr.employee.participation</field>
+        <field name="arch" type="xml">
+            <search string="Search Sale Commission">
+                <field name="account_move_id" string="Account Move"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_account_sale_commission" model="ir.actions.act_window">
+        <field name="name">Sale Commission</field>
+        <field name="res_model">hr.employee.participation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="account_sale_commission_search"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new sale commission
+          </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_account_sale_commission"
+            name="Comisiones de ventas"
+            action="action_account_sale_commission"
+            parent="hr_payroll.menu_hr_payroll_employees_root"
+            sequence="50"/>
+
+    <menuitem
+            id="menu_sale_commission"
+            name="Comisiones de ventas"
+            action="action_account_sale_commission"
+            parent="hr.menu_hr_employee_payroll"
+            sequence="50"/>
+
+</odoo>

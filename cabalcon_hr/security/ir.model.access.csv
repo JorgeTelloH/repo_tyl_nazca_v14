@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_afp_user,res.afp.user,model_res_afp,hr.group_hr_user,1,1,1,1
+access_res_afp_employee,res.afp.employee,model_res_afp,base.group_user,1,0,0,0
+access_hr_occupational_category_user,hr_occupational_category.user,model_hr_occupational_category,hr.group_hr_user,1,1,1,1
+access_hr_occupational_category_employee,hr_occupational_category.employee,model_hr_occupational_category,base.group_user,1,0,0,0
+access_hr_educational_situation_employee,hr_educational_situation.employee,model_hr_educational_situation,base.group_user,1,0,0,0
+access_hr_contract_type_manager,hr.contract.type.manager,model_hr_contract_type,hr_contract.group_hr_contract_manager,1,1,1,1
+access_hr_contract_type_public,hr.contract.type.public,model_hr_contract_type,,1,0,0,0
+access_hr_employee_document_type,hr.employee.document_type,model_hr_employee_document_type,hr.group_hr_manager,1,1,1,1
+access_hr_employee_document_type_all,hr.employee.document_type_all,model_hr_employee_document_type,,1,0,0,0

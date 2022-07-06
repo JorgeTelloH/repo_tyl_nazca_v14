@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data  noupdate="0">
+	<!-- <record id="ple_base_rule" model="ir.rule">
+        <field name="name">Follow-up rule for ple purchase</field>
+        <field name="model_id" ref="model_ple_base"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	</record> -->
+
+	<record model="ir.module.category" id="module_category_ple_base">
+            <field name="name">SUNAT</field>
+            <field name="description">Reportes SUNAT</field>
+            <field name="sequence">7</field>
+        </record>
+
+        <record id="group_ple_base_user" model="res.groups">
+            <field name="name">Registro Compras-Ventas</field>
+            <field name="comment">Registro de Compras-Ventas SUNAT</field>
+            <field name="category_id" ref="module_category_ple_base"/>
+        </record>
+
+        <record id="group_ple_base_manager" model="res.groups">
+            <field name="name">Contabilidad Completa</field>
+            <field name="comment">Contabilidad Completa SUNAT</field>
+            <field name="category_id" ref="module_category_ple_base"/>
+            <field name="implied_ids" eval="[(4, ref('group_ple_base_user'))]"/>
+        </record>
+
+        <!--<record id="base.user_admin" model="res.users">
+            <field name="groups_id" eval="[(4, ref('ple_base.group_ple_base_user'))]"/>
+        </record>-->
+
+        <record id="base.group_system" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('ple_base.group_ple_base_manager'))]"/>
+        </record>
+
+    <record id="ple_base_rule" model="ir.rule">
+        <field name="name">Follow-up rule for SUNAT</field>
+        <field name="model_id" ref="model_ple_base"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+    <record id="ple_base_personal_rule" model="ir.rule">
+        <field name="name">Registro Compras-Ventas</field>
+        <field ref="model_ple_base" name="model_id"/>
+        <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('ple_base.group_ple_base_user'))]"/>
+    </record>
+
+    <record id="ple_base_see_all" model="ir.rule">
+        <field name="name">Contabilidad Completa</field>
+        <field ref="model_ple_base" name="model_id"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('ple_base.group_ple_base_manager'))]"/>
+    </record>
+</data>
+</odoo>
+

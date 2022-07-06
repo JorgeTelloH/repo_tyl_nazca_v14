@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="res_calendar_operation_tree_cabalcon" model="ir.ui.view">
+            <field name="name">calendar.operation.tree.cabalcon</field>
+            <field name="model">calendar.operation</field>
+            <field eval="100" name="priority"/>
+            <field name="inherit_id" ref="operations_cabalcon.res_calendar_drive_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="create">0</attribute>
+                    <attribute name="edit">1</attribute>
+                </xpath>
+                <field name="hours_unavailable" position="after">
+                    <field name="hours_extra_25" widget="float_time"/>
+                    <field name="hours_extra_35" widget="float_time"/>
+                </field>
+                <field name="hours_extra" position="after">
+                     <field name="approve" widget="boolean_toggle" attrs="{'invisible':[('hours_extra','=',0)]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="res_calendar_drive_search" model="ir.ui.view">
+           <field name="name">calendar.operation.search</field>
+           <field name="model">calendar.operation</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="employee_id" />
+                    <group expand="1" string="Group By">
+                        <filter string="Colaborador" name="employee_id" context="{'group_by':'employee_id'}"/>
+                    </group>
+                </search>
+           </field>
+        </record>
+
+    </data>
+</odoo>

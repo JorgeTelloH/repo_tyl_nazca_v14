@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_report_ple,report_ple,model_report_ple,account.group_account_invoice,1,1,1,1
+access_report_ple_14,report_ple_14,model_report_ple_14,account.group_account_invoice,1,1,1,1
+access_report_ple_14_line,report_ple_14_line,model_report_ple_14_line,account.group_account_invoice,1,1,1,1
+access_report_ple_08,report_ple_08,model_report_ple_08,account.group_account_invoice,1,1,1,1
+access_report_ple_08_line,report_ple_08_line,model_report_ple_08_line,account.group_account_invoice,1,1,1,1

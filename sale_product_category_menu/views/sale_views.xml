@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="sale_product_category"
+        name="Categorías de Producto"
+        action="product.product_category_action_form"
+        parent="sale.prod_config_main"
+    />
+</odoo>

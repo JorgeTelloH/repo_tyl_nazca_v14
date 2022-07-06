@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="hr_rule_input_overtime25" model="hr.payslip.input.type">
+            <field name="code">OVERTIME25</field>
+            <field name="name">Horas Extras al 25%</field>
+        </record>
+
+        <record id="hr_rule_input_overtime35" model="hr.payslip.input.type">
+            <field name="code">OVERTIME35</field>
+            <field name="name">Horas Extras al 35%</field>
+        </record>
+
+        <record id="hr_rule_input_production" model="hr.payslip.input.type">
+            <field name="code">PRODUCTION</field>
+            <field name="name">Producción</field>
+        </record>
+
+        <!-- Salary Structure -->
+        <record id="structure_overtime" model="hr.payroll.structure">
+            <field name="name">Horas extras y Producción</field>
+            <field name="type_id" ref="hr_contract.structure_type_employee"/>
+            <field name="country_id" eval="False"/>
+        </record>
+
+
+        <record id="hr_salary_rule_overtime25" model="hr.salary.rule">
+            <field name="name">Horas Extras al 25%</field>
+            <field name="code">OVERTIME-25</field>
+            <field name="sequence" eval="100"/>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.OVERTIME25</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.OVERTIME25.amount</field>
+            <field name="struct_id" ref="structure_overtime"/>
+        </record>
+
+        <record id="hr_salary_rule_overtime35" model="hr.salary.rule">
+            <field name="name">Horas Extras al 35%</field>
+            <field name="code">OVERTIME-35</field>
+            <field name="sequence" eval="100"/>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.OVERTIME35</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.OVERTIME35.amount</field>
+            <field name="struct_id" ref="structure_overtime"/>
+        </record>
+
+        <record id="hr_salary_rule_prodution" model="hr.salary.rule">
+            <field name="name">Producción</field>
+            <field name="code">PRODUCTION</field>
+            <field name="sequence" eval="100"/>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.PRODUCTION</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.PRODUCTION.amount</field>
+            <field name="struct_id" ref="structure_overtime"/>
+        </record>
+
+    </data>
+</odoo>

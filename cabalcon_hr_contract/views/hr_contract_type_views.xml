@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_contract_contract_type_view_form" model="ir.ui.view">
+        <field name="name">hr.contract.contract.type.form</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+            <field name="employee_id" position="after">
+                <field name="contract_type_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_contract_type_view_form" model="ir.ui.view">
+        <field name="name">hr.contract.type.form</field>
+        <field name="model">hr.contract.type</field>
+        <field name="arch" type="xml">
+            <form string="Contract Type">
+                <sheet>
+                     <group>
+                        <field name="name"/>
+                     </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_contract_type_view_tree" model="ir.ui.view">
+        <field name="name">hr.contract.type.tree</field>
+        <field name="model">hr.contract.type</field>
+        <field name="arch" type="xml">
+            <tree string="Contract Type" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_contract_type_search" model="ir.ui.view">
+        <field name="name">hr.contract.type.search</field>
+        <field name="model">hr.contract.type</field>
+        <field name="arch" type="xml">
+            <search string="Search Contract Type">
+                <field name="name" string="Contract Type"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hr_contract_type" model="ir.actions.act_window">
+        <field name="name">Contract Type</field>
+        <field name="res_model">hr.contract.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="hr_contract_type_search"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new contract type
+          </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="hr_menu_contract_type"
+        name="Contract Type"
+        action="action_hr_contract_type"
+        parent="hr.menu_human_resources_configuration"
+        sequence="10"/>
+
+    <record id="hr_contract_expiration_view_tree" model="ir.ui.view">
+            <field name="name">hr.contract.expiration.tree</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="replace">
+                    <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-warning="state == 'close'" decoration-success="state == 'open'" decoration-danger="state == 'near_expire'"/>
+                </field>
+            </field>
+        </record>
+</odoo>

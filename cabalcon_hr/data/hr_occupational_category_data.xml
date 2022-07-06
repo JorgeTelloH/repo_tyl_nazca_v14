@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="co_01" model="hr.occupational.category">
+            <field name="code">01</field>
+            <field name="name">Ejecutivo</field>
+            <field name="private_sector">True</field>
+            <field name="public_sector">False</field>
+            <field name="other_entities">True</field>
+
+        </record>
+
+        <record id="co_02" model="hr.occupational.category">
+            <field name="code">02</field>
+            <field name="name">Obrero</field>
+            <field name="private_sector">True</field>
+            <field name="public_sector">False</field>
+            <field name="other_entities">True</field>
+        </record>
+
+        <record id="co_03" model="hr.occupational.category">
+            <field name="code">03</field>
+            <field name="name">Empleado</field>
+            <field name="private_sector">True</field>
+            <field name="public_sector">False</field>
+            <field name="other_entities">True</field>
+        </record>
+
+        <record id="co_11" model="hr.occupational.category">
+            <field name="code">11</field>
+            <field name="name">Funcionario</field>
+            <field name="private_sector">False</field>
+            <field name="public_sector">True</field>
+            <field name="other_entities">True</field>
+        </record>
+
+        <record id="co_13" model="hr.occupational.category">
+            <field name="code">13</field>
+            <field name="name">Técnico</field>
+            <field name="private_sector">False</field>
+            <field name="public_sector">True</field>
+            <field name="other_entities">True</field>
+        </record>
+
+        <record id="co_14" model="hr.occupational.category">
+            <field name="code">14</field>
+            <field name="name">Auxiliar</field>
+            <field name="private_sector">False</field>
+            <field name="public_sector">True</field>
+            <field name="other_entities">True</field>
+        </record>
+
+        <record id="co_21" model="hr.occupational.category">
+            <field name="code">21</field>
+            <field name="name">Funcionario público - LEY 30057</field>
+            <field name="private_sector">False</field>
+            <field name="public_sector">True</field>
+            <field name="other_entities">True</field>
+        </record>
+
+        <record id="co_22" model="hr.occupational.category">
+            <field name="code">22</field>
+            <field name="name">Directivo público - LEY 30057</field>
+            <field name="private_sector">False</field>
+            <field name="public_sector">True</field>
+            <field name="other_entities">True</field>
+        </record>
+
+        <record id="co_23" model="hr.occupational.category">
+            <field name="code">23</field>
+            <field name="name">Servidor sivil de carrera - LEY 30057</field>
+            <field name="private_sector">False</field>
+            <field name="public_sector">True</field>
+            <field name="other_entities">True</field>
+        </record>
+
+        <record id="co_24" model="hr.occupational.category">
+            <field name="code">24</field>
+            <field name="name">Servidor de actividades complementarias - LEY 30057</field>
+            <field name="private_sector">False</field>
+            <field name="public_sector">True</field>
+            <field name="other_entities">True</field>
+        </record>
+    </data>
+</odoo>

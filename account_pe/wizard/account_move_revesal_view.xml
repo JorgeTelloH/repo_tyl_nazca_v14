@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_move_reversal" model="ir.ui.view">
+        <field name="name">account.move.reversal.form</field>
+        <field name="model">account.move.reversal</field>
+        <field name="inherit_id" ref="l10n_latam_invoice_document.view_account_move_reversal"/>
+        <field name="arch" type="xml">
+
+            <field name="l10n_latam_document_type_id" position="replace">
+
+                <field name="show_journal" invisible="True"/>
+                <field name="l10n_latam_document_type_id" attrs="{'invisible': [('l10n_latam_use_documents', '=', False)], 'required': [('l10n_latam_use_documents', '=', True)]}" options="{'no_open': True, 'no_create': True}"/>
+            </field>
+
+            <xpath expr="//field[@name='journal_id']" position="attributes">
+                <attribute name="attrs">{'invisible': [('show_journal', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

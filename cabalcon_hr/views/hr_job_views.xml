@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_hr_job_form_cabalcon" model="ir.ui.view">
+            <field name="name">hr.job.form.cabalcon</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_hr_job_form"/>
+            <field name="arch" type="xml">
+                <notebook position="before">
+                    <group>
+                        <field name="occupational_category_id" options="{'no_create': True}"/>
+                    </group>
+                    <group>
+                        <group>
+                             <field name="min_wage"/>
+                        </group>
+                        <group>
+                            <field name="max_wage"/>
+                        </group>
+                    </group>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="view_job_filter_cabalcon" model="ir.ui.view">
+            <field name="name">hr.job.search.cabalcon</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_job_filter"/>
+            <field name="arch" type="xml">
+                <field name="department_id" position="after">
+                    <field name="occupational_category_id"/>
+                </field>
+                <filter name="status" position="after">
+                     <filter string="Categoría ocupacional" name="occupational_category" domain="[]" context="{'group_by': 'occupational_category_id'}"/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</odoo>

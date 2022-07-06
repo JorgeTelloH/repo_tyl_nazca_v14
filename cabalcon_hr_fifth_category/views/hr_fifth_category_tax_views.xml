@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_fifth_category_tax_form_view" model="ir.ui.view">
+            <field name="name">hr.fifth.category.tax.form</field>
+            <field name="model">hr.fifth.category.tax</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Escala UIT"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tax"/>
+                                <field name="uit_from"/>
+                            </group>
+                            <group>
+                                <field name="uit_to"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_fifth_category_tax_tree_view" model="ir.ui.view">
+            <field name="name">hr.fifth.category.tax.tree</field>
+            <field name="model">hr.fifth.category.tax</field>
+            <field name="arch" type="xml">
+                <tree string="ModelTitle">
+                    <field name="name"/>
+                    <field name="tax"/>
+                </tree>
+            </field>
+        </record>
+
+<!--        <record id="hr_fifth_category_tax_search_view" model="ir.ui.view">-->
+<!--            <field name="name">hr.fifth.category.tax.search</field>-->
+<!--            <field name="model">hr.fifth.category.tax</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="ModelTitle">-->
+<!--                    <group expand="1" string="Group By">-->
+<!--                        <filter string="Example Field" name="example_field" domain="[]"-->
+<!--                                context="{'group_by':'example_field'}"/>-->
+<!--                    </group>-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="hr_fifth_category_tax_act_window" model="ir.actions.act_window">
+            <field name="name">ModelTitle</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.fifth.category.tax</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+    </data>
+</odoo>

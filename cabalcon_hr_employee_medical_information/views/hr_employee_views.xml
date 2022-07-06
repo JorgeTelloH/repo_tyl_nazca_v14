@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <record id="act_vaccination_employee" model="ir.actions.act_window">
+        <field name="name">Vacunación</field>
+        <field name="res_model">hr.employee.vaccination</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{
+                'search_default_employee_id': [active_id],
+                'default_employee_id': active_id,
+            }</field>
+    </record>
+
+    <record model="ir.ui.view" id="view_employee_form">
+        <field name="name">hr.employee.form.medical.information)</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+             <sheet position="before">
+                 <field name="alert_vaccination" invisible="1"/>
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    attrs="{'invisible': [('alert_vaccination','=',False)]}">
+                    <p>
+                        <strong>Debe completar las dosis de vacunacion para este empleado</strong>
+                    </p>
+                </div>
+            </sheet>
+            <div name="button_box" position="inside">
+                <button
+                        name="%(act_vaccination_employee)d"
+                        class="oe_stat_button"
+                        icon="fa-medkit"
+                        type="action">
+                    <field name="vaccination_count" widget="statinfo" string="Vacunación"/>
+                </button>
+            </div>
+            <field name="emergency_phone" position="after">
+                <label for="blood_name"/>
+                <div class="o_row">
+                    <field name="blood_name"/>
+                    <span></span>
+                    <field name="blood_type"/>
+                </div>
+            </field>
+        </field>
+    </record>
+</odoo>

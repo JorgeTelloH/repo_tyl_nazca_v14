@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+    <record model="ir.sequence" id="expense_sequence">
+        <field name="name">Secuencia de Gastos</field>
+        <field name="implementation">no_gap</field>
+        <field name="code">expense</field>
+        <field name="prefix">GASTO-</field>
+        <field name="padding">6</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

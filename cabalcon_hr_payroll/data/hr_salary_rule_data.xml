@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+    <!--  Poner aqui las reglas salariales  -->
+        <record id="structure_ALW" model="hr.payroll.structure">
+            <field name="name">Subsidios</field>
+            <field name="type_id" ref="hr_contract.structure_type_employee"/>
+            <field name="rule_ids" eval="[]"/>
+        </record>
+
+        <record id="hr_rule_da" model="hr.salary.rule">
+            <field name="name">Asignación Familiar</field>
+            <field name="sequence" eval="10"/>
+            <field name="code">AF</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.is_da</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.da</field>
+            <field name="struct_id" ref="structure_ALW"/>
+        </record>
+
+        <record id="hr_rule_travel" model="hr.salary.rule">
+            <field name="name">Movilidad</field>
+            <field name="sequence" eval="11"/>
+            <field name="code">ST</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.travel_allowance > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">if contract.travel_allowance_month:
+   result = contract.travel_allowance
+else:
+   result = contract.travel_allowance * worked_days.WORK100.number_of_days</field>
+            <field name="struct_id" ref="structure_ALW"/>
+        </record>
+
+        <record id="hr_rule_meal" model="hr.salary.rule">
+            <field name="name">Subsidio de alimentación</field>
+            <field name="code">SA</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.meal_allowance > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.meal_allowance * worked_days.WORK100.number_of_days</field>
+            <field name="sequence" eval="12"/>
+            <field name="struct_id" ref="structure_ALW"/>
+         </record>
+
+        <record id="hr_rule_basket" model="hr.salary.rule">
+            <field name="name">Aguinaldos</field>
+            <field name="sequence" eval="90"/>
+            <field name="code">AGUINALDO</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = payslip.date_from.month == 12</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.basket</field>
+            <field name="struct_id" ref="structure_ALW"/>
+        </record>
+
+        <record id="hr_rule_medical" model="hr.salary.rule">
+            <field name="name">Asignación médica</field>
+            <field name="sequence" eval="13"/>
+            <field name="code">AM</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.medical_allowance > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.medical_allowance</field>
+            <field name="struct_id" ref="structure_ALW"/>
+        </record>
+
+        <record id="structure_employing_contributions" model="hr.payroll.structure">
+            <field name="name">Aportes del empleador</field>
+            <field name="type_id" ref="hr_contract.structure_type_employee"/>
+            <field name="rule_ids" eval="[]"/>
+        </record>
+
+        <record id="employee_aporte_essalud" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="name">Aporte ESSALUD</field>
+            <field name="code">ESSALUD</field>
+            <field name="sequence">210</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = compute_employment_essalud(payslip, categories, TOTALIMP)</field>
+            <field name="struct_id" ref="structure_employing_contributions"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="True"/>
+        </record>
+
+         <!-- Vacaciones -->
+        <record id="cabalcon_hr_holidays.work_entry_type_vac" model="hr.work.entry.type">
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>
+
+        <record id="cabalcon_hr_holidays.holiday_status_vac" model="hr.leave.type">
+            <field name="work_entry_type_id" ref="cabalcon_hr_holidays.work_entry_type_vac"></field>
+        </record>
+
+         <record id="structure_employing_vacations" model="hr.payroll.structure">
+            <field name="name">Vacaciones</field>
+            <field name="type_id" ref="hr_contract.structure_type_employee"/>
+            <field name="rule_ids" eval="[]"/>
+        </record>
+
+        <record id="employee_vacations" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Vacaciones</field>
+            <field name="code">VAC</field>
+            <field name="sequence">80</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.VAC</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.VAC.amount</field>
+            <field name="struct_id" ref="structure_employing_vacations"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_day_compensatory" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Días compensatorios</field>
+            <field name="code">DCOMP</field>
+            <field name="sequence">110</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.LEAVE105</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.LEAVE105 and worked_days.LEAVE105.amount</field>
+            <field name="struct_id" ref="structure_employing_vacations"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_absence_paid" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Ausencia pagadas</field>
+            <field name="code">AP</field>
+            <field name="sequence">110</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.LEAVE120</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.LEAVE120.amount</field>
+            <field name="struct_id" ref="structure_employing_vacations"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="hr_rule_total_taxable_amount" model="hr.salary.rule">
+            <field name="name">Total Imponible</field>
+            <field name="sequence" eval="100"/>
+            <field name="code">TOTALIMP</field>
+            <field name="category_id" ref="hr_payroll.GROSS"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.BASIC + categories.ALW
+if rules.BS_GRATIF:
+   result = result  - BS_GRATIF
+if rules.BS_BONO:
+   result = result  - BS_BONO
+if rules.AGUINALDO:
+   result = result  - AGUINALDO</field>
+            <field name="struct_id" ref="structure_ALW"/>
+        </record>
+
+        <record id="structure_employing_afp_onp" model="hr.payroll.structure">
+            <field name="name">Fondo de pensiones y Onp</field>
+            <field name="type_id" ref="hr_contract.structure_type_employee"/>
+            <field name="rule_ids" eval="[]"/>
+        </record>
+
+        <record id="employee_aporte_afp_fondo" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">AFP Fondo</field>
+            <field name="code">AFPF</field>
+            <field name="sequence">210</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.regimen_pensions == 'afp'</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">if contract.regimen_pensions == 'afp':
+     result = -(TOTALIMP * contract.afp_seat) / 100
+else:
+     result = 0</field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_aporte_afp_comision_flujo" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">AFP Comisión Flujo</field>
+            <field name="code">AFPCF</field>
+            <field name="sequence">210</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.regimen_pensions == 'afp'  and  employee.commission_type ==  'FLUJO'</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">if contract.regimen_pensions == 'afp':
+     result = -(TOTALIMP * contract.afp_commission_flow)/100
+else:
+     result = 0</field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+        <record id="employee_aporte_afp_comision_mixta" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">AFP Comisión Mixta</field>
+            <field name="code">AFPCM</field>
+            <field name="sequence">210</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.regimen_pensions == 'afp'  and  employee.commission_type ==  'MIXTA'</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">if contract.regimen_pensions == 'afp':
+     result = -(TOTALIMP * contract.afp_commission_mixed)/100
+else:
+     result = 0</field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_aporte_afp_seguro" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">AFP Seguro</field>
+            <field name="code">AFPS</field>
+            <field name="sequence">210</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = result = contract.regimen_pensions == 'afp'</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">if  contract.regimen_pensions == 'afp':
+     result = -(TOTALIMP * contract.afp_insurance)/100
+     if employee.company_id.insurance_premium_cap > TOTALIMP :
+         result = -(TOTALIMP * contract.afp_insurance)/100
+     else:
+         result = -(employee.company_id.insurance_premium_cap * contract.afp_insurance)/100
+else:
+     result = 0</field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="TOTAL" model="hr.salary.rule.category">
+            <field name="name">TOTAL</field>
+            <field name="code">TOTAL</field>
+        </record>
+
+        <record id="employee_aporte_afp_total_integra" model="hr.salary.rule">
+            <field name="category_id" ref="TOTAL"/>
+            <field name="name">TOTAL INTEGRA</field>
+            <field name="code">TOTALAFPIN</field>
+            <field name="sequence">250</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.regimen_pensions == 'afp'  and employee.afp_code ==  'IN'</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">total = AFPF + AFPS
+if employee.commission_type ==  'MIXTA':
+  total = total + AFPCM
+if employee.commission_type ==  'FLUJO':
+  total = total + AFPCF
+result = total </field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_aporte_afp_total_profuturo" model="hr.salary.rule">
+            <field name="category_id" ref="TOTAL"/>
+            <field name="name">TOTAL PROFUTURO</field>
+            <field name="code">TOTALAFPPR</field>
+            <field name="sequence">250</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.regimen_pensions == 'afp'  and employee.afp_code ==  'PR'</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">total = AFPF + AFPS
+if employee.commission_type ==  'MIXTA':
+  total = total + AFPCM
+if employee.commission_type ==  'FLUJO':
+  total = total + AFPCF
+result = total </field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_aporte_afp_total_prima" model="hr.salary.rule">
+            <field name="category_id" ref="TOTAL"/>
+            <field name="name">TOTAL PRIMA</field>
+            <field name="code">TOTALAFPRI</field>
+            <field name="sequence">250</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.regimen_pensions == 'afp'  and  employee.afp_code ==  'RI'</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">total = AFPF + AFPS
+if employee.commission_type ==  'MIXTA':
+  total = total + AFPCM
+if employee.commission_type ==  'FLUJO':
+  total = total + AFPCF
+result = total </field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+       <record id="employee_aporte_afp_total_habitat" model="hr.salary.rule">
+            <field name="category_id" ref="TOTAL"/>
+            <field name="name">TOTAL HABITAT</field>
+            <field name="code">TOTALAFPHA</field>
+            <field name="sequence">250</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.regimen_pensions == 'afp'  and  employee.afp_code ==  'HA'</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">total = AFPF + AFPS
+if employee.commission_type ==  'MIXTA':
+  total = total + AFPCM
+if employee.commission_type ==  'FLUJO':
+  total = total + AFPCF
+result = total </field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="employee_aporte_onp_fondo" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">ONP Fondo</field>
+            <field name="code">ONPF</field>
+            <field name="sequence">190</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.regimen_pensions == 'onp'</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">if contract.regimen_pensions == 'onp':
+     result = -(TOTALIMP * contract.afp_seat) / 100
+else:
+     result = 0</field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+
+
+        <record id="employee_aporte_renta5ta" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Renta 5ta Categoría</field>
+            <field name="code">REN5TA</field>
+            <field name="sequence">190</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.produce_5ta_category > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -contract.produce_5ta_category</field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+        <record id="employee_aporte_retjudicial" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Retención Judicial</field>
+            <field name="code">RENJUD</field>
+            <field name="sequence">210</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.judicial_retention > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.judicial_retention</field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+        <record id="employee_aporte_eps_plan" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="name">EPS PLAN</field>
+            <field name="code">EPSPLAN</field>
+            <field name="sequence">193</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = employee.eps == True</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = employee.eps_amount_plan</field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+        
+        <record id="employee_aporte_cant_cred" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="name">Cantidad de créditos</field>
+            <field name="code">CANTCRED</field>
+            <field name="sequence">193</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = employee.eps == True</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = employee.eps_credit</field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+<!--        Esta regla la comente porque el campo cts_period ya no existe -->
+<!--        <record id="hr_rule_cts" model="hr.salary.rule">-->
+<!--            <field name="name">CTS</field>-->
+<!--            <field name="sequence" eval="11"/>-->
+<!--            <field name="code">CTS</field>-->
+<!--            <field name="category_id" ref="hr_payroll.ALW"/>-->
+<!--            <field name="condition_select">python</field>-->
+<!--            <field name="condition_python">result = contract.state == 'close'</field>-->
+<!--            <field name="amount_select">code</field>-->
+<!--            <field name="amount_python_compute">result = contract.employee_id.cts_period</field>-->
+<!--            <field name="struct_id" ref="structure_ALW"/>-->
+<!--        </record>-->
+
+         <record id="employee_aporte_impcred" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="name">Importe del Crediro</field>
+            <field name="code">IMPCRED</field>
+            <field name="sequence">193</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = employee.eps == True</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = employee.eps_amount</field>
+            <field name="struct_id" ref="structure_employing_contributions"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="True"/>
+        </record>
+
+        <record id="employee_aporte_otro_seguro" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Otro Seguros</field>
+            <field name="code">OTROSEG</field>
+            <field name="sequence">195</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = employee.eps == True</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -employee.eps_amount_employee</field>
+            <field name="struct_id" ref="structure_employing_afp_onp"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_employer_contributions" eval="False"/>
+        </record>
+
+        <record id="hr_rule_avcfp" model="hr.salary.rule">
+            <field name="name">Aporte voluntario con fin previsional</field>
+            <field name="sequence" eval="10"/>
+            <field name="code">AV</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.is_voluntary_contribution</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.voluntary_contribution</field>
+            <field name="struct_id" ref="structure_ALW"/>
+        </record>
+
+        <record id="hr_rule_avsfp" model="hr.salary.rule">
+            <field name="name">Aporte voluntario sin fin previsional</field>
+            <field name="sequence" eval="10"/>
+            <field name="code">AV</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.is_voluntary_endless_contribution</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.voluntary_endless_contribution</field>
+            <field name="struct_id" ref="structure_ALW"/>
+        </record>
+
+
+    </data>
+</odoo>

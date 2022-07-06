@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+<!--        <record id="hr_recruitment.model_hr_applicant" model="ir.model">-->
+<!--            <field name="website_form_key">apply_job</field>-->
+<!--            <field name="website_form_default_field_id" ref="hr_recruitment.field_hr_applicant__description" />-->
+<!--            <field name="website_form_access">True</field>-->
+<!--            <field name="website_form_label">Apply for a Job</field>-->
+<!--        </record>-->
+        <function model="ir.model.fields" name="formbuilder_whitelist">
+            <value>hr.applicant</value>
+            <value eval="[
+                'firstname',
+                'lastname',
+                'lastname2',
+                'description',
+                'email_from',
+                'partner_name',
+                'partner_phone',
+                'gender',
+                'document_type',
+                'identification_id',
+                'birthday',
+                'country_id',
+                'marital',
+                'children',
+                'blood_name',
+                'blood_type',
+                'street',
+                'street_number',
+                'street_number2',
+                'l10n_pe_district',
+                'city_id',
+                'addres_country_id',
+                'state_id',
+                'zip',
+                'type_vehicle',
+                'contact_name1',
+                'contact_relation1',
+                'contact_mobile1',
+                'contact_name2',
+                'contact_relation2',
+                'contact_mobile2',
+                'bank_id',
+                'bank_account',
+                'cci',
+                'number_ruc',
+                'has_family',
+                'family_name',
+                'department',
+                'vehicular_plate',
+                'year_of_manufacture',
+                'model_vehicle',
+                'mark_of_vehicle',
+                'color_of_vehicle',
+                'proprietor',
+                'expiration_date',
+                'category_of_license',
+                'driver_license',
+                'soat_expiration',
+                'job_id',
+                'department_id',
+            ]"/>
+        </function>
+    </data>
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="hr.employee.health.entity" id="hr_employee_health_entity_as">
+            <field name="code">AS</field>
+            <field name="name">Ace Seguros</field>
+        </record>
+        <record model="hr.employee.health.entity" id="hr_employee_health_entity_cardif">
+            <field name="code">CARDIF</field>
+            <field name="name">Cardif del Perú Compañía de Seguros</field>
+        </record>
+        <record model="hr.employee.health.entity" id="hr_employee_health_entity_inter">
+            <field name="code">INTER</field>
+            <field name="name">Interseguro Compañía de Seguros</field>
+        </record>
+        <record model="hr.employee.health.entity" id="hr_employee_health_entity_laposi">
+            <field name="code">LaPositiva</field>
+            <field name="name">La Positiva Compañía de Seguros</field>
+        </record>
+        <record model="hr.employee.health.entity" id="hr_employee_health_entity_mapfre">
+            <field name="code">Mapfre</field>
+            <field name="name">Mapfre Perú Compañía de Seguros</field>
+        </record>
+        <record model="hr.employee.health.entity" id="hr_employee_health_entity_pasif">
+            <field name="code">Pacifico</field>
+            <field name="name">Pacifico Peruano Suiza Compañía de seguros</field>
+        </record>
+        <record model="hr.employee.health.entity" id="hr_employee_health_entity_protecta">
+            <field name="code">Protecta</field>
+            <field name="name">Protecta Compañía de Seguros.</field>
+        </record>
+        <record model="hr.employee.health.entity" id="hr_employee_health_entity_rimac">
+            <field name="code">Rimac</field>
+            <field name="name">Rimac Internacional Compañía de Seguros</field>
+        </record>
+    </data>
+</odoo>
