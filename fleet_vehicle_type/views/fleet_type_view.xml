@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+ 
+        <record id="view_fleet_form_type" model="ir.ui.view">
+            <field name="name">fleet_vehicle.fleet_type_form_inherit_view</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field eval="20" name="priority"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="model_year" position="after">
+                    <field name="vehicle_type_id" attrs="{'required': [('license_plate', '!=', None)]}"/>
+                </field>
+            </field>
+        </record>
+
+  </data>
+</odoo>
