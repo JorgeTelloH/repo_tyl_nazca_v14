@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='industry_id']" position="after">
+                <field name="operation_type_id" attrs="{'invisible': [('is_supplier','!=',True)]}" options="{'no_create_edit': True}" widget="many2many_tags"/>
+                <field name="active_platform_gps" attrs="{'invisible': [('is_supplier','!=',True)]}"/>
+            </xpath>
+            <xpath expr="//form/sheet/notebook" position="inside">
+                <page string="Plataforma GPS" attrs="{'invisible': [('active_platform_gps','!=',True)]}">
+                    <field name="platform_gps_ids">
+                        <tree editable="bottom">
+                            <field name="name" widget="url" placeholder="http://www.plataforma-gps.com"/>
+                            <field name="platform_date"/>
+                            <field name="notes"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Alertas de Proveedor" attrs="{'invisible': [('is_supplier','!=',True)]}">
+                    <field name="partner_alert_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="message"/>
+                            <field name="group_alert"/>
+                            <field name="alert_active"/>
+                            <field name="alert_date" readonly="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_partner_property_form_tms_expense" model="ir.ui.view">
+        <field name="name">res.partner.tms.expense</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <xpath expr='//field[@name="property_account_payable_id"]' position="after">
+                <field name="tms_expense_account_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

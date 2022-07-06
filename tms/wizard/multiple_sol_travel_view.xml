@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- add fields and button in view_multiple_sol_travel view-->
+    <record id="view_multiple_sol_travel" model="ir.ui.view">
+        <field name="name">form.view.select.multi.sol.travel.wizard</field>
+        <field name="model">multiple.sol.travel</field>
+        <field name="arch" type="xml">
+            <form string="Servicio(s) a Planificar">
+                <group>
+                    <field name="sol_ids" nolabel="1" options="{'no_create':True}" domain="[('is_travel', '=', True),('check_assigned','=',False),('state','=','done')]">
+                        <tree>
+                            <field name="order_id" string="Servicio"/>
+                            <field name="order_partner_id"/>
+                            <field name="appt_start"/>
+                            <field name="appt_end"/>
+                            <field name="product_id"/>
+                            <field name="orig_place"/>
+                            <field name="dest_place"/>
+                            <field name="vehicle_type_id"/>
+                            <field name="load_capacity_id"/>
+                            <field name="load_type_id"/>
+                            <field name="product_uom_qty" string="Cantidad"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button string="Planificar Servicios" name="add_multiple_sol_travel" type="object" class="btn-primary"/>
+                    o
+                    <button string="Cancelar" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard view Action-->
+    <record id="open_view_multiple_sol_travel_action" model="ir.actions.act_window">
+        <field name="name">Agregar Servicio(s) a Planificar</field>
+        <field name="res_model">multiple.sol.travel</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_multiple_sol_travel"/>	
+    </record>
+
+</odoo>
+

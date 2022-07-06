@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_tms_tracking_search" model="ir.ui.view">
+        <field name="name">tms.tracking.search</field>
+        <field name="model">tms.tracking</field>
+        <field name="arch" type="xml">
+            <search string="Seguimientos">
+                <filter domain="[('state','=','draft')]" name="draft" string="Borrador"/>
+                <filter domain="[('state','=','confirm')]" name="confirm" string="Confirmado"/>
+                <filter domain="[('state','=','cancel')]" name="cancel" string="Anulado"/>
+                <field name="travel_id"/>
+                <field name="travel_route_id"/>
+                <field name="route_operation_id"/>
+                <field name="operation_type_id"/>
+                <field name="type_tracking"/>
+                <field name="status_track"/>
+                <field name="state"/>
+                <field name="travel_operative"/>
+                <field name="vendor_id"/>
+                <field name="driver_id"/>
+                <group  expand='0' string='Group by...'>
+                    <filter context="{'group_by': 'date'}" name="date" string="Fecha Seguimiento"/>
+                    <filter context="{'group_by': 'date:day'}" name="day" string="Día Seguimiento"/>
+                    <filter context="{'group_by': 'travel_id'}" name="travel_id" string="Viaje"/>
+                    <filter context="{'group_by': 'operation_type_id'}" name="operation_type_id" string="Tipo de Operación"/>
+                    <filter context="{'group_by': 'type_tracking'}" name="type_tracking" string="Tipo Tracking"/>
+                    <filter context="{'group_by': 'status_track'}" name="status_track" string="Estado Seguimiento"/>
+                    <filter context="{'group_by': 'state'}" name="state" string="Estado"/>
+                    <filter context="{'group_by': 'vendor_id'}" name="vendor_id" string="Proveedor"/>
+                    <filter context="{'group_by': 'driver_id'}" name="driver_id" string="Conductor"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="view_tms_tracking_tree" model="ir.ui.view">
+        <field name="name">tms.tracking.tree</field>
+        <field name="model">tms.tracking</field>
+        <field name="arch" type="xml">
+            <tree string="Seguimientos" decoration-info="state=='draft'" decoration-danger="state=='cancel'" decoration-success="state=='confirm'" delete="false">
+                <field name="date"/>
+                <field name="travel_id"/>
+                <field name="route_operation_id"/>
+                <field name="travel_operative"/>
+                <field name="operation_type_id"/>
+                <field name="type_tracking"/>
+                <field name="status_track"/>
+                <field name="notes"/>
+                <field name="vendor_id"/>
+                <field name="driver_id"/>
+                <field name="position_real"/>
+                <field name="state"/>
+                <field name="create_uid" string='Creado por'/>
+                <field name="create_date" string='Fecha Creación'/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_tms_tracking_form" model="ir.ui.view">
+        <field name="name">tms.tracking.form</field>
+        <field name="model">tms.tracking</field>
+        <field name="arch" type="xml">
+            <form string="Seguimientos" delete="false">
+                <header>
+                    <field name="state" statusbar_visible="draft,confirm,cancel" widget="statusbar" statusbar_colors='{"confirm":"red"}'/>
+                    <button name="action_cancel" icon="fa-times" states="draft,confirm" string="Anulado" type="object"/>
+                    <button name="set_2_draft" icon="fa-reply"  states="cancel" string="Pasar a Borrador" type="object"/>
+                    <button name="action_confirm" icon="fa-check-square-o" states="draft" class="oe_highlight" string="Confirmado" type="object"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <label class="oe_inline" for="name" style="font-size:30px;" string="" attrs="{'invisible':[('name','=', False)]}"/>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group col="4">
+                        <!--Se coloca el puntero por defecto en la fecha-->
+                        <field name="date"/>
+                        <field name="travel_id"/>
+                        <field name="route_operation_id" domain="[('state','not in',['draft', 'finished', 'canceled'])]" options="{'no_create_edit': True}"/>
+                        <field name="operation_type_id"/>
+                        <field name="type_tracking"/>
+                        <field name="travel_operative"/>
+                        <field name="status_track" domain="[('operation_type','=',operation_type_id),('type_tracking','=',type_tracking)]" default_focus="1"/>
+                        <field name="vendor_id"/>
+                        <field name="company_id" invisible="1"/>
+                        <field name="driver_id"/>
+                    </group>
+                    <group col="4" string="GPS">
+                        <field name="latitude"/>
+                        <field name="longitude"/>
+                        <field name="position_real"/>
+                        <field name="track_img"/>
+                    </group>
+                    <group colspan="4" string="Observación">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="open_view_tms_tracking_form" model="ir.actions.act_window">
+        <field name="name">Seguimientos</field>
+        <field name="res_model">tms.tracking</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'create':True}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Crea tu primer seguimiento
+            </p>
+        </field>
+    </record>
+    <menuitem action="open_view_tms_tracking_form" id="menu_tms_tracking_form" name="Seguimientos" parent="menu_tms_traffic" sequence="4"/>
+</odoo>

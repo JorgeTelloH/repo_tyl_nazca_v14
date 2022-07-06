@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_tms_alarm_email_tree" model="ir.ui.view">
+        <field name="name">tms.alarm.email.tree</field>
+        <field name="model">tms.alarm.email</field>
+        <field name="arch" type="xml">
+            <tree string="Email para Alarmas">
+                <field name="name"/>
+                <field name="email_to"/>
+                <field name="notes"/>
+                <field name="tracking_alarm"/>
+                <field name="create_date" string="Fecha Creación"/>
+                <field name="create_uid" string="Creado por"/>
+                <field name="write_date" string="Fecha Modificación"/>
+                <field name="write_uid" string="Modificado por"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_tms_alarm_email_form" model="ir.ui.view">
+        <field name="name">tms.alarm.email.form</field>
+        <field name="model">tms.alarm.email</field>
+        <field name="arch" type="xml"> 
+            <form string="Email para Alarmas">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group col="4" string="Datos del Destinatario">
+                        <field name="name"/>
+                        <field name="email_to"/>
+                        <field name="tracking_alarm"/>
+                    </group>
+                    <group colspan="4" string="Notas">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="tms_alarm_email_search_view" model="ir.ui.view">
+        <field name="name">tms.alarm.email.search.view</field>
+        <field name="model">tms.alarm.email</field>
+        <field name="arch" type="xml">
+            <search string="Email para Alarmas">
+                <filter domain="[('active','=',True)]" string="Emails Activos" name="active"/>
+                <filter domain="[('active','!=',True)]" string="Emails Inactivos" name="no_active"/>
+                <group  expand='0' string='Group by...'>
+                    <filter context="{'group_by': 'active'}" string="Activo" name="active"/>
+                    <filter context="{'group_by': 'create_uid'}" string="Creado por" name="create_uid"/>
+                    <filter context="{'group_by' : 'write_uid'}" string="Modificado por" name="write_uid"/>
+                    <filter context="{'group_by' : 'create_date'}" string="Fecha Creación" name="create_date"/>
+                    <filter context="{'group_by' : 'write_date'}" string="Fecha Modificación" name="write_date"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="open_view_tms_alarm_email_form" model="ir.actions.act_window">
+        <field name="name">Email para Alarmas</field>
+        <field name="res_model">tms.alarm.email</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="tms_alarm_email_search_view"/>
+    </record>
+    <menuitem action="open_view_tms_alarm_email_form" id="menu_tms_settings_alarm_email_form" name="Email para Alarmas" parent="menu_tms_settings_alarm" sequence="2"/>
+</odoo>

@@ -1,0 +1,45 @@
+<odoo>
+  <data>
+        <record id="view_sale_form_operations" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="before">
+                    <field name="type_order"/>
+                    <field name="parent_id" attrs="{'invisible':[('type_order','!=','hpack')]}"/>
+                </field>
+                <field name="partner_id" position="after">
+                    <field name="date_order"/>
+                    <field name="user_id"/>
+                    <field name="employee_operative" attrs="{'readonly': [('state', 'not in', ('draft','sent'))]}" 
+                        domain="[('operative_to_customer','=', True)]" options='{"no_open": True, "no_create": True}'/>
+                </field>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="margin_on_q_tree">
+            <field name="name">sale.quotation.tree.sale</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="type_order"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="margin_on_s_tree">
+            <field name="name">sale.order.tree.sale</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <field name='name' position="after">
+                    <field name="type_order"/>
+                </field>
+            </field>
+        </record>
+  </data>
+</odoo>

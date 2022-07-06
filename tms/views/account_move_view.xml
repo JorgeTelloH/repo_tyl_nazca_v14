@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='account_id']" position="after">
+                <field name="route_operation_id" domain="[('state', '=', 'finished'),('check_impt', '!=', True)]" options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                <field name="operation_type_id"/>
+                <field name="partner_id" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

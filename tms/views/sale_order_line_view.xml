@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record  id="sale_order_form_tms" model="ir.ui.view">
+            <field name="name">sale.order.view.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_view_invoice']" position="after">
+                    <button type="object" name="action_view_count_operation" class="oe_stat_button" icon="fa-tasks" attrs="{'invisible': [('operation_count', '=', 0)]}">
+                        <field name="operation_count" widget="statinfo" string="Operaciones"/>
+                    </button>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                    <field name="orig_place" readonly="1"/>
+                    <field name="dest_place" readonly="1"/>
+                    <field name="vehicle_type_id" readonly="1"/>
+                    <field name="load_capacity_id" readonly="1"/>
+                    <field name="is_travel" readonly="1"/>
+                    <field name="appt_start"/>
+                    <field name="appt_end"/>
+                    <field name="load_type_id"/>
+                    <field name="send_type"/>
+                    <field name="cst_ppto_flete"/>
+                    <field name="cst_ppto_carga"/>
+                    <field name="cst_ppto_descarga"/>
+                    <field name="cst_ppto_resguardo"/>
+                    <field name="cst_ppto_cabinero"/>
+                    <field name="cst_ppto_merma"/>
+                    <field name="cst_ppto_sobrestadia"/>
+                    <field name="cst_ppto_fflete"/>
+                    <field name="cst_ppto_policial"/>
+                    <field name="cst_ppto_otros"/>
+                    <field name="state" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form//field[@name='product_id']" position="after">
+                    <field name="appt_start"/>
+                    <field name="appt_end"/>
+                    <field name="load_type_id"/>
+                    <field name="send_type"/>
+                    <field name="cst_ppto_flete"/>
+                    <field name="cst_ppto_carga"/>
+                    <field name="cst_ppto_descarga"/>
+                    <field name="cst_ppto_resguardo"/>
+                    <field name="cst_ppto_cabinero"/>
+                    <field name="cst_ppto_merma"/>
+                    <field name="cst_ppto_sobrestadia"/>
+                    <field name="cst_ppto_fflete"/>
+                    <field name="cst_ppto_policial"/>
+                    <field name="cst_ppto_otros"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">
+                    <group col="4">
+                        <field name="orig_place" readonly="1"/>
+                        <field name="dest_place" readonly="1"/>
+                        <field name="vehicle_type_id" readonly="1"/>
+                        <field name="load_capacity_id" readonly="1"/>
+                        <field name="is_travel" readonly="1"/>
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+                    <field name="check_assigned" string="Viaje Asignado" readonly="1"/>
+                    <field name="travel_ids" string="Viaje" widget="many2many_tags"/>
+                </xpath>
+                <xpath expr="//page[2]" position="after">
+                    <page string="Margenes">
+                        <group>
+                            <group string="Esperado">
+                                <field name='cst_ppto_expected' widget="monetary" readonly = "1"/>
+                                <field name='expected_margin'  widget="monetary" readonly = "1"/>
+                                <field name='prc_expected_margin' readonly = "1" string= "% Esperado" widget="Percent"/>
+                            </group>
+                            <group string="Operacional">
+                                <field name='cst_ppto_operation' widget="monetary" readonly = "1"/>
+                                <field name='operation_margin'  widget="monetary" readonly = "1"/>
+                                <field name='prc_operation_margin_cpy' readonly = "1" string= "% Operacional" widget="Percent"/>
+                            </group>
+                            <group string="Actual">
+                                <field name='cst_actual' widget="monetary" readonly = "1"/>
+                                <field name='actual_margin'  widget="monetary" readonly = "1"/>
+                                <field name='prc_actual_margin' readonly = "1" string= "% Actual" widget="Percent"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_tms_tree">
+            <field name="name">sale.inherit.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_order']" position="before">
+                    <field name="date_order"/>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="replace">
+                    <field name="date_order" string="Fecha Confirmación" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="before">
+                    <field name="currency_id"/>
+                    <field name="amount_untaxed"
+                        string="Subtotal" sum="Total Sin Impuestos" widget="monetary"/>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <field name='prc_actual_margin' string='% Margen Actual' widget="Percent"/>
+                    <field name='cst_actual' widget="monetary"/>
+                    <field name='cst_actual_cpy' widget="monetary" invisible="1"/>
+                    <field name="company_currency_amount_untaxed" sum="Total Company Sin Impuestos"/>
+                    <field name="company_currency_amount" sum="Total Company Con Impuestos"/>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name='prc_expected_margin' string='% Esperado' widget="Percent"/>
+                    <field name='prc_operation_margin_cpy' string='% Operacional' widget="Percent"/>
+                    <field name='prc_vigt_margin' string='% Vigente' widget="Percent"/>
+                    <field name='cst_ppto_expected' widget="monetary"/>
+                    <field name='cst_ppto_expected_cpy' widget="monetary" invisible="1"/>
+                    <field name='cst_ppto_operation' widget="monetary"/>
+                    <field name='cst_ppto_operation_cpy' widget="monetary" invisible="1"/>
+                    <field name='cst_vigt' widget="monetary"/>
+                    <field name='cst_vigt_cpy' widget="monetary" invisible="1"/>
+                    <field name='check_impt' string='Cerrado'/>
+                    <field name="create_uid" string='Creado por'/>
+                    <field name="create_date" string='Fecha de Creacion'/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="sale_quotation_tms_tree">
+            <field name="name">sale.inherit.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_total']" position="before">
+                	<field name="currency_id"/>
+                    <field name="amount_untaxed"
+                        string="Subtotal" sum="Total Sin Impuestos" widget="monetary"/>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <field name='prc_actual_margin' string='% Margen Actual' widget="Percent"/>
+                    <field name='cst_actual' widget="monetary"/>
+                    <field name='cst_actual_cpy' widget="monetary" invisible="1"/>
+                    <field name="company_currency_amount_untaxed" sum="Total Company Sin Impuestos"/>
+                    <field name="company_currency_amount" sum="Total Company Con Impuestos"/>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name='prc_expected_margin' string='% Esperado' widget="Percent"/>
+                    <field name='prc_operation_margin_cpy' string='% Operacional' widget="Percent"/>
+                    <field name='prc_vigt_margin' string='% Vigente' widget="Percent"/>
+                    <field name='cst_ppto_expected' widget="monetary"/>
+                    <field name='cst_ppto_expected_cpy' widget="monetary" invisible="1"/>
+                    <field name='cst_ppto_operation' widget="monetary"/>
+                    <field name='cst_ppto_operation_cpy' widget="monetary" invisible="1"/>
+                    <field name='cst_vigt' widget="monetary"/>
+                    <field name='cst_vigt_cpy' widget="monetary" invisible="1"/>
+                    <field name='check_impt' string='Cerrado'/>
+                    <field name="create_uid" string='Creado por'/>
+                    <field name="create_date" string='Fecha de Creacion'/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_sales_order_tms_filter" model="ir.ui.view">
+            <field name="name">sale.inherit.search</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch"  type="xml">
+                <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                    <filter domain="[('state','=','cancel')]" string="Cancelado" name="order_cancel"/>
+                    <filter domain="[('state','!=','cancel')]" string="No Cancelado" name="order_no_cancel"/>
+                </xpath>
+                <group expand="0" position="inside">
+                    <filter context="{'group_by': 'state'}" string="Estado" name="state"/>
+                    <filter context="{'group_by': 'invoice_status'}" string="Estado Factura" name="invoice_status"/>
+                    <filter context="{'group_by': 'create_uid'}" string="Creado por" name="create_uid"/>
+                </group>
+            </field>
+        </record>
+    </data>
+</odoo>

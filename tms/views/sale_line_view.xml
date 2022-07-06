@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sale_line_search_view" model="ir.ui.view">
+        <field name="name">sale.line.tree.search.view</field>
+        <field name="model">sale.order.line</field>
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+            <search string="Detalle de Pedidos">
+                <filter domain="[('is_travel','=',True)]" name ="is_travel" string="Es Viaje"/>
+                <filter domain="[('is_travel','!=',True)]" name ="no_travel" string="No es Viaje"/>
+                <separator/>
+                <filter domain="[('check_assigned','=',True)]" name ="check_assigned" string="Con Viaje Asignado"/>
+                <filter domain="[('check_assigned','!=',True)]" name ="no_check_assigned" string="Sin Viaje Asignado"/>
+                <separator/>
+                <filter domain="[('invoice_status','=','invoiced')]" name ="invoiced" string="Facturado"/>
+                <filter domain="[('invoice_status','!=','invoiced')]" name ="no_invoiced" string="No Facturado"/>
+                <field name="order_id" string='Nro Pedido'/>
+                <field name="order_partner_id"/>
+                <field name='salesman_id'/>
+                <field name='order_operative_id' string="Coordinador"/>
+                <field name='product_id' string="Producto"/>
+                <field name='create_uid' string='Creado por'/>
+                <group  expand='0' string='Group by...'>
+                    <filter context="{'group_by': 'salesman_id'}" name ="salesman_id" string="Vendedor"/>
+                    <filter context="{'group_by' : 'order_partner_id'}" name ="order_partner_id" string="Cliente"/>
+                    <filter context="{'group_by' : 'order_operative_id'}" name ="order_operative_id" string="Coordinador"/>
+                    <filter context="{'group_by' : 'date_order'}" name ="date_order" string="Fecha de Pedido"/>
+                    <filter context="{'group_by' : 'state'}" name ="state1" string="Estado"/>
+                    <filter context="{'group_by' : 'currency_id'}" name ="currency_id1" string="Moneda"/>
+                    <filter context="{'group_by' : 'product_id'}" name ="product_id1" string="Producto"/>
+                    <filter context="{'group_by' : 'invoice_status'}" name ="invoice_status1" string="Estado factura"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_sale_line_tree" model="ir.ui.view">
+        <field name="name">sale.line.tree</field>
+        <field name="model">sale.order.line</field>
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+            <tree string="Detalle de Pedidos" create="false" delete="false">
+                <field name="order_id" string='Nro Pedido'/>
+                <field name='date_order'/>
+                <field name='order_partner_id'/>
+                <field name='salesman_id'/>
+                <field name='order_operative_id' string="Coordinador"/>
+                <field name='product_id'/>
+                <field name='company_id' invisible='1'/>
+                <field name='orig_place'/>
+                <field name='dest_place'/>
+                <field name='vehicle_type_id'/>
+                <field name='load_capacity_id'/>
+                <field name='is_travel'/>
+                <field name='appt_start'/>
+                <field name='appt_end'/>
+                <field name='load_type_id'/>
+                <field name='send_type'/>
+                <field name='product_uom'/>
+                <field name='product_uom_qty'/>
+                <field name='currency_id'/>
+                <field name='price_unit' widget="monetary"/>
+                <field name='price_subtotal' sum="Total Sin Impuestos" widget="monetary"/>
+                <field name='company_currency_amount_untaxed' sum="Total Company Sin Impuestos" widget="monetary"/>
+                <field name='state'/>
+                <field name='check_assigned' string="Viaje Asignado"/>
+                <field name='invoice_status'/>
+                <field name='cst_ppto_expected' widget="monetary"/>
+                <field name='cost_ppto_operation' widget="monetary"/>
+                <field name='cost_vigt' widget="monetary"/>
+                <field name='cst_ppto_flete' string='Cst Flete Esperado'/>
+                <field name='cst_ppto_carga' string='Cst Carga Esperado'/>
+                <field name='cst_ppto_descarga' string='Cst Descarga Esperado'/>
+                <field name='cst_ppto_resguardo' string='Cst Resguardo Esperado'/>
+                <field name="cst_ppto_cabinero" string='Cst cabinero Esperado'/>
+                <field name="cst_ppto_merma" string='Cst Merma Esperado'/>
+                <field name="cst_ppto_sobrestadia" string='Cst Sobrestadia Esperado'/>
+                <field name="cst_ppto_fflete" string='Cst Falso Flete Esperado'/>
+                <field name="cst_ppto_policial" string='Cst Policial Esperado'/>
+                <field name='cst_ppto_otros' string='Cst Otros Esperado'/>
+                <field name="create_uid" string='Creado por'/>
+                <field name="create_date" string='Fecha de Creacion'/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sale_line">
+        <field name="name">Detalle de Pedidos</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="domain">[('state', 'in', ['sale', 'done'])]</field>
+        <field name="context">{}</field>
+        <field name="search_view_id" ref="sale_line_search_view"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_sale_line_view_tree">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_sale_line_tree"/>
+        <field name="act_window_id" ref="action_sale_line"/>
+    </record>
+
+    <menuitem action="action_sale_line" id="menu_sale_line" name="Detalle de Pedidos" parent="sale.sale_order_menu" groups="sales_team.group_sale_salesman" sequence="31"/>
+</odoo>

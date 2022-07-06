@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id='view_tms_justify_overcost_tree' model='ir.ui.view'>
+        <field name="name">tms.justify.overcost.tree</field>
+        <field name="model">tms.justify.overcost</field>
+        <field name="arch" type="xml">
+            <tree string="Justificación de sobrecosto">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_tms_justify_overcost_form" model="ir.ui.view">
+        <field name="name">tms.justify.overcost.form</field>
+        <field name="model">tms.justify.overcost</field>
+        <field name="arch" type="xml"> 
+            <form string="Justificación de sobrecosto">
+                <group col="4">
+                    <field name="name"/>
+                    <field name="active"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="open_view_tms_justify_overcost_form" model="ir.actions.act_window">
+        <field name="name">Justificación de sobrecosto</field>
+        <field name="res_model">tms.justify.overcost</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="open_view_tms_justify_overcost_form" id="menu_tms_justify_overcost_form" name="Justificación de sobrecosto" parent="menu_tms_settings_routes" sequence="5"/>
+</odoo>

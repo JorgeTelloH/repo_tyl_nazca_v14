@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_tms_route_operation_type_tree" model="ir.ui.view">
+        <field name="name">tms.route.operation.type.tree</field>
+        <field name="model">tms.route.operation.type</field>
+        <field name="arch" type="xml">
+            <tree string="Tipos de Operación TMS">
+                <field name="name"/>
+                <field name="vendor_required"/>
+                <field name="vehicle_required"/>
+                <field name="guide_required"/>
+                <field name="tracking_required"/>
+                <field name="able_advance"/>
+                <field name="percent_advance"/>
+                <field name="active"/>
+                <field name="create_uid" string="Creado por"/>
+                <field name="create_date" string="Fecha Creación"/>
+                <field name="write_date" string="Fecha Modificación"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_tms_route_operation_type_search" model="ir.ui.view">
+        <field name="name">tms.route.operation.type.search</field>
+        <field name="model">tms.route.operation.type</field>
+        <field name="arch" type="xml">
+            <search string="Tipos de Operación TMS">
+                <filter domain="[('active','=',True)]" name="active" string="Activos"/>
+                <filter domain="[('active','!=',True)]"  name="no_active" string="Inactivos"/>
+                <separator/>
+                <filter domain="[('vendor_required','=',True)]" name="vendor_required" string="Proveedor requerido"/>
+                <filter domain="[('vehicle_required','=',True)]" name="vehicle_required" string="Vehículo requerido"/>
+                <filter domain="[('guide_required','=',True)]" name="guide_required" string="Guía(s) requerido"/>
+                <filter domain="[('tracking_required','=',True)]" name="tracking_required" string="Seguimiento requerido"/>
+                <filter domain="[('able_advance','=',True)]" name="able_advance" string="Con Adelanto"/>
+                <filter domain="[('able_advance','!=',True)]" name="no_able_advance" string="Sin Adelanto"/>
+                <separator/>
+                <field name="name"/>
+                <group  expand='0' string='Group by...'>
+                    <filter context="{'group_by': 'vendor_required'}" name="vendor_required" string="Proveedor requerido"/>
+                    <filter context="{'group_by': 'vehicle_required'}" name="vehicle_required" string="Vehículo requerido"/>
+                    <filter context="{'group_by': 'guide_required'}" name="guide_required" string="Guía(s) requerido"/>
+                    <filter context="{'group_by': 'tracking_required'}" name="tracking_required" string="Seguimiento requerido"/>
+                    <filter context="{'group_by': 'able_advance'}" name="able_advance" string="Adelanto permitido"/>
+                    <filter context="{'group_by': 'create_uid'}" name="create_uid" string="Creado por"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="view_tms_route_operation_type_form" model="ir.ui.view">
+        <field name="name">tms.route.operation.type.form</field>
+        <field name="model">tms.route.operation.type</field>
+        <field name="arch" type="xml"> 
+            <form string="Tipos de Operación TMS">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Tipo de Operación" style="width:50%%"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="vendor_required"/>
+                            <field name='vehicle_required'/>
+                            <field name='guide_required'/>
+                        </group>
+                        <group>
+                            <field name='tracking_required'/>
+                            <label for="able_advance" string="Permitir Adelanto?"/>
+                            <div>
+                                <field name="able_advance" style="padding-right: 1.0em" class="oe_inline"/> 
+                                <field name="percent_advance" style="padding-right: 1.0em" class="oe_inline" 
+                                    attrs="{'invisible':[('able_advance', '!=', True)], 'required':[('able_advance','=',True)]}"/>
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="open_view_tms_route_operation_type_form" model="ir.actions.act_window">
+        <field name="name">Tipos de Operación TMS</field>
+        <field name="res_model">tms.route.operation.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="open_view_tms_route_operation_type_form" id="menu_tms_settings_route_operation_type_form" name="Tipos de Operación TMS" parent="menu_tms_settings_routes" sequence="1"/>
+</odoo>

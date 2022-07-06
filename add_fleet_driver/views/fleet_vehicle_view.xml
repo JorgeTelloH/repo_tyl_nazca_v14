@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_fleet_form_driver" model="ir.ui.view">
+        <field name="model">fleet.vehicle</field>
+        <field name="priority">25</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <field name="driver_id" position="replace">
+                <field name="driver_id" invisible="1"/>
+                <field name="employee_driver_id" domain="[('driver', '=', True)]" attrs="{'invisible':[('unit_complement','=',True)], 'required': [('unit_complement', '=', False)]}"/>
+            </field>
+            <field name="driver_id" position="before">
+                <field name="partner_id" domain="['|',('supplier_rank','&gt;', 0),('is_supplier','!=',False)]" options='{"no_open": True, "no_create": True}'/>
+                <field name="outsourcing"/>
+                <field name="unit_complement"/>
+            </field>
+            <xpath expr="//sheet/group[1]/group[4]" position="replace">
+            	<notebook>
+            		<page string="Información Adicional">
+            			<group>
+            				<group string="Otras propiedades">
+                            	<field name="seats"/>
+                            	<field name="doors"/>
+                            	<field name="color"/>
+                        	</group>
+                        	<group string="Datos del motor">
+                            	<field name="transmission"/>
+                            	<field name="engine_nbr"/>
+                            	<field name="fuel_type"/>
+                            	<label for="co2"/>
+                            	<div class="o_row">
+                                	<field name="co2"/>
+                                	<span>g/km</span>
+                            	</div>
+                            	<field name="horsepower"/>
+                            	<field name="horsepower_tax"/>
+                            	<label for="power"/>
+                            	<div class="o_row">
+                                	<field name="power"/>
+                                	<span>kW</span>
+                            	</div>
+                        	</group>
+                    	</group>
+            		</page>
+                	<page string="Póliza de Seguro">
+                		<group>
+                    		<group string="Información de Póliza">
+                        		<field name="insurance_policy_nbr"/>
+                            	<field name="insurance_supplier_id" domain="['|',('supplier_rank','&gt;', 0),('is_supplier','!=',False)]" options='{"no_open": True, "no_create": True}'/>
+                                <field name='insurance_policy_file' widget="many2many_binary"/>
+                    		</group>
+                    		<group string="Vigencia de Póliza">
+                            	<field name="insurance_expedition"/>
+                            	<field name="insurance_expiration"/>
+                            	<field name="insurance_days_to_expire"/>
+                    		</group>
+                		</group>
+                	</page>
+                	<page string="Certificados">
+                		<group>
+                    		<group string="Habilitación vehicular">
+                        		<field name="habilitation_nbr"/>
+                        		<field name="habilitation_expedition"/>
+                        		<field name="habilitation_expiration"/>
+                        		<field name="habilitation_days_to_expire"/>
+                                <field name='habilitation_file' widget="many2many_binary"/>
+                    		</group>
+                    		<group string="Inspección Técnica">
+                            	<field name="inspection_nbr"/>
+                            	<field name="inspection_expedition"/>
+                            	<field name="inspection_expiration"/>
+                            	<field name="inspection_days_to_expire"/>
+                                <field name='inspection_file' widget="many2many_binary"/>
+                    		</group>
+                		</group>
+                	</page>
+            	</notebook>
+            	<group>
+                    <group string="Notas">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </group>
+            </xpath>
+        </field> 
+    </record>
+</odoo>

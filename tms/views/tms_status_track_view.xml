@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id='view_tms_status_track_tree' model='ir.ui.view'>
+        <field name="name">tms.status.track.tree</field>
+        <field name="model">tms.status.track</field>
+        <field name="arch" type="xml">
+            <tree string="Estados de Seguimiento">
+                <field name="sequence" widget="handle"/>
+                <field name="operation_type"/>
+                <field name="type_tracking"/>
+                <field name="name"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_tms_status_track_form" model="ir.ui.view">
+        <field name="name">tms.status.track.form</field>
+        <field name="model">tms.status.track</field>
+        <field name="arch" type="xml"> 
+            <form string="Estados de Seguimiento">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="operation_type"/>
+                        <h1>
+                            <field name="operation_type" placeholder="Tipo de Operación" style="width:50%%"/>
+                        </h1>
+                    </div>
+                    <group col="4">
+                        <field name="type_tracking"/>
+                        <field name="sequence" invisible="1"/>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="open_view_tms_status_track_form" model="ir.actions.act_window">
+        <field name="name">Estados de Seguimiento</field>
+        <field name="res_model">tms.status.track</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="open_view_tms_status_track_form" id="menu_tms_status_track_form" name="Estados de Seguimiento" parent="menu_tms_settings_routes" sequence="2"/>
+</odoo>

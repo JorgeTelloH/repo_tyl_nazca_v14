@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_tms" name="TMS" sequence="10" web_icon="tms,static/description/icon.png"/>
+    <menuitem id="menu_tms_travels" name="Operaciones" parent="menu_tms" sequence="10"/>
+    <menuitem id="menu_tms_traffic" name="Tráfico" parent="menu_tms" sequence="11"/>
+    <!--- Ini Menu Proveedores -->
+    <menuitem id="menu_procurement_management_supplier_name" name="Proveedores" parent="menu_tms" action="base.action_partner_supplier_form" sequence="13"/>
+    <!--- Fin Menu Proveedores -->
+    <menuitem id="menu_tms_reports" name="Reportes" parent="menu_tms" sequence="50"/>
+    <!--- Ini Menu Configuracion -->
+    <menuitem id="menu_tms_settings" name="Configuración" parent="menu_tms" sequence="99"/>
+    <!--- Línea de division "Transportes" dentro el Menu Configuracion -->
+    <menuitem id="menu_tms_settings_unit" name="Transportes" parent="menu_tms_settings" sequence="30"/>
+    <menuitem id="menu_tms_settings_routes" name="Rutas" parent="menu_tms_settings" sequence="40"/>
+    <menuitem id="menu_tms_settings_alarm" name="Alarmas" parent="menu_tms_settings" sequence="50"/>
+    <menuitem action="fleet.fleet_vehicle_state_action" groups="fleet.fleet_group_manager" id="tms_fleet_vehicle_state_menu" name="Estados de vehículo" parent="menu_tms_settings_unit" sequence="13"/>
+    <menuitem action="fleet.fleet_vehicle_model_action" id="tms_fleet_vehicle_model" name="Modelo del vehículo" parent="menu_tms_settings_unit" sequence="14"/>
+    <menuitem action="fleet.fleet_vehicle_model_brand_action" id="tms_fleet_vehicle_make" name="Marca del Vehículo" parent="menu_tms_settings_unit" sequence="15"/>
+    <!--- Fin Menu Configuracion -->
+</odoo>

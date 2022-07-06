@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_tms_gps_tree" model="ir.ui.view">
+        <field name="name">tms.gps.tree</field>
+        <field name="model">tms.gps</field>
+        <field name="arch" type="xml">
+            <tree string="Equipos GPS">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="platform_gps"/>
+                <field name="user_name"/>
+                <field name="password"/>
+                <field name="platform_date"/>
+                <field name="in_loan"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_tms_gps_form" model="ir.ui.view">
+        <field name="name">tms.gps.form</field>
+        <field name="model">tms.gps</field>
+        <field name="arch" type="xml"> 
+            <form string="Equipos GPS">
+                <group col="4" string="Datos GPS">
+                    <field name="name"/>
+                    <field name="in_loan" readonly="True"/>
+                    <field name="description"/>
+                    <field name="active"/>
+                </group>
+                <group col="4" string="Plataforma GPS">
+                    <field name="platform_gps" widget="url" placeholder="http://www.plataforma-gps.com" attrs="{'required': [('name', '!=', None)]}"/>
+                    <field name="platform_date" readonly="True"/>
+                    <field name="user_name" attrs="{'required': [('name', '!=', None)]}"/>
+                    <field name="password" attrs="{'required': [('name', '!=', None)]}"/>
+                </group>
+                <group colspan="4" string="Notas">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="open_view_tms_gps_form" model="ir.actions.act_window">
+        <field name="name">Equipos GPS</field>
+        <field name="res_model">tms.gps</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="open_view_tms_gps_form" id="menu_tms_settings_gps_form" name="Equipos GPS" parent="menu_tms_settings_unit" sequence="2"/>
+</odoo>

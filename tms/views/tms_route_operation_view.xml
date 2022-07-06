@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_tms_route_operation_search" model="ir.ui.view">
+        <field name="name">tms.route.operation.search</field>
+        <field name="model">tms.route.operation</field>
+        <field name="arch" type="xml">
+            <search string="Operaciones por Tramo">
+                <field name="travel_id"/>
+                <field name="travel_order"/>
+                <field name="service_id"/>
+                <field name="customer_id"/>
+                <field name="travel_operative"/>
+                <field name="travel_route_id"/>
+                <field name="operation_type"/>
+                <field name="travel_route_departure"/>
+                <field name="travel_route_arrival"/>
+                <field name="vehicle_type_id"/>
+                <field name="vendor_id"/>
+                <field name="load_type_id"/>
+                <field name="license_plate"/>
+                <field name="vehicle_type_id"/>
+                <field name='guide_cpy'/>
+                <field name='guide_customer'/>
+                <field name="product_id" string="Servicio Proveedor"/>
+                <field name="driver_id" string="Conductor"/>
+                <field name="name" string='Nro Operación'/>
+                <filter name="travel_operative" domain="[('travel_operative','=', uid)]" string="Mis Operaciones asignadas"/>
+                <separator/>
+                <filter name="traffic_light" domain="[('traffic_light','=','#FF0000')]" string="Alerta(s) en Rojo"/>
+                <filter name="traffic_light" domain="[('traffic_light','=','#FFA500')]" string="Alerta(s) en Ambar"/>
+                <filter name="traffic_light" domain="[('traffic_light','=','#49C909')]" string="Alerta(s) en Verde"/>
+                <separator/>
+                <filter name="travel_in_planning" domain="[('travel_in_planning','=',True)]" string="Viaje En Planificación"/>
+                <filter name="travel_in_programming" domain="[('travel_in_programming','=',True)]" string="Viaje En Programación"/>
+                <filter name="travel_to_start_operation" domain="[('travel_to_start_operation','=',True)]" string="Viaje Por Iniciar Operación"/>
+                <filter name="travel_state" domain="[('travel_state','=','started')]" string="Viaje En Curso"/>
+                <filter name="travel_state" domain="[('travel_state','=','finished')]" string="Viaje Terminado"/>
+                <filter name="travel_state" domain="[('travel_state','=','canceled')]" string="Viaje Cancelado"/>
+                <separator/>
+                <filter name="state" domain="[('state','=','draft')]" string="Operación - Borrador"/>
+                <filter name="state" domain="[('state','=','planned')]" string="Operación - Planificado"/>
+                <filter name="state" domain="[('state','=','programmed')]" string="Operación - Programado"/>
+                <filter name="state" domain="[('state','=','started')]" string="Operación - En Curso"/>
+                <filter name="state" domain="[('state','=','finished')]" string="Operación - Terminado"/>
+                <filter name="state" domain="[('state','=','canceled')]" string="Operación - Cancelado"/>
+                <filter name="state" domain="[('state','!=','canceled')]" string="Operación - No Cancelado"/>
+                <separator/>
+                <filter name="guide_required" domain="[('guide_required','=',True)]" string="Solo Flete(s)"/>
+                <separator/>
+                <filter name="vendor_type" domain="[('vendor_type','=','propio')]" string="Proveedor Propio"/>
+                <filter name="vendor_type" domain="[('vendor_type','=','tercero')]" string="Proveedor Tercero"/>
+                <separator/>
+                <filter name="guide_cpy_receive" domain="[('guide_cpy_receive','=',True), ('vehicle_required','=',True)]" string="Guias Recibidas"/>
+                <filter name="guide_cpy_receive" domain="[('guide_cpy_receive','!=',True), ('vehicle_required','=',True)]" string="Guias No Recibidas"/>
+
+                <group  expand='1' string='Group by'>
+                    <filter name="group_travel_id" context="{'group_by': 'travel_id'}" string="Viaje"/>
+                    <filter name="group_travel_route_id" context="{'group_by': 'travel_route_id'}" string="Tramo de Viaje"/>
+                    <filter name="group_operation_type" context="{'group_by': 'operation_type'}" string="Tipo de Operación"/>
+                    <filter name="group_travel_date_start" context="{'group_by' : 'travel_date_start'}" string="Fecha de Viaje"/>
+                    <filter name="group_date_start_short" context="{'group_by' : 'date_start_short'}" string="Fecha Inicio Planificado"/>
+                    <filter name="group_travel_route_departure" context="{'group_by' : 'travel_route_departure'}" string="Origen"/>
+                    <filter name="group_travel_route_arrival" context="{'group_by' : 'travel_route_arrival'}" string="Destino"/>
+                    <filter name="group_travel_operative" context="{'group_by' : 'travel_operative'}" string="Coordinador"/>
+                    <filter name="group_vendor_id" context="{'group_by' : 'vendor_id'}" string="Proveedor"/>
+                    <filter name="group_product_id" context="{'group_by' : 'product_id'}" string="Servicio Proveedor"/>
+                    <filter name="group_state" context="{'group_by': 'state'}" string="Estado"/>
+                    <filter name="group_vehicle_type_id" context="{'group_by' : 'vehicle_type_id'}" string="Tipo de vehículo"/>
+                    <filter name="group_currency_id" context="{'group_by' : 'currency_id'}" string="Moneda"/>
+                    <filter name="group_guide_receive_date" context="{'group_by' : 'guide_receive_date'}" string="Fecha Recibo Guía"/>
+                    <filter name="group_driver_id" context="{'group_by' : 'driver_id'}" string="Conductor"/>
+                    <filter name="group_justify_overcost_id" context="{'group_by' : 'justify_overcost_id'}" string="Justif.sobrecosto"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="view_tms_route_operation_tree" model="ir.ui.view">
+        <field name="name">tms.route.operation.tree</field>
+        <field name="model">tms.route.operation</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state=='planned'" decoration-primary="state=='programmed'" decoration-success="state=='started'" decoration-muted="state=='finished'" decoration-danger="state=='canceled'" string="Operaciones por Tramo" delete="false">
+                <field name='traffic_light' widget="color"/>
+                <button name="action_view_tracking" string="Ver Track" type="object" icon="fa-search-plus" />
+                <button name="action_tracking_record" string="Registrar Track" type="object" icon="fa-pencil-square-o" attrs="{'invisible': [('state', 'in', ['finished', 'canceled'])]}" context="{'default_route_operation_id':active_id}"/>
+                <field name='date_tracking'/>
+                <field name='type_tracking'/>
+                <field name='status_tracking'/>
+                <field name='notes_tracking'/>
+                <field name="travel_operative"/>
+                <field name="customer_id"/>
+                <field name="travel_id"/>
+                <field name="travel_order"/>
+                <field name="service_id"/>
+                <field name="travel_date_start"/>
+                <field name="travel_state" string='Estado Viaje'/>
+                <field name="travel_route_id"/>
+                <field name="name" string='Nro Operación'/>
+                <field name="operation_type"/>
+                <field name="state" string='Estado Operación'/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="date_start_real"/>
+                <field name="date_end_real"/>
+                <field name="travel_route_departure"/>
+                <field name="travel_route_arrival"/>
+                <field name="vehicle_type_id"/>
+                <field name="load_type_id"/>
+                <field name="license_plate"/>
+                <field name="license_plate_cmpl"/>
+                <field name="vendor_type"/>
+                <field name="vendor_id"/>
+                <field name="driver_id"/>
+                <field name="driver_license"/>
+                <field name="mobile_phone"/>
+                <field name='vendor_contact_short'/>
+                <field name='vendor_contact_phone'/>
+                <field name='guide_cpy_receive'/>
+                <field name='guide_receive_date'/>
+                <field name='guide_cpy'/>
+                <field name='guide_customer'/>
+                <field name='agent_shipment'/>
+                <field name="currency_id"/>
+                <field name="product_id" string='Servicio Proveedor'/>
+                <field name='cost_ppto_unit_hist' string='Costo Tarifario' widget='monetary'/>
+                <field name="cost_ppto_unit" widget='monetary'/>
+                <field name="product_qty"/>
+                <field name="cost_ppto_total" widget='monetary' string='Costo Total' sum="Amount Total"/>
+                <field name="cost_ppto_cpy" string='Costo Total Company' sum="Total Company"/>
+                <field name="cost_impt" widget='monetary'/>
+                <field name="cost_impt_cpy" sum="Total Imputado Company"/>
+                <field name="cost_vigt" widget='monetary'/>
+                <field name="cost_vigt_cpy" sum="Total Vigente Company"/>
+                <field name="justify_overcost_id"/>
+                <field name="create_uid" string='Creado por'/>
+                <field name="create_date" string='Fecha de Creacion'/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_tms_route_operation_form" model="ir.ui.view">
+        <field name="name">tms.route.operation.form</field>
+        <field name="model">tms.route.operation</field>
+        <field name="arch" type="xml">
+            <form string="Operaciones por Tramo" delete="false">
+                <header>
+                    <field name="state" statusbar_visible="draft,planned,programmed,started,finished,canceled" widget="statusbar"/>
+                    <button name="action_planned" class="oe_highlight" states="draft"  string="Planificado" type="object"/>
+                    <button name="action_programmed" class="oe_highlight" states="planned"  string="Programado" type="object"/>
+                    <button name="action_started" class="oe_highlight" states="programmed"  string="En Curso" type="object"/>
+                    <button name="action_finished" class="oe_highlight"  states="started" string="Terminado" type="object"/>
+                    <button name="action_canceled" states="draft,planned,programmed,started,finished" string="Cancelado" type="object"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="buttons">
+                        <button name='action_view_tracking' class="oe_stat_button" type="object" help="Mostrar el tracking de la Operación" icon="fa-thumb-tack" attrs="{'invisible': [('state','=',('draft'))]}">
+                            <field string="Tracking" name="track_count" widget="statinfo" />
+                        </button>
+                    </div>
+
+
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" class="oe_inline"/></h1>
+                    </div>
+                    <group>
+                        <div class="oe_title">
+                            <label for="travel_route_id"/>
+                            <h1>
+                                <field name="travel_route_id" domain="[('route_closed', '!=',True)]" placeholder="Tramo de Viaje" style="width:50%%" options="{'no_create': True, 'no_create_edit':True}"/>
+                            </h1>
+                        </div>
+                    </group>
+                    <group col="4">
+                        <!-- operation_type ==> 1:Flete -->
+                        <field name='operation_type' options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                        <field name="travel_id" force_save="1" readonly="1"/>
+                        <field name="company_id" invisible="1"/>
+                        <field name="travel_order"/>
+                        <field name="vendor_required" invisible="1"/>
+                        <field name="vehicle_required" invisible="1"/>
+                        <field name="guide_required" invisible="1"/>
+                    </group>
+                    <group col="4" string="Transporte" attrs="{'invisible': [('vehicle_required','!=',True)]}">
+                        <field name='vehicle_id' attrs="{'required': [('vehicle_required','=',True)]}" options="{'no_quick_create': True}"/>
+                        <field name='driver_license' invisible="1"/>
+                        <field name='vehicle_type_id'/>
+                        <field name='driver_id' attrs="{'required': [('vehicle_required','=',True)]}" options="{'no_quick_create': True}"/>
+                        <field name='vehicle_outsourcing'/>
+                        <field name='days_license_expire' attrs="{'invisible': [('state','in',['finished', 'canceled'])]}"/>
+                        <field name='second_vehicle' domain="[('unit_complement', '=', True), ('partner_id', '=', vendor_id), ('partner_id', '!=', None)]"/>
+                        <field name='vendor_driver_id' invisible="1"/>
+                        <field name='agent_shipment'/>
+                    </group>
+                    <group col="4" string="Proveedor" attrs="{'invisible': [('vendor_required','!=',True)]}">
+                        <field name='vendor_id' domain="['|',('supplier_rank','&gt;', 0),('is_supplier','!=',False), ('parent_id', '=', None), ('operation_type_domain', 'ilike', operation_type)]" attrs="{'required': [('vendor_required','=',True)]}" options="{'no_quick_create': True}"/>
+                        <field name='vendor_type' invisible="1"/>
+                        <field name='vendor_contact' domain="[('parent_id','!=', None),('parent_id','=', vendor_id),('type','=','contact')]" options='{"no_open": True, "no_create": True}' attrs="{'required': [('vendor_required','=',True)]}"/>
+                        <field name='vendor_contact_phone' attrs="{'required': [('vendor_required','=',True)]}"/>
+                    </group>
+                    <group col="4" string="GPS" attrs="{'invisible': [('vehicle_required','!=',True)]}">
+                        <field name='platform_gps_1' domain="[('partner_id','!=', None),('partner_id','=', vendor_id)]"/>
+                        <field name='user_gps_1'/>
+                        <field name='vendor_required' invisible='1'/>
+                        <field name='name_user_gps_1'/>
+                        <field name='vendor_required' invisible='1'/>
+                        <field name='pwd_gps_1'/>
+                        <field name='platform_gps_2' domain="[('partner_id','!=', None),('partner_id','=', vendor_id)]"/>
+                        <field name='user_gps_2'/>
+                        <field name='vendor_required' invisible='1'/>
+                        <field name='pwd_gps_2'/>
+                        <field name='device_gps_id' domain="[('in_loan','!=', True),('active','=', True)]"/>
+                        <field name='user_gps_3'/>
+                        <field name='platform_gps_3'/>
+                        <field name='pwd_gps_3'/>
+                    </group>
+                    <group col="4" string="Servicio">
+                        <field name='product_id' domain="[('purchase_ok','=', True),('tms_product','=',True), ('tms_product_type','=',operation_type)]" attrs="{'required': [('operation_type','!=',None)]}" options="{'no_quick_create': True}"/>
+                        <field name="currency_id" groups="tms.group_allow_change_currency_operation" options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                        <field name='cost_ppto_unit_hist' string='Costo Tarifario' widget='monetary'/>
+                        <field name='cost_ppto_unit' string='Costo ppto' widget='monetary'/>
+                        <field name='cost_impt' widget='monetary'/>
+                        <field name='product_qty'/>
+                        <field name='cost_vigt' widget='monetary'/>
+                        <field name='cost_ppto_total' widget='monetary' sum="Amount Total"/>
+                        <field name="taxes_id" widget="many2many_tags" domain="[('type_tax_use','=','purchase')]" context="{'default_type_tax_use': 'purchase'}" options="{'no_create': True}" attrs="{'invisible': [('vendor_required','!=',True)]}"/>
+                        <field name='cost_amount_total' widget='monetary'/>
+                        <field name="allow_advance" force_save="1" invisible="1"/>
+                        <field name="show_advance" force_save="1" invisible="1"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name='date_start'/>
+                            <field name='date_end'/>
+                        </group>
+                        <group>
+                            <field name='date_start_real'/>
+                            <field name='date_end_real'/>
+                            <field name='date_cancel' attrs="{'invisible': [('state','!=','canceled')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notas">
+                            <group colspan="4">
+                                <field name="justify_overcost_id" options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                            </group>
+                            <group colspan="4">
+                                <field name="notes" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Guias" attrs="{'invisible': [('guide_required','!=',True)]}">
+                            <group>
+                                <group>
+                                    <field name="guide_cpy" force_save="1" attrs="{'readonly': [('guide_cpy_receive','=',True)]}"/>
+                                    <field name="guide_receive_date" force_save="1" attrs="{'readonly': [('guide_cpy_receive','=',True)]}"/>
+                                    <field name="able_guide_cpy_receive" invisible="1"/>
+                                    <field name="guide_cpy_receive" force_save="1" attrs="{'readonly': [('able_guide_cpy_receive','=',False)]}"/>
+                                </group>
+                                <group>
+                                    <field name="guide_customer" force_save="1" attrs="{'readonly': [('guide_cpy_receive','=',True)]}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Adelantos" attrs="{'invisible': [('show_advance','!=',True)]}">
+                            <group col="4">
+                                <field name="percent_max_advance" force_save="1" attrs="{'readonly': [('state', 'not in', ('programmed', 'started')), ('able_prctg_max_advance','!=','True')]}" style="width: 28%"/>
+                                <field name="able_prctg_max_advance" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="advance_ids" readonly="1" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Imputaciones">
+                            <group>
+                                <field name="able_modify_check_impt" invisible="1"/>
+                                <field name="check_impt" string="Cerrar Imputación" force_save="1" attrs="{'readonly': [('state', 'not in', ('finished', 'started')),('able_modify_check_impt','!=','True')]}"/>
+                            </group>
+                            <group>
+                                <field name="invoice_line_ids" readonly="1" nolabel="1">
+                                    <tree string="Imputaciones" decoration-info="invoice_state=='draft'" decoration-success="invoice_state=='posted'" decoration-muted="invoice_state=='paid'" decoration-danger="invoice_state=='cancel'" >
+<!--                                        <field name='invoice_type' string="Tipo Comprobante"/>-->
+                                        <field name='ref' string="Documento"/>
+                                        <field name='partner_id' string="Proveedor"/>
+                                        <field name='product_id'/>
+                                        <field name='account_id'/>
+                                        <field name='quantity'/>
+                                        <field name='product_uom_id'/>
+                                        <field name='invoice_state' invisible="1"/>
+                                        <field name='currency_id' invisible="1"/>
+                                        <field name='price_unit' widget="monetary"/>
+                                        <field name='price_subtotal' widget="monetary"/>
+                                        <field name='parent_state' string="Estado"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="open_view_tms_route_operation_form" model="ir.actions.act_window">
+        <field name="name">Operaciones por Tramo</field>
+        <field name="res_model">tms.route.operation</field>
+        <field name="context">{}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="open_view_tms_route_operation_form" id="menu_tms_route_operation_form" name="Operaciones por Tramo" parent="menu_tms_travels" sequence="6"/>
+
+
+
+</odoo>

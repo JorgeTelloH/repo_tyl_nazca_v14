@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_tms_travel_tree" model="ir.ui.view">
+        <field name="name">tms.travel.tree</field>
+        <field name="model">tms.travel</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state=='planned'" decoration-primary="state=='programmed'" decoration-success="state=='started'" decoration-muted="state=='finished'" decoration-danger="state=='canceled'" string="Viajes" delete="false">
+                <button name="action_view_tracking" string="Ver Track" type="object" icon="fa-search-plus"/>
+                <field name="name"/>
+                <field name='travel_order'/>
+                <field name="date"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="travel_duration"/>
+                <field name="employee_operative"/>
+                <field name="currency_id"/>
+                <field name="cost_ppto_cpy" widget='monetary' sum="Total Costo Operacional Company"/>
+                <field name="cost_impt_cpy" widget='monetary' sum="Total Costo Real Company"/>
+                <field name="cost_vigt_cpy" widget='monetary' sum="Total Costo Vigente Company"/>
+                <field name="state" string="Estado"/>
+                <field name="sale_order_line_ids" widget="many2many_tags"/>
+                <field name="create_uid" string='Creado por'/>
+                <field name="create_date" string='Fecha de Creacion'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_tms_travel_form" model="ir.ui.view">
+        <field name="name">tms.travel.form</field>
+        <field name="model">tms.travel</field>
+        <field name="arch" type="xml">
+            <form string="Viajes" delete="false">
+                <header>
+                    <field name="state" statusbar_visible="draft,planned,programmed,started,finished,canceled" widget="statusbar"/>
+                    <button name="action_planned" icon="fa-thumbs-up" class="oe_highlight" states="draft"  string="Planificado" type="object"/>
+                    <button name="action_programmed" icon="fa-thumbs-up" class="oe_highlight" states="planned"  string="Programado" type="object"/>
+                    <button name="action_started" icon="fa-thumbs-up" class="oe_highlight" states="programmed"  string="En Curso" type="object"/>
+                    <button name="action_finished" icon="fa-check-square-o" class="oe_highlight"  states="started" string="Terminado" type="object"/>
+                    <button name="action_canceled" icon="fa-times" states="draft,planned,programmed,started,finished" string="Cancelado" type="object"/>
+                    <!--<button name="action_canceled_to_draft" icon="fa-reply" states="canceled" string="Pasar a Borrador" type="object"/>-->
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="buttons">
+                        <button name='action_view_tracking' class="oe_stat_button" type="object" help="Ver el tracking de la Operación" icon="fa-thumb-tack" attrs="{'invisible': [('state','=',('draft'))]}">
+                            <field string="Tracking" name="track_count" widget="statinfo" />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <label for="name" class="oe_inline" style="font-size:30px;" string="" attrs="{'invisible':[('name','=', False)]}"/>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <!-- INI GRUPO 1 -->
+                        <group>
+                            <field name='date_start' attrs="{'readonly':[('state','in',('started','finished','canceled'))]}"/>
+                            <field name='date_end' attrs="{'readonly':[('state','in',('started','finished','canceled'))]}"/>
+                            <field name="employee_operative" domain="[('operative_to_customer','=',True)]" options='{"no_open": True, "no_create": True}' attrs="{'readonly':[('state','in',('started','finished','canceled'))]}"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="cost_ppto_cpy" widget='monetary' readonly="1"/>
+                            <field name="cost_impt_cpy" widget='monetary' readonly="1"/>
+                            <field name="cost_vigt_cpy" widget='monetary' readonly="1"/>
+                        </group>
+                        <group>
+                            <field name='travel_order'/>
+                            <field name='travel_duration' widget="float_time"/>
+                            <field name='date_start_real'/>
+                            <field name='date_end_real'/>
+                            <field name='travel_duration_real' widget="float_time"/>
+                        </group>
+                        <!-- FIN GRUPO 1 -->
+                    </group>
+                    <notebook>
+                        <page string="Servicios">
+                            <group>
+                                <button name="%(open_view_multiple_sol_travel_action)d" type="action" class="oe_highlight" attrs="{'invisible': [('state', 'in', ['programmed', 'started', 'finished','canceled'])]}">Agregar Servicio(s) a Planificar</button>
+                            </group>
+                            <field name="sale_order_line_ids" nolabel="1" options="{'no_create':True}">
+                                <tree string="Sale Order Lines" delete="0" create="0" editable="1">
+                                    <button name="action_desasignar_sol_travel" type="object" icon="fa-trash"/>
+                                    <field name="order_id" string="Servicio" readonly="1"/>
+                                    <field name="order_partner_id" readonly="1"/>
+                                    <field name="appt_start" readonly="1"/>
+                                    <field name="appt_end" readonly="1"/>
+                                    <field name="product_id" readonly="1"/>
+                                    <field name="orig_place" readonly="1"/>
+                                    <field name="dest_place" readonly="1"/>
+                                    <field name="vehicle_type_id" readonly="1"/>
+                                    <field name="load_capacity_id" readonly="1"/>
+                                    <field name="load_type_id" readonly="1"/>
+                                    <field name="product_uom_qty" readonly="1"/>
+                                    <field name='company_id' invisible='1'/>
+                                </tree>
+                                <form>
+                                    <sheet>
+                                        <group col="4">
+                                            <field name="order_id" readonly="1"/>
+                                            <field name="order_partner_id"/>
+                                            <field name='company_id' invisible='1'/>
+                                        </group>
+                                        <group col="4">
+                                            <field name="appt_start" readonly="1"/>
+                                            <field name="appt_end" readonly="1"/>
+                                        </group>
+                                        <group col="4">
+                                            <field name="orig_place" readonly="1"/>
+                                            <field name="dest_place" readonly="1"/>
+                                        </group>
+                                        <group col="4">
+                                            <field name="product_id" readonly="1"/>
+                                            <field name="vehicle_type_id" readonly="1"/>
+                                            <field name="load_capacity_id" readonly="1"/>
+                                            <field name="load_type_id" readonly="1"/>
+                                            <field name="product_uom_qty" string="Cantidad" readonly="1"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Tramo del Viaje">
+                            <field name="travel_route_ids" attrs="{'readonly':[('state','in',('finished','canceled'))]}" nolabel="1" context="{'default_travel_id':active_id}">
+                                <tree string="Tramo de Viaje" decoration-info="state=='draft'" decoration-muted="state=='approved'" decoration-danger="state=='cancel'" decoration-success="state=='confirmed'">
+                                    <field name='name'/>
+                                    <field name='travel_id' invisible="1"/>
+                                    <field name='departure_id'/>
+                                    <field name='arrival_id'/>
+                                    <field name='distance_route'/>
+                                    <field name='travel_time' widget="float_time"/>
+                                    <field name='currency_id' invisible="1"/>
+                                    <field name='cost_vigt_cpy' widget="monetary" sum="Amount Total"/>
+                                    <field name='state' string="Estado"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Adelantos">
+                            <field name="advance_ids" readonly="1"/>
+                        </page>
+                    </notebook>
+                    <group>
+                        <group string="Notas">
+                            <field name="notes" nolabel="1" attrs="{'readonly':[('state','in',('finished','canceled'))]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tms_travel_search" model="ir.ui.view">
+        <field name="name">tms.travel.search</field>
+        <field name="model">tms.travel</field>
+        <field name="arch" type="xml">
+            <search string="Viajes">
+                <filter domain="[('state','=','draft')]" name="draft" string="Borrador"/>
+                <filter domain="[('state','=','planned')]" name="planned" string="Planificado"/>
+                <filter domain="[('state','=','programmed')]" name="programmed" string="Programado"/>
+                <filter domain="[('state','=','started')]" name="started" string="En Curso"/>
+                <filter domain="[('state','=','finished')]" name="finished" string="Terminado"/>
+                <filter domain="[('state','=','canceled')]" name="canceled" string="Cancelado"/>
+                <filter domain="[('state','!=','canceled')]" name="no_canceled" string="No Cancelado"/>
+                <field name="name"/>
+                <field name='travel_order'/>
+                <field name="date"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="travel_duration"/>
+                <field name="employee_operative"/>
+                <newline />
+                <group expand="0" string="Group By...">
+                    <filter context="{'group_by' : 'employee_operative'}" name="employee_operative" string="Personal Operativo"/>
+                    <filter context="{'group_by' : 'state'}" name="state" string="Estado"/>
+                    <filter context="{'group_by' : 'date'}" name="month_register" string="Mes Registro"/>
+                    <filter context="{'group_by' : 'date_start'}" name="date_start" string="Mes Inicio Viaje"/>
+                    <filter context="{'group_by' : 'date_end'}" name="date_end" string="Mes Fin Viaje"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record  id="view_tms_travel_graph" model="ir.ui.view">
+           <field name="name">tms.travel.graph</field>
+           <field name="model">tms.travel</field>
+           <field name="arch" type="xml">
+                <graph string="Viaje por Mes">
+                    <field name="date_start" type="row"/>
+                    <field name="currency_id" type="col"/>
+                    <field name="cost_vigt_cpy" type="measure"/>
+                </graph>
+            </field>
+    </record>
+
+    <record id="view_tms_travel_gantt" model="ir.ui.view">
+        <field name="name">tms.travel.gantt</field>
+        <field name="model">tms.travel</field>
+        <field name="arch" type="xml">
+            <gantt date_start="date_start" date_stop="date_end" string="Viajes">
+            </gantt>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="open_view_tms_travel_form" model="ir.actions.act_window">
+        <field name="name">Viaje</field>
+        <field name="res_model">tms.travel</field>
+        <field name="view_mode">tree,form,gantt,graph</field>
+        <field name="context">{}</field>
+        <field name="search_view_id" ref="view_tms_travel_search" />
+    </record>
+
+    <!--Action Viaje Tree View -->
+    <record id="open_travel_tree_view" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_tms_travel_tree" />
+        <field name="act_window_id" ref="open_view_tms_travel_form" />
+    </record>
+
+    <!--Action Viaje Form view -->
+    <record id="open_travel_form_view" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_tms_travel_form" />
+        <field name="act_window_id" ref="open_view_tms_travel_form" />
+    </record>
+
+    <!--Action Viaje Rent gantt View -->
+    <record id="open_travel_gantt_view" model="ir.actions.act_window.view">
+        <field eval="3" name="sequence" />
+        <field name="view_mode">gantt</field>
+        <field name="view_id" ref="view_tms_travel_gantt" />
+        <field name="act_window_id" ref="open_view_tms_travel_form" />
+    </record>
+
+    <!--Action Viaje Graph view -->
+    <record id="open_travel_graph_view" model="ir.actions.act_window.view">
+        <field eval="4" name="sequence" />
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_tms_travel_graph" />
+        <field name="act_window_id" ref="open_view_tms_travel_form" />
+    </record>
+
+    <!-- Menu -->
+    <menuitem action="open_view_tms_travel_form" id="menu_tms_travel_form" name="Viajes" parent="menu_tms_travels" sequence="4"/>
+</odoo>

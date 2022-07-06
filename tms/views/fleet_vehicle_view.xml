@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_fleet_form_partner" model="ir.ui.view">
+        <field name="model">fleet.vehicle</field>
+        <field name="priority">26</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="replace">
+                <field name="partner_id" domain="[('is_supplier', '=', True), ('parent_id', '=', None)]" attrs="{'required': [('license_plate', '!=', None)]}" options='{"no_open": True, "no_create": True}'/>
+            </field>
+            <field name="location" position="before">
+                <field name="platform_gps_id" domain="[('partner_id', '=', partner_id)]" options='{"no_open": True, "no_create": True}'/>
+            </field>
+        </field> 
+    </record>
+</odoo>
