@@ -7,7 +7,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     type = fields.Selection(selection_add=[('product', 'Producto')],
-        string='Tipo de Producto')
+        string='Tipo de Producto', ondelete={'product': 'set default'})
     tms_product = fields.Boolean(string='Es Producto TMS?', help='Activar si es un Producto asignable\n por la parte operativa')
     tms_product_type = fields.Many2one('tms.route.operation.type', string="Tipo Producto TMS")
     is_travel = fields.Boolean(string='Es un Viaje?', help='Activar si es un Viaje a planificar\n por la parte operativa')
