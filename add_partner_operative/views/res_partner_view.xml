@@ -6,9 +6,12 @@
         <field name="priority">30</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='user_id']" position="after">
+            <!--<xpath expr="//field[@name='user_id']" position="after">
                 <field name="employee_operative" domain="[('operative_to_customer','=',True)]" options='{"no_open": True, "no_create": True}'/>
-            </xpath>
+            </xpath>-->
+            <group name="sale" position="inside">
+                <field name="employee_operative" domain="[('operative_to_customer','=',True)]" options='{"no_open": True, "no_create": True}'/>
+            </group>
         </field> 
     </record>
 </odoo>
