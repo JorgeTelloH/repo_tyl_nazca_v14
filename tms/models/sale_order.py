@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-
 from odoo import models, fields, api
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
-
-
 
     @api.depends('order_line.cost_ppto_cpy', 'order_line.cost_impt_cpy', 'order_line.cost_vigt_cpy', 'order_line')
     def _amount_all_costos(self):
@@ -167,9 +164,7 @@ class SaleOrder(models.Model):
             else:
                 #pasar costo operacion a moneda extranjera
                 # v_cst_ppto_operation = self.env['res.currency']._compute(so1.company_id.currency_id, so1.currency_id, so1.cst_ppto_operation_cpy)
-                v_cst_ppto_operation = so1.company_id.currency_id.convert(so1.cst_ppto_operation_cpy,so1.currency_id,so1.company_id,fields.Date.today())
-
-
+                v_cst_ppto_operation = so1.company_id.currency_id._convert(so1.cst_ppto_operation_cpy,so1.currency_id,so1.company_id,fields.Date.today())
 
             v_operation_margin = so1.amount_untaxed - v_cst_ppto_operation
             v_operation_margin_cpy = so1.company_currency_amount_untaxed - so1.cst_ppto_operation_cpy
@@ -193,8 +188,7 @@ class SaleOrder(models.Model):
             else:
                 #pasar costo imputado a moneda extranjera
                 #v_cst_impt = self.env['res.currency']._compute(so2.company_id.currency_id, so2.currency_id, so2.cst_impt_cpy)
-                v_cst_impt = so2.company_id.currency_id.convert(so2.cst_impt_cpy, so2.currency_id,
-                                                                  so2.company_id, fields.Date.today())
+                v_cst_impt = so2.company_id.currency_id._convert(so2.cst_impt_cpy, so2.currency_id, so2.company_id, fields.Date.today())
 
             so2.cst_impt = v_cst_impt
 
@@ -207,8 +201,7 @@ class SaleOrder(models.Model):
             else:
                 #pasar costo vigente a moneda extranjera
                 #v_cst_vigt = self.env['res.currency']._compute(so3.company_id.currency_id, so3.currency_id, so3.cst_vigt_cpy)
-                v_cst_vigt = so3.company_id.currency_id.convert(so3.cst_vigt_cpy, so3.currency_id,
-                                                        so3.company_id, fields.Date.today())
+                v_cst_vigt = so3.company_id.currency_id._convert(so3.cst_vigt_cpy, so3.currency_id, so3.company_id, fields.Date.today())
 
             v_vigt_margin = so3.amount_untaxed - v_cst_vigt
             v_vigt_margin_cpy = so3.company_currency_amount_untaxed - so3.cst_vigt_cpy
@@ -222,7 +215,6 @@ class SaleOrder(models.Model):
             so3.vigt_margin = v_vigt_margin
             so3.vigt_margin_cpy = v_vigt_margin_cpy
             so3.prc_vigt_margin = v_prc_vigt_margin
-
 
     def _compute_count_operation(self):
         self.operation_count = self.env['tms.route.operation'].search_count([('service_id', '=', self.name),('state','!=','canceled')])
@@ -278,8 +270,7 @@ class SaleOrder(models.Model):
             else:
                 if v_expected_margin != 0:
                     #v_expected_margin_cpy = self.env['res.currency']._compute(ol.currency_id, ol.company_id.currency_id, v_expected_margin)
-                    v_expected_margin_cpy = ol.currency_id.convert(v_expected_margin, ol.company_id.currency_id,
-                                                            ol.company_id, fields.Date.today())
+                    v_expected_margin_cpy = ol.currency_id._convert(v_expected_margin, ol.company_id.currency_id, ol.company_id, fields.Date.today())
                 else:
                     v_expected_margin_cpy = 0
 
@@ -293,8 +284,7 @@ class SaleOrder(models.Model):
             else:
                 if order.amount_total != 0:
                     #price = self.env['res.currency']._compute(order.currency_id, order.company_id.currency_id, order.amount_total)
-                    price = order.currency_id.convert(order.amount_total, order.company_id.currency_id,
-                                                                   order.company_id, fields.Date.today())
+                    price = order.currency_id._convert(order.amount_total, order.company_id.currency_id, order.company_id, fields.Date.today())
                 else:
                     price = 0
             order.company_currency_amount = price
@@ -307,8 +297,7 @@ class SaleOrder(models.Model):
             else:
                 if order.amount_untaxed != 0:
                     #price_untaxed = self.env['res.currency']._compute(order.currency_id, order.company_id.currency_id, order.amount_untaxed)
-                    price_untaxed = order.currency_id.convert(order.amount_untaxed, order.company_id.currency_id,
-                                                      order.company_id, fields.Date.today())
+                    price_untaxed = order.currency_id._convert(order.amount_untaxed, order.company_id.currency_id, order.company_id, fields.Date.today())
                 else:
                     price_untaxed = 0
             order.company_currency_amount_untaxed = price_untaxed
