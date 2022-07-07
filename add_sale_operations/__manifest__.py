@@ -16,7 +16,7 @@
     'version': '1.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','sale','add_employee_operative'],
+    'depends': ['base','sale','add_employee_operative', 'add_partner_operative'],
 
     # always loaded
     'data': [
