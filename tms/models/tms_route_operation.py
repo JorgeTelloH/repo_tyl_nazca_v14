@@ -379,13 +379,17 @@ class TmsRouteService(models.Model):
     @api.depends('travel_id.date_start')
     def _compute_get_travel_start_short(self):
         if self.travel_id.date_start:
-            self.travel_start_short = dateutil.parser.parse(self.travel_id.date_start).date()
+            self.travel_start_short = self.travel_id.date_start
+        else:
+            self.travel_start_short = False
 
     #Obtener fecha corta inicio planeado
     @api.depends('date_start')
     def _compute_get_date_start_short(self):
         if self.date_start:
-            self.date_start_short = dateutil.parser.parse(self.date_start).date()
+            self.date_start_short = self.date_start
+        else:
+            self.date_start_short = False
 
     #Obtener servicios asociados al Tramo
     @api.depends('travel_route_id.travel_route_service_ids')

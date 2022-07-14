@@ -136,6 +136,8 @@ class TmsTravel(models.Model):
                 end_date = rec.date_end_real
                 difference = (end_date - start_date).total_seconds() / 60 / 60
                 rec.travel_duration_real = difference
+            else:
+                rec.travel_duration_real = 0
 
     #================================ INI ESTADOS ================================
     #Planificado
