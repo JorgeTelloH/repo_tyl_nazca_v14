@@ -21,53 +21,53 @@
         <field name="name">Operador Logistico</field>
         <field name="active_company">True</field>
     </record>
-    <record model="res.partner.category" id="categ1">
+    <record model="res.partner.category" id="categ2">
         <field name="name">Transportistas</field>
         <field name="active_company">True</field>
     </record>
-    <record model="res.partner.category" id="categ1">
+    <record model="res.partner.category" id="categ3">
         <field name="name">Certificadora</field>
         <field name="active_company">True</field>
     </record>
-    <record model="res.partner.category" id="categ1">
+    <record model="res.partner.category" id="categ4">
         <field name="name">Custodia</field>
         <field name="active_company">True</field>
     </record>
-    <record model="res.partner.category" id="categ1">
+    <record model="res.partner.category" id="categ5">
         <field name="name">Cliente</field>
         <field name="active_company">True</field>
     </record>
-    <record model="res.partner.category" id="categ1">
+    <record model="res.partner.category" id="categ6">
         <field name="name">Agenta de Aduanas</field>
         <field name="active_company">True</field>
     </record>
-    <record model="res.partner.category" id="categ1">
+    <record model="res.partner.category" id="categ7">
         <field name="name">Estibador</field>
         <field name="active_company">True</field>
     </record>
 
 
-    <record model="res.partner.category" id="categ1">
+    <record model="res.partner.category" id="categ8">
         <field name="name">Analista</field>
         <field name="active_contac">True</field>
     </record>
-    <record model="res.partner.category" id="categ1">
+    <record model="res.partner.category" id="categ9">
         <field name="name">Visor</field>
         <field name="active_contac">True</field>
     </record>
-    <record model="res.partner.category" id="categ1">
+    <record model="res.partner.category" id="categ10">
         <field name="name">Chofer</field>
         <field name="active_contac">True</field>
     </record>
-    <record model="res.partner.category" id="categ1">
+    <record model="res.partner.category" id="categ11">
         <field name="name">Supervisor</field>
         <field name="active_contac">True</field>
     </record>
-    <record model="res.partner.category" id="categ1">
+    <record model="res.partner.category" id="categ12">
         <field name="name">Estiba</field>
         <field name="active_contac">True</field>
     </record>
-    <record model="res.partner.category" id="categ1">
+    <record model="res.partner.category" id="categ13">
         <field name="name">Chofer</field>
         <field name="active_contac">True</field>
         <field name="is_driver">True</field>
