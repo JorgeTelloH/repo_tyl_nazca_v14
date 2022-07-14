@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_fleet_form" model="ir.actions.act_window">
+            <field name="name">Flota</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="base.view_partner_form"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear Una direccion
+              </p><p>
+                Maestro de direcciones.
+              </p>
+            </field>
+        </record>
+
+        <record id="action_ship_form" model="ir.actions.act_window">
+            <field name="name">nave</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="base.view_partner_form"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear Una direccion
+              </p><p>
+                Maestro de direcciones.
+              </p>
+            </field>
+        </record>
+
+
+    <menuitem id="menu_fleet"
+        action="action_fleet_form"
+        parent="menu_fleet_nazca"/>
+
+    <menuitem id="menu_ship"
+        action="action_fleet_form"
+        parent="menu_ship_nazca"/>
+    </data>
+</odoo>

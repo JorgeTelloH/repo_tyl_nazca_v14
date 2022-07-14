@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access__model_kw_address_type__group_kw_address_user2,access__model_kw_address_type__group_kw_address_user,kw_address.model_kw_address_type,base.group_user,1,1,1,1
+
+access__model_kw_address__group_kw_address_user2,access__model_kw_address__group_kw_address_user,kw_address.model_kw_address,base.group_user,1,1,1,1
+
+access__model_license_type,access__model_license_type,model_driver_license,base.group_user,1,1,1,1
+
+access__model_tms_tracking,access__model_tms_tracking,tms.model_tms_tracking,base.group_user,1,1,1,1
