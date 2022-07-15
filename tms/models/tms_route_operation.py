@@ -483,27 +483,30 @@ class TmsRouteService(models.Model):
 
     #Obtener los datos del tracking
     def _compute_get_date_track(self):
-        #v_name = (self.operation_type.id or '')
-        #raise ValidationError(_("dato: '%s'.") % (v_name))
-        v_date = ''
-        v_type = ''
-        v_status = ''
-        v_obs = ''
-        d_tracks = self.env['tms.tracking'].search([('travel_id','=', self.travel_id.id), ('travel_route_id','=', self.travel_route_id.id), ('route_operation_id','=', self.id), ('operation_type_id','=', self.operation_type.id)], order='date desc', limit=1)
-        
-        if d_tracks:
-            for records in d_tracks:
-                v_date = (records.date or '')
-                v_type = (records.type_tracking or '')
-                v_status = (records.status_track or '')
-                v_obs = (records.notes or '')
+        for operation in self:
+            #v_name = (self.operation_type.id or '')
+            #raise ValidationError(_("dato: '%s'.") % (v_name))
+            v_date = ''
+            v_type = ''
+            v_status = ''
+            v_obs = ''
+            d_tracks = self.env['tms.tracking'].search([('travel_id','=', operation.travel_id.id), ('travel_route_id','=', operation.travel_route_id.id), ('route_operation_id','=', operation.id), ('operation_type_id','=', operation.operation_type.id)], order='date desc', limit=1)
 
-        self.date_tracking = v_date
-        self.type_tracking = v_type
-        self.notes_tracking = v_obs
-        if v_status != '':
-            self.status_tracking = v_status 
-        #raise ValidationError(_("dato: '%s'.") % (v_status))
+            if d_tracks:
+                for records in d_tracks:
+                    v_date = (records.date or '')
+                    v_type = (records.type_tracking or '')
+                    v_status = (records.status_track or '')
+                    v_obs = (records.notes or '')
+
+            operation.date_tracking = v_date
+            operation.type_tracking = v_type
+            operation.notes_tracking = v_obs
+            if v_status != '':
+                operation.status_tracking = v_status
+            else:
+                operation.status_tracking = False
+            #raise ValidationError(_("dato: '%s'.") % (v_status))
 
     #Mejora aplicada al check de imputado TH 20OCT2020
     @api.depends('check_impt', 'invoice_line_ids', 'invoice_line_ids.parent_state', 'cost_ppto_unit')
