@@ -12,7 +12,7 @@
     """,
     'author': 'Oswaldo Lopez (Cabalcon)',
     'website': 'www.cabalcon.com',
-    'depends': ['contacts','l10n_latam_base','l10n_pe','kw_address_gmap_link','tms','hide_menu_submenu_reports'],
+    'depends': ['contacts','l10n_latam_base','l10n_pe','kw_address_gmap_link','tms','hide_menu_submenu_reports','fleet'],
     'data': [
         'data/data.xml',
         'security/ir.model.access.csv',
@@ -25,6 +25,7 @@
         'views/documents.xml',
         'views/booking.xml',
         'views/address_views.xml',
+        'views/ship.xml',
 
 
     ],
