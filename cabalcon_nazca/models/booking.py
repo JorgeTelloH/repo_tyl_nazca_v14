@@ -4,6 +4,7 @@ from odoo import models, fields, api
 
 class Address(models.Model):
     _name = 'tms.booking'
+    _inherit = 'image.mixin'
 
     name = fields.Char(
         'Booking', required=True)

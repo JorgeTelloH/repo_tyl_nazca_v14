@@ -15,12 +15,15 @@
                         <field name="line_shipper_id"/>
                         <field name="quantity_container"/>
                         <field name="type_container"/>
+                        <field name="image_128"/>
                         <!-- fields in form x2many view to diminish requests -->
                         <templates>
                             <t t-name="kanban-box">
                                 <div class="oe_kanban_global_click o_kanban_record_has_image_fill tms_traking_kanban">
 
-                                    <img class="o_kanban_image" alt="Avatar" t-att-src='_s + "/base/static/img/avatar.png"'/>
+                                    <t t-if="record.image_128.raw_value">
+                                        <div class="o_kanban_image_fill_left o_kanban_image_full" t-attf-style="background-image: url(#{kanban_image('tms.ship', 'image_128', record.id.raw_value)})" role="img"/>
+                                    </t>
 
                                     <div class="oe_kanban_details d-flex flex-column">
                                         <strong class="o_kanban_record_title oe_partner_heading"><field name="display_name"/></strong>
@@ -49,6 +52,7 @@
         <field name="arch" type="xml">
             <form string="Vehicle">
                 <sheet>
+<!--                    <field name="image_1920" widget='image' class="oe_avatar" options='{"preview_image": "image_128"}'/>-->
                     <div class="oe_title">
 
                         <label for="name" class="oe_edit_only"/>

@@ -26,6 +26,15 @@ access__model_type_generic,access_type_generic,model_type_generic,base.group_use
 
 access__model_type_generic2,access_type_generic2,model_type_generic2,base.group_user,1,1,1,1
 
+access__model_type_generic2,access_type_generic2,model_type_generic2,base.group_user,1,1,1,1
+
+access__model_fleet_vehicle_model_brand,access_model_brand,fleet.model_fleet_vehicle_model_brand,base.group_user,1,1,1,1
+
+access__model_fleet_vehicle_model,access_model_brand2,fleet.model_fleet_vehicle_model,base.group_user,1,1,1,1
+
+
+
+
 
 
 

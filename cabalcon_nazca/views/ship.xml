@@ -17,7 +17,7 @@
                             <t t-name="kanban-box">
                                 <div class="oe_kanban_global_click o_kanban_record_has_image_fill tms_traking_kanban">
 
-                                    <t t-if="record.track_img.raw_value">
+                                    <t t-if="record.image_128.raw_value">
                                         <div class="o_kanban_image_fill_left o_kanban_image_full" t-attf-style="background-image: url(#{kanban_image('tms.ship', 'image_128', record.id.raw_value)})" role="img"/>
                                     </t>
 
@@ -51,7 +51,7 @@
         <field name="arch" type="xml">
             <form string="Vehicle">
                 <sheet>
-                    <field name="image_128" widget='image' class="oe_avatar"/>
+                    <field name="image_1920" widget='image' class="oe_avatar" options='{"preview_image": "image_128"}'/>
                     <div class="oe_title">
 
                         <label for="imo" class="oe_edit_only"/>
@@ -181,8 +181,54 @@
             <field name="act_window_id" ref="action_ship_form"/>
         </record>
 
+
+        <record id="action_type_generic_form" model="ir.actions.act_window">
+            <field name="name">type.generic</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">type.generic</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear tipo generico
+              </p><p>
+                Maestro tipo generico.
+              </p>
+            </field>
+        </record>
+
+        <record id="action_type_generic_form2" model="ir.actions.act_window">
+            <field name="name">type.generic2</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">type.generic2</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear tipo generico2
+              </p><p>
+                Maestro tipo generico2.
+              </p>
+            </field>
+        </record>
+
         <menuitem id="menu_ship"
         action="action_ship_form"
+        sequence="1"
         parent="menu_ship_nazca"/>
+
+        <menuitem id="res_ship_menu_config"
+        name="Configuracion"
+        parent="menu_ship"
+        groups="base.group_user"
+        sequence="2"/>
+
+        <menuitem id="menu_ship_generic"
+        action="action_type_generic_form"
+        parent="res_ship_menu_config"/>
+
+        <menuitem id="menu_ship_generic2"
+        action="action_type_generic_form2"
+        parent="res_ship_menu_config"/>
 
 </odoo>
