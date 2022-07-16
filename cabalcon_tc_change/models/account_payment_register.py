@@ -1,27 +1,30 @@
 # -*- encoding: utf-8 -*-
-from odoo import api, fields, models, SUPERUSER_ID, _
-from odoo.exceptions import UserError, ValidationError
-from odoo.addons import decimal_precision as dp
+from odoo import api, fields, models, _
 
 
 class AccountPaymentRegister(models.TransientModel):
     _inherit = 'account.payment.register'
 
-    exchange_rate_value_p = fields.Float(string='Tipo de Cambio', digits=dp.get_precision('Tipo Cambio'))
+    currency_tc = fields.Float(string='Tipo de Cambio', digits='Tipo Cambio')
 
     def _create_payments(self):
         payments = super(AccountPaymentRegister, self)._create_payments()
 
-        exchange_value = self.env['res.currency.rate'].search([('currency_id', '=', self.currency_id.id), 
-                                                               ('name', '=', self.payment_date)])
-        for payment in payments:
-            if exchange_value:
-                self.exchange_rate_value_p = 1/(exchange_value.rate)
-                payment.exchange_rate_value = 1/(exchange_value.rate)
+        v_rate_pe = 1
+        if self.currency_id != self.company_currency_id:
+            excha = self.env['res.currency.rate'].search([
+                ('currency_id', '=', self.currency_id.id), ('name', '=', self.payment_date), ('company_id','=', self.company_id.id)
+                ], limit=1)
+            if excha:
+                v_rate_pe = excha.rate_pe
             else:
-                exchange_value = self.env['res.currency.rate'].search([('currency_id', '=', self.currency_id.id), 
-                                                                       ('name', '<=', self.payment_date)], order='name desc', limit=1)
-                self.exchange_rate_value_p = 1/(exchange_value.rate) if exchange_value else 1.000
-                payment.exchange_rate_value = 1/(exchange_value.rate) if exchange_value else 1.000
+                excha = self.env['res.currency.rate'].search([
+                    ('currency_id', '=', self.currency_id.id), ('name', '<=', self.payment_date), ('company_id','=', self.company_id.id)
+                    ], order='name desc', limit=1)
+                v_rate_pe = excha.rate_pe if excha else 1
+
+        for payment in payments:
+            self.currency_tc = v_rate_pe
+            payment.currency_tc = v_rate_pe
 
         return payments

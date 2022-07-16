@@ -1,20 +1,25 @@
 # -*- encoding: utf-8 -*-
-from odoo import api, fields, models, SUPERUSER_ID, _
-from odoo.exceptions import UserError, ValidationError
-from odoo.addons import decimal_precision as dp
+from odoo import api, fields, models, _
 
 
 class AccountMove(models.Model):
     _inherit = 'account.payment'
 
-
-    exchange_rate_value= fields.Float(string='Tipo de Cambio', digits=dp.get_precision('Tipo Cambio'))
+    currency_tc= fields.Float(string='Tipo de Cambio', digits='Tipo Cambio')
 
     @api.onchange('date', 'currency_id', 'partner_id')
-    def get_exchange_rate_value(self):
-        excha = self.env['res.currency.rate'].search([('currency_id', '=', self.currency_id.id), ('name', '=', self.date)])
-        if excha:
-            self.exchange_rate_value = 1/(excha.rate)
-        elif self.currency_id:
-            excha = self.env['res.currency.rate'].search([('currency_id', '=', self.currency_id.id), ('name', '<=', self.date)], order='name desc', limit=1)
-            self.exchange_rate_value = 1/(excha.rate) if excha else 1.000
+    def get_currency_tc(self):
+        v_rate_pe = 1
+        if self.currency_id != self.company_id.currency_id:
+            excha = self.env['res.currency.rate'].search([
+                ('currency_id', '=', self.currency_id.id), ('name', '=', self.date), ('company_id','=', self.company_id.id)
+                ], limit=1)
+            if excha:
+                v_rate_pe = excha.rate_pe
+            else:
+                excha = self.env['res.currency.rate'].search([
+                    ('currency_id', '=', self.currency_id.id), ('name', '<=', self.date), ('company_id','=', self.company_id.id)
+                    ], order='name desc', limit=1)
+                v_rate_pe = excha.rate_pe if excha else 1
+
+        self.currency_tc = v_rate_pe

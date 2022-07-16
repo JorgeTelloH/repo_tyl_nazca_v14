@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="account.view_account_payment_register_form" />
             <field name="arch" type="xml">
                 <xpath expr="//group//group[@name='group1']//field[@name='communication']" position="after">
-                    <field name="exchange_rate_value_p" invisible = "True" />
+                    <field name="currency_tc" invisible = "1"/>
                 </xpath>
             </field>
         </record>
