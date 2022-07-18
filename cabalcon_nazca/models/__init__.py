@@ -11,3 +11,6 @@ from . import type_generic
 from . import ship
 from . import line_shipper
 from . import booking
+from . import operation_type
+from . import route_operation
+from . import travel_route

@@ -1,0 +1,13 @@
+<odoo>
+    <record id="tms_travel_form" model="ir.ui.view">
+        <field name="name">tms.travel</field>
+        <field name="model">tms.travel</field>
+        <field name="inherit_id" ref="tms.view_tms_travel_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[1]" possition="inside">
+                <field name="departure_id"/>
+                <field name="arrival_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

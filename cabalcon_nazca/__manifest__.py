@@ -26,6 +26,8 @@
         'views/booking.xml',
         'views/address_views.xml',
         'views/ship.xml',
+        'views/operation_type.xml',
+        'views/travel_route.xml',
 
 
     ],

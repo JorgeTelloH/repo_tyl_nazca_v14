@@ -32,6 +32,10 @@ access__model_fleet_vehicle_model_brand,access_model_brand,fleet.model_fleet_veh
 
 access__model_fleet_vehicle_model,access_model_brand2,fleet.model_fleet_vehicle_model,base.group_user,1,1,1,1
 
+access__model_tms_travel_route,access_model_tms_travel_route,tms.model_tms_travel,base.group_user,1,1,1,1
+
+
+
 
 
 
