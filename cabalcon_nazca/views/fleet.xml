@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id='fleet_vehicle_view_form_tms' model='ir.ui.view'>
+        <field name="name">fleet.vehicle.form</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle">
+                <sheet>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="image_128" widget='image' class="oe_avatar"/>
+                    <div class="oe_title">
+
+                        <label for="license_plate" class="oe_edit_only"/>
+                        <h2>
+                            <field name="license_plate" class="oe_inline" placeholder="e.g. PAE 326"/>
+                        </h2>
+
+                        <label for="brand_id" class="oe_edit_only"/>
+                        <h2>
+                            <field name="brand_id" placeholder="Mercedes"/>
+                        </h2>
+
+                        <label for="model_id" class="oe_edit_only"/>
+                        <h2>
+                            <field name="model_id" placeholder="e.g. Model S"/>
+                        </h2>
+
+
+                        <label for="model_year" class="oe_edit_only"/>
+                        <field name="model_year"/>
+                        <label for="color" class="oe_edit_only"/>
+                        <field name="color"/>
+                        <label for="notes" class="oe_edit_only"/>
+                        <field name="notes"/>
+                        <label for="tag_ids" class="oe_edit_only" string="Categoria de vehiculo"/>
+                        <field name="tag_ids"  string="Categoria de vehiculo" widget="many2many_checkboxes" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                        <notebook colspan="4">
+                            <page string="Compañia" name="contact_company" autofocus="autofocus">
+                                <field name="company_id" widget="many2one_avatar"/>
+                            </page>
+                            <page string="Doc. Relacionados" name="docs">
+                            </page>
+                        </notebook>
+
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+        <record id="action_fleet_form" model="ir.actions.act_window">
+            <field name="name">Flota</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">fleet.vehicle</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear un vehiculo.
+              </p><p>
+                Maestro un vehiculo.
+              </p>
+            </field>
+        </record>
+
+        <record id="action_fleet_vehicle_view_kanban" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="fleet.fleet_vehicle_view_kanban"/>
+            <field name="act_window_id" ref="action_fleet_form"/>
+        </record>
+
+        <record id="action_fleet_vehicle_view_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="fleet_vehicle_view_form_tms"/>
+            <field name="act_window_id" ref="action_fleet_form"/>
+        </record>
+
+
+
+    <menuitem id="menu_fleet"
+        action="action_fleet_form"
+        parent="menu_fleet_nazca"/>
+
+</data>
+</odoo>

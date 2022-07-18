@@ -1,0 +1,234 @@
+<odoo>
+            <record model="ir.ui.view" id="tms_ship_view_kanban">
+            <field name="name">tms.ship.kanban</field>
+            <field name="model">tms.ship</field>
+            <field name="arch" type="xml">
+                    <kanban>
+                        <field name="id"/>
+                        <field name="name"/>
+                        <field name="imo"/>
+                        <field name="departure"/>
+                        <field name="date_etd_from"/>
+                        <field name="arrival"/>
+                        <field name="date_etd_from_arrival"/>
+                        <field name="image_128"/>
+                        <!-- fields in form x2many view to diminish requests -->
+                        <templates>
+                            <t t-name="kanban-box">
+                                <div class="oe_kanban_global_click o_kanban_record_has_image_fill tms_traking_kanban">
+
+                                    <t t-if="record.image_128.raw_value">
+                                        <div class="o_kanban_image_fill_left o_kanban_image_full" t-attf-style="background-image: url(#{kanban_image('tms.ship', 'image_128', record.id.raw_value)})" role="img"/>
+                                    </t>
+
+                                    <t t-else="">
+                                        <img class="o_kanban_image" alt="Avatar" t-att-src='_s + "/base/static/img/avatar.png"'/>
+                                    </t>
+
+                                    <div class="oe_kanban_details d-flex flex-column">
+                                        <strong class="o_kanban_record_title oe_partner_heading"><field name="display_name"/></strong>
+                                        <div class="o_kanban_tags_section"/>
+                                        <ul>
+                                            <li><field name="name"/> </li>
+                                            <li>IMO:<field name="imo"/> </li>
+                                            <li>C.Port: <field name="departure"/> </li>
+                                            <li>ATD:<field name="date_etd_from"/> </li>
+                                            <li>R.Destination: <field name="arrival"/> </li>
+                                            <li>ATA:<field name="date_etd_from_arrival"/> </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </t>
+                        </templates>
+                     </kanban>
+            </field>
+        </record>
+
+        <record id='tms_ship_view_form' model='ir.ui.view'>
+        <field name="name">tms.ship.form</field>
+        <field name="model">tms.ship</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle">
+                <sheet>
+                    <field name="image_1920" widget='image' class="oe_avatar" options='{"preview_image": "image_128"}'/>
+                    <div class="oe_title">
+
+                        <label for="imo" class="oe_edit_only"/>
+                        <h2>
+                            <field name="imo" class="oe_inline"/>
+                        </h2>
+
+                        <label for="name" class="oe_edit_only"/>
+                        <h2>
+                            <field name="name" placeholder="Nombre"/>
+                        </h2>
+                    </div>
+                        <group >
+                            <group string="general">
+                                <field name="state"/>
+                                <field name="flag"/>
+                                <field name="type_generic"/>
+                                <field name="type_generic2"/>
+                                <field name="mmsi"/>
+                                <field name="signal"/>
+                                <field name="gross_tonnage"/>
+                                <field name="dead_tonnage"/>
+                                <field name="length"/>
+                                <field name="port_id"/>
+                            </group>
+                        </group>
+
+                        <notebook >
+                            <page string="Voyage inf." name="voyage" autofocus="autofocus">
+                                <group>
+                                    <field name="departure"/>
+                                    <field name="date_etd_from"/>
+                                    <field name="date_atd_from"/>
+                                    <field name="arrival"/>
+                                    <field name="date_etd_from_arrival"/>
+                                    <field name="date_atd_from_arrival"/>
+                                </group>
+                            </page>
+                            <page string="Latest Post." name="latest">
+                                <group>
+                                    <field name="positon_receved"/>
+                                    <field name="vessel_local_time"/>
+                                    <field name="area"/>
+                                    <field name="lat_log"/>
+                                    <field name="status_pos"/>
+                                    <field name="sped_cursed"/>
+                                    <field name="ais_source"/>
+                                </group>
+
+                            </page>
+                            <page string="Booking Related" name="Booking">
+                                <field name="booking_ids">
+                                    <kanban>
+                                        <field name="id"/>
+                                        <field name="name"/>
+                                        <field name="partner_id"/>
+                                        <field name="ship_id"/>
+                                        <field name="booking_etd"/>
+                                        <field name="line_shipper_id"/>
+                                        <field name="quantity_container"/>
+                                        <field name="type_container"/>
+                                        <!-- fields in form x2many view to diminish requests -->
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="oe_kanban_global_click o_kanban_record_has_image_fill tms_traking_kanban">
+
+                                                    <img class="o_kanban_image" alt="Avatar" t-att-src='_s + "/base/static/img/avatar.png"'/>
+
+                                                    <div class="oe_kanban_details d-flex flex-column">
+                                                        <strong class="o_kanban_record_title oe_partner_heading"><field name="display_name"/></strong>
+                                                        <div class="o_kanban_tags_section"/>
+                                                        <ul>
+                                                            <li><field name="name"/> </li>
+                                                            <li>Cliente<field name="partner_id"/> </li>
+                                                            <li>Nave:<field name="ship_id"/> </li>
+                                                            <li>ETD: <field name="booking_etd"/> </li>
+                                                            <li>Linea naviera:<field name="line_shipper_id"/> </li>
+                                                            <li>Cant. Contenedores: <field name="quantity_container"/> </li>
+                                                            <li>Tipo Contenedores:<field name="type_container"/> </li>
+                                                        </ul>
+
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                     </kanban>
+
+                                </field>
+                            </page>
+                        </notebook>
+
+
+                </sheet>
+            </form>
+        </field>
+        </record>
+
+
+        <record id="action_ship_form" model="ir.actions.act_window">
+            <field name="name">Nave</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tms.ship</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="base.view_partner_form"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear Una direccion
+              </p><p>
+                Maestro de direcciones.
+              </p>
+            </field>
+        </record>
+
+
+        <record id="action_tms_ship_view_kanban" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="tms_ship_view_kanban"/>
+            <field name="act_window_id" ref="action_ship_form"/>
+        </record>
+
+        <record id="action_tms_ship_view_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="tms_ship_view_form"/>
+            <field name="act_window_id" ref="action_ship_form"/>
+        </record>
+
+
+        <record id="action_type_generic_form" model="ir.actions.act_window">
+            <field name="name">type.generic</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">type.generic</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear tipo generico
+              </p><p>
+                Maestro tipo generico.
+              </p>
+            </field>
+        </record>
+
+        <record id="action_type_generic_form2" model="ir.actions.act_window">
+            <field name="name">type.generic2</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">type.generic2</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Crear tipo generico2
+              </p><p>
+                Maestro tipo generico2.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_ship"
+        action="action_ship_form"
+        sequence="1"
+        parent="menu_ship_nazca"/>
+
+        <menuitem id="res_ship_menu_config"
+        name="Configuracion"
+        parent="menu_ship"
+        groups="base.group_user"
+        sequence="2"/>
+
+        <menuitem id="menu_ship_generic"
+        action="action_type_generic_form"
+        parent="res_ship_menu_config"/>
+
+        <menuitem id="menu_ship_generic2"
+        action="action_type_generic_form2"
+        parent="res_ship_menu_config"/>
+
+</odoo>

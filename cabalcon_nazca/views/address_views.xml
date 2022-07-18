@@ -1,0 +1,149 @@
+<odoo>
+    <record id="kw_address_gmap_link_kw_address_form" model="ir.ui.view">
+        <field name="name">kw.address.form (kw_address_gmap_link)</field>
+        <field name="model">kw.address</field>
+        <field name="inherit_id" ref="kw_address.kw_address_kw_address_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='street2']" possition="after">
+                <field name="street_number"/>
+                <field name="street_number2"/>
+            </xpath>
+            <xpath expr="//group/group[2]" possition="inside">
+                <field name="comment"/>
+            </xpath>
+            <xpath expr="//notebook" possition="inside">
+                <page string="Empresas">
+                     <field name="partner_id" mode="kanban">
+                                <kanban>
+                                    <field name="id"/>
+                                    <field name="color"/>
+                                    <field name="name"/>
+                                    <field name="title"/>
+                                    <field name="type"/>
+                                    <field name="email"/>
+                                    <field name="parent_id"/>
+                                    <field name="is_company"/>
+                                    <field name="function"/>
+                                    <field name="phone"/>
+                                    <field name="street"/>
+                                    <field name="street2"/>
+                                    <field name="zip"/>
+                                    <field name="city"/>
+                                    <field name="country_id"/>
+                                    <field name="mobile"/>
+                                    <field name="state_id"/>
+                                    <field name="image_128"/>
+                                    <field name="lang"/>
+                                    <!-- fields in form x2many view to diminish requests -->
+                                    <field name="comment"/>
+                                    <field name="display_name"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
+                                            <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
+                                                <div class="o_kanban_image">
+                                                    <img alt="Contact image" t-if="record.image_128.raw_value" t-att-src="kanban_image('res.partner', 'image_128', record.id.raw_value)"/>
+                                                    <t t-if="!record.image_128.raw_value">
+                                                        <img alt="Delivery" t-if="record.type.raw_value === 'delivery'" t-att-src='_s + "/base/static/img/truck.png"'/>
+                                                        <img alt="Invoice" t-if="record.type.raw_value === 'invoice'" t-att-src='_s + "/base/static/img/money.png"'/>
+                                                        <t t-if="record.type.raw_value !== 'invoice' &amp;&amp; record.type.raw_value !== 'delivery'">
+                                                            <img alt="Logo" t-if="record.is_company.raw_value === true" t-att-src='_s + "/base/static/img/company_image.png"'/>
+                                                            <img alt="Avatar" t-if="record.is_company.raw_value === false" t-att-src='_s + "/base/static/img/avatar_grey.png"'/>
+                                                        </t>
+                                                    </t>
+                                                </div>
+                                                <div class="oe_kanban_details">
+                                                    <field name="name"/>
+                                                    <div t-if="record.function.raw_value"><field name="function"/></div>
+                                                    <div t-if="record.email.raw_value"><field name="email" widget="email"/></div>
+                                                    <div t-if="record.type.raw_value != 'contact'">
+                                                        <div>
+                                                            <field name="zip"/>
+                                                            <field name="city"/>
+                                                        </div>
+                                                        <field t-if="record.state_id.raw_value" name="state_id"/>
+                                                        <field name="country_id"/>
+                                                    </div>
+                                                    <div t-if="record.phone.raw_value">Phone: <t t-esc="record.phone.value"/></div>
+                                                    <div t-if="record.mobile.raw_value">Mobile: <t t-esc="record.mobile.value"/></div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+        <record model="ir.ui.view" id="kw_address_kanban_view">
+                <field name="name">kw.address.kanban</field>
+                <field name="model">kw.address</field>
+                <field name="arch" type="xml">
+                    <kanban>
+                        <field name="id"/>
+                        <field name="street"/>
+                        <field name="street2"/>
+                        <field name="state_id"/>
+                        <field name="zip"/>
+                        <field name="country_id"/>
+                        <field name="latitude"/>
+                        <field name="longitude"/>
+                        <templates>
+                             <t t-name="kanban-box">
+                                <div class="oe_kanban_global_click o_kanban_record_has_image_fill tms_traking_kanban">
+
+<!--                                                <t t-if="record.track_img.raw_value">-->
+<!--                                                    <div class="o_kanban_image_fill_left o_kanban_image_full" t-attf-style="background-image: url(#{kanban_image('tms.tracking', 'track_img', record.id.raw_value)})" role="img"/>-->
+<!--                                                </t>-->
+<!--                -->
+<!--                                                <t t-else="">-->
+<!--                                                    <img class="o_kanban_image" alt="Avatar" t-att-src='_s + "/base/static/img/avatar.png"'/>-->
+<!--                                                </t>-->
+
+                                    <div class="oe_kanban_details d-flex flex-column">
+                                        <strong class="o_kanban_record_title oe_partner_heading"><field name="display_name"/></strong>
+                                        <div class="o_kanban_tags_section"/>
+                                        <ul>
+                                            <li>Direccion: <field name="street"/> </li>
+                                            <li>Lat: <field name="latitude"/> </li>
+                                            <li>lon: <field name="longitude"/> </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </t>
+                        </templates>
+                    </kanban>
+                </field>
+            </record>
+
+            <record model="ir.actions.act_window" id="kw_address.kw_address_kw_address_action_window">
+                <field name="name">Address</field>
+                <field name="res_model">kw.address</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="view_mode">kanban,tree,form</field>
+            </record>
+
+            <record id="action_kw_address_view_kanban" model="ir.actions.act_window.view">
+                <field name="sequence" eval="0"/>
+                <field name="view_mode">kanban</field>
+                <field name="view_id" ref="kw_address_kanban_view"/>
+                <field name="act_window_id" ref="kw_address.kw_address_kw_address_action_window"/>
+            </record>
+
+            <record id="action_kw_address_view_form" model="ir.actions.act_window.view">
+                <field name="sequence" eval="1"/>
+                <field name="view_mode">form</field>
+                <field name="view_id" ref="kw_address.kw_address_kw_address_form"/>
+                <field name="act_window_id" ref="kw_address.kw_address_kw_address_action_window"/>
+            </record>
+
+
+</odoo>
+
+
+
+
+

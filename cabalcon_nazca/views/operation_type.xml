@@ -1,0 +1,12 @@
+<odoo>
+    <record id="tms_route_operation_type_form" model="ir.ui.view">
+        <field name="name">tms.route.operation.type</field>
+        <field name="model">tms.route.operation.type</field>
+        <field name="inherit_id" ref="tms.view_tms_route_operation_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[2]" possition="inside">
+                <field name="type"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

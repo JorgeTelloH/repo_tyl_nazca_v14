@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+            <record model="ir.ui.view" id="tms_tracking_view">
+            <field name="name">tms.tracking.kanban</field>
+            <field name="model">tms.tracking</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="date"/>
+                    <field name="travel_id"/>
+                    <field name="route_operation_id"/>
+                    <field name="travel_operative"/>
+                    <field name="operation_type_id"/>
+                    <field name="type_tracking"/>
+                    <field name="status_track"/>
+                    <field name="notes"/>
+                    <field name="vendor_id"/>
+                    <field name="driver_id"/>
+                    <field name="position_real"/>
+                    <field name="state"/>
+                    <field name="create_uid"/>
+                    <field name="create_date"/>
+                    <field name="track_img"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill tms_traking_kanban">
+
+                                <t t-if="record.track_img.raw_value">
+                                    <div class="o_kanban_image_fill_left o_kanban_image_full" t-attf-style="background-image: url(#{kanban_image('tms.tracking', 'track_img', record.id.raw_value)})" role="img"/>
+                                </t>
+
+                                <t t-else="">
+                                    <img class="o_kanban_image" alt="Avatar" t-att-src='_s + "/base/static/img/avatar.png"'/>
+                                </t>
+
+                                <div class="oe_kanban_details d-flex flex-column">
+                                    <strong class="o_kanban_record_title oe_partner_heading"><field name="display_name"/></strong>
+                                    <div class="o_kanban_tags_section"/>
+                                    <ul>
+                                        <li>Fecha: <field name="date"/> </li>
+                                        <li>Tipo: <field name="type_tracking"/> </li>
+                                        <li>Conductor: <field name="driver_id"/> </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+
+
+
+
+    </data>
+</odoo>
