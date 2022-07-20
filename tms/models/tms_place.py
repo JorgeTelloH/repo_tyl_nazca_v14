@@ -19,7 +19,7 @@ class TmsPlace(models.Model):
     @api.onchange('district_id')
     def _onchange_district_id(self):
         for rec in self:
-            rec.province_id = rec.district_id.province_id
+            rec.province_id = rec.district_id.city_id
 
     @api.onchange('province_id')
     def _onchange_province_id(self):
