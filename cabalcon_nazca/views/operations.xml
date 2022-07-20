@@ -59,6 +59,10 @@
                         <field name="employee_operative" domain="[('operative_to_customer','=',True)]" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" attrs="{'readonly':[('state','in',('started','finished','canceled'))]}"/>
                         <field name="departure_id"/>
                         <field name="arrival_id"/>
+                        <field name="custom_agency"/>
+                        <field name="ship_id"/>
+                        <field name="booking_id"/>
+                        <field name="service_ids"  string="Servicios" widget="many2many_checkboxes"/>
 
                     </group>
 
@@ -69,16 +73,29 @@
                                 </field>
                             </page>
                             <page string="Agencia aduanas" name="agencia">
+                                <field name="custom_agency" widget="many2one_avatar"/>
                             </page>
                             <page string="Custodia" name="custodia">
+                                <field name="custody_ids" mode="kanban">
+
+                                </field>
                             </page>
                             <page string="Estiba" name="estiba">
+                                <field name="stowage_ids" mode="kanban">
+
+                                </field>
                             </page>
                             <page string="Certificadora" name="certif">
+                                <field name="certifying_ids" mode="kanban">
+
+                                </field>
+
                             </page>
                             <page string="Nave" name="nave">
+                                 <field name="ship_id" widget="many2one_avatar"/>
                             </page>
                             <page string="Booking" name="booking">
+                                <field name="booking_id" widget="many2one_avatar"/>
 
 <!--                                <field name="booking_ids">-->
 <!--                                    <kanban>-->

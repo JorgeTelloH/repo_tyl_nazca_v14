@@ -32,7 +32,7 @@
                         <field name="model_year"/>
                         <label for="color" class="oe_edit_only"/>
                         <field name="color"/>
-                        <label for="notes" class="oe_edit_only"/>
+                        <label for="notes" class="oe_edit_only" string="Notas"/>
                         <field name="notes"/>
                         <label for="tag_ids" class="oe_edit_only" string="Categoria de vehiculo"/>
                         <field name="tag_ids"  string="Categoria de vehiculo" widget="many2many_checkboxes" options="{'color_field': 'color', 'no_create_edit': True}"/>

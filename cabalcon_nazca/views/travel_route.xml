@@ -7,6 +7,9 @@
             <xpath expr="//group/group[1]" possition="inside">
                 <field name="departure_id"/>
                 <field name="arrival_id"/>
+                <field name="custom_agency"/>
+                <field name="ship_id"/>
+                <field name="booking_id"/>
             </xpath>
         </field>
     </record>

@@ -73,6 +73,22 @@
         <field name="is_driver">True</field>
     </record>
 
+    <record model="tms.type.service" id="serv1">
+        <field name="name">Transporte</field>
+    </record>
+    <record model="tms.type.service" id="serv2">
+        <field name="name">Custodia</field>
+    </record>
+    <record model="tms.type.service" id="serv3">
+        <field name="name">Estiba</field>
+    </record>
+    <record model="tms.type.service" id="serv4">
+        <field name="name">Certificadora</field>
+    </record>
+    <record model="tms.type.service" id="serv5">
+        <field name="name">Agencia de aduanas</field>
+    </record>
+
 
 
 </odoo>

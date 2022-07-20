@@ -9,4 +9,5 @@ class OperationType(models.Model):
         ('transporte', 'Transporte'),
         ('custodia', 'Custodia'),
         ('estiba', 'Estiba'),
+        ('certificadora', 'Certificadora'),
     ], 'Tipo', default='transporte', help='Tipo', required=True)

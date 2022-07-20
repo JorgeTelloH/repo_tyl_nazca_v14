@@ -14,3 +14,5 @@ from . import booking
 from . import operation_type
 from . import route_operation
 from . import travel_route
+from . import tms_custom_agency
+from . import tms_type_service
