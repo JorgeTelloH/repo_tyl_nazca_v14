@@ -50,6 +50,8 @@ access_tms_route_operation,tms_route_operation,tms.model_tms_route_operation,bas
 
 access_tms_advance,tms_advance,tms.model_tms_advance,base.group_user,1,1,1,1
 
+access_tms_status_track,tms_status_track,tms.model_tms_status_track,base.group_user,1,1,1,1
+
 
 
 
