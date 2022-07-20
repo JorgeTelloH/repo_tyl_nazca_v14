@@ -65,6 +65,7 @@
                                     attrs="{'readonly': [('parent_id', '!=', False)]}"/>
                                 <field name="street2" nolabel="1" placeholder="Street 2..." class="o_address_street"
                                     attrs="{'readonly': [('parent_id', '!=', False)]}"/>
+                                <field name="l10n_pe_district" placeholder="Distrito..."/>
 <!--                                <field name="city" nolabel="1" placeholder="City" class="o_address_city"-->
 <!--                                    attrs="{'readonly': [('parent_id', '!=', False)]}"/>-->
                                 <field name="state_id" nolabel="1" class="o_address_state" placeholder="State" options="{'no_open': True, 'no_quick_create': True}"
